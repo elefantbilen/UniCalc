@@ -1,6 +1,11 @@
 package com.example.unicalc;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Locale;
+
 import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -15,7 +20,6 @@ import android.support.v4.app.NavUtils;
 //TODO sub '-' for negative numbers top, trim decimals for double, handle bigger numbers for binary
 
 
-
 public class CalculatorActivity extends Activity
 {
 	public static final int PLUS = 1;
@@ -28,6 +32,7 @@ public class CalculatorActivity extends Activity
 	public static final int HEXA_MODE = 3;
 	public int userCommand;
 	public int currentMode;
+	public String appendOP = "";
 	
 	private TextView numberBar;
 	private TextView tempNumberBar;
@@ -83,16 +88,27 @@ public class CalculatorActivity extends Activity
 	
 	public void changeMode(View view)
 	{
+		boolean appendedOP = false;
 		doHaptic(view);
+		
 		switch (view.getId())
 		{
 			case R.id.binary_mode:
 				if(currentMode != BINARY_MODE)
 				{
+
 					currentMode = BINARY_MODE;
 					double makeDoubleInt = Double.parseDouble(mainNumber);	
 					int preparedInt = (int)makeDoubleInt;
 					mainNumber = Integer.toBinaryString(preparedInt);
+
+					if(!tempNumber.equals(""))
+					{
+						makeDoubleInt = Double.parseDouble(tempNumber);	
+						preparedInt = (int)makeDoubleInt;
+						tempNumber = Integer.toBinaryString(preparedInt);
+						appendedOP = true;
+					}
 					configureButtons(BINARY_MODE);
 				}
 				break;
@@ -102,11 +118,21 @@ public class CalculatorActivity extends Activity
 					currentMode = DECIMAL_MODE;
 					int binaryToInt = Integer.parseInt(mainNumber, 2);
 					mainNumber = Integer.toString(binaryToInt);
+					
+					if(!tempNumber.equals(""))
+					{
+						binaryToInt = Integer.parseInt(tempNumber, 2);
+						tempNumber = Integer.toString(binaryToInt);
+						appendedOP = true;
+					}
 					configureButtons(DECIMAL_MODE);
 				}
 		}
 		
 		setNumberBar();
+		
+		if(appendedOP)
+			setTempNumberBar(appendOP);
 	}
 	
 	private void doHaptic(View view)
@@ -122,7 +148,6 @@ public class CalculatorActivity extends Activity
 	
 	private void setNumberBar()
 	{
-		Log.d("a", "sätter: " + mainNumber);
 		numberBar.setText(mainNumber);
 	}
 	
@@ -133,15 +158,14 @@ public class CalculatorActivity extends Activity
 	
 	private void setTempNumberBar(String append)
 	{
-		Log.d("a", "append är " + append);
-		tempNumberBar.setText(tempNumber + append);
+		tempNumberBar.setText(tempNumber + appendOP);
 	}
 	
 	public void numButton(View view)
 	{
 		doHaptic(view);
 		
-		if(clearNumberBar)
+		if(clearNumberBar || mainNumber.equals("0"))
 		{
 			mainNumber = ((String)((Button)view).getText());
 			clearNumberBar = false;
@@ -157,12 +181,7 @@ public class CalculatorActivity extends Activity
 				mainNumber = mainNumber.concat((String)((Button)view).getText());
 				if(mainNumber.length() % 10 == 0)
 				{
-					Context context = getApplicationContext();
-					CharSequence text = "Yes, this is possible but it's getting silly now";
-					int duration = Toast.LENGTH_SHORT;
-
-					Toast toast = Toast.makeText(context, text, duration);
-					toast.show();
+					giveUserToast(R.string.long_number_input);
 				}
 			}
 		}
@@ -173,48 +192,116 @@ public class CalculatorActivity extends Activity
 	public void equalsCommand(View view)
 	{
 		doHaptic(view);
-		Log.d("a", "längd: " + tempNumber.length() + "b: " + mainNumber.length());
 		if(tempNumber.length() > 0 && mainNumber.length() > 0)
 		{
 			equals();
 		}
 	}
 	
+	private void giveUserToast(int message)
+	{
+		Context context = getApplicationContext();
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, message, duration);
+		toast.show();
+	}
+	
 	public void equals()
 	{
-			double a = Double.parseDouble(tempNumber);
-			double b = Double.parseDouble(mainNumber);
-			Log.d("1", "a: " + a + "b: " + b);
-			switch(userCommand)
-			{
-				case PLUS:
-					a += b;
-				break;
-				case MINUS:
-					a -= b;
-				break;
-				case DIVIDE:
-					a /= b;
-				break;
-				case MULTIPLY:
-					a *= b;
-				break;
-			}
-		
-			mainNumber = Double.toString(a);
-			tempNumber = "";
-			userCommand = NOTHING;
-		
-		
+		switch(currentMode)
+		{
+			case BINARY_MODE:
+				equalsBinMode();
+			break;
+			
+			case DECIMAL_MODE:
+				equalsDecMode();
+			break;
+			
+			case HEXA_MODE:
+			break;
+		}
+	}
+	
+	private void equalsBinMode()
+	{
+		BigInteger a = new BigInteger(tempNumber,2);
+		BigInteger b = new BigInteger(mainNumber, 2);
+
+		Log.d("1", "a blir: " + a.toString() + "b blir: " + b.toString());
+		switch(userCommand)
+		{
+			case PLUS:
+				a = a.add(b);
+			break;
+			case MINUS:
+				a = a.subtract(b);
+			break;
+			case DIVIDE:
+				if(b.equals(BigInteger.valueOf(0)))
+				{
+					a = a.divide(BigInteger.valueOf(1));
+					giveUserToast(R.string.divide_by_0);
+				}
+				else
+					a = a.divide(b);
+			break;
+			case MULTIPLY:
+				a = a.multiply(b);
+			break;
+		}
+
+		mainNumber = a.toString(2);
+		tempNumber = "";
+		userCommand = NOTHING;
+	
 		setNumberBar();
 		setTempNumberBar();
 		clearNumberBar = true;
 	}
 	
+	public void equalsDecMode()
+	{
+		BigDecimal a = new BigDecimal(tempNumber);
+		BigDecimal b = new BigDecimal(mainNumber);
+		Log.d("1", "a blir: " + a.toString() + "b blir: " + b.toString());
+		switch(userCommand)
+		{
+			case PLUS:
+				a = a.add(b);
+			break;
+			case MINUS:
+				a = a.subtract(b);
+			break;
+			case DIVIDE:
+				if(b.equals(BigDecimal.valueOf(0)))
+				{
+					a = a.divide(BigDecimal.valueOf(1));
+					giveUserToast(R.string.divide_by_0);
+				}
+				else
+					a = a.divide(b);
+			break;
+			case MULTIPLY:
+				a = a.multiply(b);
+			break;
+		}
+
+		mainNumber = a.toString();
+		tempNumber = "";
+		userCommand = NOTHING;
+	
+		setNumberBar();
+		setTempNumberBar();
+		clearNumberBar = true;
+								
+	}
+	
 	public void commandButton(View view)
 	{
 		doHaptic(view);
-		String appendOP = "";
+		appendOP = "";
 		boolean chained = false;
 		if(userCommand != NOTHING)
 			chained = true;
@@ -250,7 +337,20 @@ public class CalculatorActivity extends Activity
 			setTempNumberBar(appendOP);
 		else{
 			setTempNumberBar(appendOP);
-			Log.d("1", "appenda");
+		}
+	}
+	
+	@SuppressLint("DefaultLocale")
+	private String stringFormatTrailingZeroes(double format)
+	{
+		 
+		if((int)format == format)
+		{
+			return String.format("%d", (int)format);
+		}
+		else
+		{
+			return String.format("%s", format);
 		}
 	}
 	
@@ -258,6 +358,7 @@ public class CalculatorActivity extends Activity
 	{
 		doHaptic(view);
 		mainNumber = "0";
+		clearNumberBar = true;
 		tempNumber = "";
 		userCommand = NOTHING;
 		setNumberBar();

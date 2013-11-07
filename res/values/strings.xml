@@ -29,6 +29,7 @@
 	<string name="binary">Binary</string>
 	<string name="decimal">Decimal</string>
 	
-	
+	<string name="divide_by_0">Divided by 0, values restored</string>
+	<string name="long_number_input">Yes, this is possible but it\'s getting silly now</string>
 	
 </resources>

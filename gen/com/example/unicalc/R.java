@@ -80,8 +80,10 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int binary=0x7f050017;
         public static final int decimal=0x7f050018;
+        public static final int divide_by_0=0x7f050019;
         public static final int hello_world=0x7f050002;
         public static final int ip_calc=0x7f050005;
+        public static final int long_number_input=0x7f05001a;
         public static final int reg_calc=0x7f050004;
         public static final int title_activity_calculator=0x7f050003;
     }
