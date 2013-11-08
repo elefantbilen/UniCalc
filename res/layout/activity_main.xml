@@ -26,7 +26,6 @@
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:onClick="startCalculator"
-	        android:layout_marginTop="30dp"
 	        android:text="@string/reg_calc"/>
 	    
 	    <Button
@@ -35,8 +34,15 @@
 	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:onClick="startCalculator"
-	        android:layout_marginTop="30dp"
 	        android:text="@string/ip_calc"/>
+	    
+	  	<Button
+	        style="?android:attr/buttonBarButtonStyle"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:onClick="startNumberConverter"
+	        android:text="@string/number_converter"/>
     
     </LinearLayout>
 

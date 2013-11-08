@@ -27,8 +27,12 @@ public class MainActivity extends Activity
 	public void startCalculator(View view)
 	{
 		Intent intent = new Intent(this, CalculatorActivity.class);
-
 		startActivity(intent);
 	}
-
+	
+	public void startNumberConverter(View view)
+	{
+		Intent intent = new Intent(this, NumberConverterActivity.class);
+		startActivity(intent);
+	}
 }

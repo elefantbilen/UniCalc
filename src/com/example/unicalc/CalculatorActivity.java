@@ -19,7 +19,7 @@ import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 //TODO sub '-' for negative numbers top, trim decimals for double, handle bigger numbers for binary
 
-
+//TODO Refactor. Make Basecalculator and subclas Decimal, Binary, Hexa etc.
 public class CalculatorActivity extends Activity
 {
 	public static final int PLUS = 1;
