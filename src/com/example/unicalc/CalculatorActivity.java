@@ -229,7 +229,6 @@ public class CalculatorActivity extends Activity
 		BigInteger a = new BigInteger(tempNumber,2);
 		BigInteger b = new BigInteger(mainNumber, 2);
 
-		Log.d("1", "a blir: " + a.toString() + "b blir: " + b.toString());
 		switch(userCommand)
 		{
 			case PLUS:
@@ -265,7 +264,7 @@ public class CalculatorActivity extends Activity
 	{
 		BigDecimal a = new BigDecimal(tempNumber);
 		BigDecimal b = new BigDecimal(mainNumber);
-		Log.d("1", "a blir: " + a.toString() + "b blir: " + b.toString());
+
 		switch(userCommand)
 		{
 			case PLUS:

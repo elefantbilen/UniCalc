@@ -31,7 +31,6 @@ public class NumberConverterActivity extends Activity
 	 */
 	public void sortChars(View view)
 	{
-		Log.d("1", "Kom rätt!");
 		EditText e = (EditText)findViewById(R.id.number_converter_user_input);
 		String valueToConvert = e.getText().toString();
 		char[] ch = valueToConvert.toCharArray();	//After this we want to make an array of the characters into a listview and presenting all of their properties
