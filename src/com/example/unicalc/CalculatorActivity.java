@@ -2,7 +2,7 @@ package com.example.unicalc;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Locale;
+import java.math.RoundingMode;
 
 import android.os.Bundle;
 import android.annotation.SuppressLint;
@@ -280,13 +280,25 @@ public class CalculatorActivity extends Activity
 					giveUserToast(R.string.divide_by_0);
 				}
 				else
-					a = a.divide(b);
+				{
+					Log.d("1", "Delar a: " + a + " med b: " + b);
+					try
+					{
+						a = a.divide(b);
+					}
+					catch(Exception e) //If we get an irrational number, we have to take care of this
+					{
+						Log.d("1", "exc: " + e.getMessage());
+						a = a.divide(b, 10, RoundingMode.CEILING);
+					}
+					Log.d("1", "Efter: " + a);
+				}
 			break;
 			case MULTIPLY:
 				a = a.multiply(b);
 			break;
 		}
-
+		a = a.stripTrailingZeros();
 		mainNumber = a.toString();
 		tempNumber = "";
 		userCommand = NOTHING;
@@ -339,20 +351,7 @@ public class CalculatorActivity extends Activity
 		}
 	}
 	
-	@SuppressLint("DefaultLocale")
-	private String stringFormatTrailingZeroes(double format)
-	{
-		 
-		if((int)format == format)
-		{
-			return String.format("%d", (int)format);
-		}
-		else
-		{
-			return String.format("%s", format);
-		}
-	}
-	
+
 	public void clear(View view)
 	{
 		doHaptic(view);
