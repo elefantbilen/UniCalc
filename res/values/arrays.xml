@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="button_strings">
+        <item>@string/reg_calc</item>
+        <item>@string/number_converter</item>
+        <item>@string/ip_calc</item>
+        <item>@string/colour_picker</item>
+        <item>@string/note_pad</item>
+        <item>@string/rand_decider</item>
+    </integer-array>
+</resources>

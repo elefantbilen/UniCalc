@@ -14,6 +14,22 @@
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
     
+    
+	<GridView 
+	    android:id="@+id/button_gridview"
+	    android:layout_width="fill_parent" 
+	    android:layout_height="fill_parent"
+	    android:background="@color/ivory"
+	    android:paddingTop="5dp"
+	    android:layout_marginTop="20dp"
+	    android:numColumns="3"
+	    android:clipChildren="true"
+	    android:verticalSpacing="5dp"
+	    android:horizontalSpacing="1dp"
+	    android:stretchMode="columnWidth"
+	    android:gravity="center"/>
+
+    <!-- 
     <LinearLayout
         style="@android:style/ButtonBar"
         android:layout_width="fill_parent"
@@ -44,6 +60,6 @@
 	        android:onClick="startNumberConverter"
 	        android:text="@string/number_converter"/>
     
-    </LinearLayout>
+    </LinearLayout> -->
 
 </LinearLayout>

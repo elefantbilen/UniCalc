@@ -5,7 +5,6 @@ import java.math.BigInteger;
 import java.math.RoundingMode;
 
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
@@ -17,9 +16,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
-//TODO sub '-' for negative numbers top, trim decimals for double, handle bigger numbers for binary
-
+//TODO sub '-' for negative numbers top, , handle bigger numbers for binary, BigDecimal will now show tens as e^1 i.e. 10 = 1E+1 FIX
 //TODO Refactor. Make Basecalculator and subclas Decimal, Binary, Hexa etc.
+
 public class CalculatorActivity extends Activity
 {
 	public static final int PLUS = 1;
