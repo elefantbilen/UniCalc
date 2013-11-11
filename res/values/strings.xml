@@ -54,10 +54,10 @@
 	<!-- Converter Labels -->
 	<string name="submitted_value">Submitted Value:</string>
 	<string name="ascii">ASCII:</string>
-	<string name="UTF-8">UTF-8:</string>
+	<string name="UTF8">UTF-8:</string>
 	<string name="binary_value">Binary Value:</string>
-	<string name="decimal_value">Decimal Value:</string>
-	<string name="hex_value">Hexadecimal Value:</string>
+	<string name="decimal_value">Decimal:</string>
+	<string name="hex_value">Hexadecimal:</string>
 
 
 </resources>

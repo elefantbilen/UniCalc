@@ -15,7 +15,9 @@ public final class R {
     }
     public static final class color {
         public static final int button_background=0x7f040000;
+        public static final int heading=0x7f040003;
         public static final int ivory=0x7f040001;
+        public static final int stroke=0x7f040002;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -33,7 +35,9 @@ public final class R {
         public static final int ic_launcher=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0018;
+        public static final int UTF=0x7f0a001b;
+        public static final int action_settings=0x7f0a001e;
+        public static final int ascii_value=0x7f0a001a;
         public static final int binary_mode=0x7f0a0013;
         public static final int button_convert=0x7f0a0017;
         public static final int button_gridview=0x7f0a0015;
@@ -44,6 +48,8 @@ public final class R {
         public static final int command_button_multiply=0x7f0a0009;
         public static final int command_button_plus=0x7f0a000d;
         public static final int decimal_mode=0x7f0a0014;
+        public static final int decimal_value=0x7f0a001d;
+        public static final int hexa_value=0x7f0a001c;
         public static final int num_button_0=0x7f0a000e;
         public static final int num_button_1=0x7f0a000a;
         public static final int num_button_2=0x7f0a000b;
@@ -56,13 +62,16 @@ public final class R {
         public static final int num_button_9=0x7f0a0004;
         public static final int num_button_comma=0x7f0a000f;
         public static final int number_bar=0x7f0a0001;
+        public static final int number_converter_listview=0x7f0a0018;
         public static final int number_converter_user_input=0x7f0a0016;
+        public static final int original_value=0x7f0a0019;
         public static final int temp_number_bar=0x7f0a0000;
     }
     public static final class layout {
         public static final int activity_calculator=0x7f030000;
         public static final int activity_main=0x7f030001;
         public static final int activity_number_converter=0x7f030002;
+        public static final int converted_information=0x7f030003;
     }
     public static final class menu {
         public static final int calculator=0x7f090000;
@@ -71,7 +80,7 @@ public final class R {
         public static final int number_converter=0x7f090003;
     }
     public static final class string {
-        public static final int UTF-8=0x7f070025;
+        public static final int UTF8=0x7f070025;
         public static final int __=0x7f070014;
         public static final int _0=0x7f070013;
         /**  Number Buttons 

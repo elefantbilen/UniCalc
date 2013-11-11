@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+   	<TextView 
+   	    android:id="@+id/original_value"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:textColor="@color/heading"
+   	    android:textSize="18sp"
+   	    android:text="@string/submitted_value"/>
+   	
+   	<TextView
+   	    android:id="@+id/ascii_value"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/ascii"/>    
+   	    
+   	<TextView
+   	    android:id="@+id/UTF"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/UTF8"/>    
+   	    
+   	<TextView
+   	    android:id="@+id/hexa_value"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/hex_value"/> 
+   	    
+   	<TextView
+   	    android:id="@+id/decimal_value"
+   	    android:layout_width="wrap_content"
+   	    android:layout_height="wrap_content"
+   	    android:text="@string/decimal_value"/>  
+	
+   	
+</LinearLayout>
