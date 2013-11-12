@@ -7,7 +7,6 @@ import java.math.RoundingMode;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -280,17 +279,14 @@ public class CalculatorActivity extends Activity
 				}
 				else
 				{
-					Log.d("1", "Delar a: " + a + " med b: " + b);
 					try
 					{
 						a = a.divide(b);
 					}
 					catch(Exception e) //If we get an irrational number, we have to take care of this
 					{
-						Log.d("1", "exc: " + e.getMessage());
 						a = a.divide(b, 10, RoundingMode.CEILING);
 					}
-					Log.d("1", "Efter: " + a);
 				}
 			break;
 			case MULTIPLY:
