@@ -2,6 +2,8 @@ package com.example.unicalc;
 
 import java.util.ArrayList;
 import android.content.Context;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +61,14 @@ public class PrintListViewObjects extends BaseAdapter
 		else
 			holder = (ViewHolder)convertView.getTag();
 		
-		holder.txtOriginal.setText(mContext.getResources().getString(R.string.submitted_value) + 
-				"\t" + valueInfo.get(position).getOriginalValue());
+		
+		SpannableString spannableString = new SpannableString(mContext.getResources().getString(R.string.submitted_value) + 
+				  " " + valueInfo.get(position).getOriginalValue());
+		spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
+		
+		holder.txtOriginal.setText(spannableString);
+		
+		
 		holder.txtAscii.setText(mContext.getResources().getString(R.string.ascii) +
 				"\t" + valueInfo.get(position).getAsciiValue());
 		holder.txtHexa.setText(mContext.getResources().getString(R.string.hex_value) + 

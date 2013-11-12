@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
+ 	<!-- Titles -->
+    <string name="decider_header"><b>Bearden Decider For the Most Modern of Men</b></string>
+
 
     <!-- Overall -->
     <string name="app_name">Bearden Power Tool</string>
@@ -7,6 +11,7 @@
     <string name="hello_world">Bearden\'s All Purpose Multi Power Tool for coping with the housing market crisis</string>
     <string name="title_activity_calculator">CalculatorActivity</string>
     <string name="not_applicable">Not Applicable</string>
+	<string name="press_button">Press<br/>button</string>
 
     <!-- Main Menu Button Names -->
     <string name="number_converter">Number Converter</string>
@@ -59,5 +64,13 @@
     <string name="decimal_value">Decimal:</string>
     <string name="hex_value">Hexadecimal:</string>
     <string name="title_activity_decider">DeciderActivity</string>
+    
+    <!-- Decider Labels -->
+    <string name="should_i_do_it">Should I do it?</string>
+    <string name="decider_yes">Oui</string>
+    <string name="decider_no">Non</string>
+    <string name="tally">Tally: </string>
+        
+    
 
 </resources>

@@ -17,7 +17,11 @@ public class MainActivity extends Activity
 	TypedArray buttonStrings;
 	Class<?>[] listOfClassesForActivites = //Not sure if this is the best way but it its easy to find
 		{ 	CalculatorActivity.class, 
-			NumberConverterActivity.class
+			NumberConverterActivity.class,
+			NumberConverterActivity.class,
+			NumberConverterActivity.class,
+			NumberConverterActivity.class,
+			DeciderActivity.class
 		};
 	
 	@Override
@@ -41,7 +45,7 @@ public class MainActivity extends Activity
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) 
 	        {
 	            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-	            Intent intent = new Intent(getApplicationContext(), linkButtonsToIntent(position));
+	            Intent intent = new Intent(getApplicationContext(), listOfClassesForActivites[position]);
 	    		startActivity(intent);	    		
 	        }
 		});
@@ -50,6 +54,8 @@ public class MainActivity extends Activity
 	
 	/**
 	 * Method for linking each class to the buttons on the MainActivity
+	 * After implementing all this method will become obsolete as the classes
+	 * can be chosen directly from the array
 	 * 
 	 * @param position position in array of buttons
 	 * @return The class whose position is the same as the button array
@@ -61,6 +67,8 @@ public class MainActivity extends Activity
 		{
 			case 0:
 				return listOfClassesForActivites[0];
+			case 4:
+				return listOfClassesForActivites[5];
 			
 			default:
 				return listOfClassesForActivites[1];
