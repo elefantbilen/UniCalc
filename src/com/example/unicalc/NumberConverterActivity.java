@@ -70,7 +70,7 @@ public class NumberConverterActivity extends Activity
 		{
 			hideKeyboard();
 			numConv.startConversion(e.getText().toString());
-			conv = numConv.getFin();
+			conv = numConv.getFinalizedArray();
 	
 			ListView listView = (ListView)findViewById(R.id.number_converter_listview);
 			listView.setAdapter(new PrintListViewObjects(this, conv));

@@ -45,7 +45,6 @@ public class NumberConverter
 	
 	private void fromNumberToChar(String string)
 	{
-		Log.d("1","was number: " + string);
 		ValuesToConvert val = new ValuesToConvert();
 		
 		val.setOriginalValue(string);
@@ -58,7 +57,6 @@ public class NumberConverter
 	
 	private void fromCharToNumber(String string)
 	{
-		Log.d("1","was char: " + string);
 		ValuesToConvert val = new ValuesToConvert();
 		int numberRepresentation = (int)string.charAt(0);
 				
@@ -67,6 +65,7 @@ public class NumberConverter
 			val.setAsciiValue(Integer.toString(numberRepresentation));
 		else
 			val.setAsciiValue(c.getResources().getString(R.string.not_applicable));
+		
 		val.setHexValue(Integer.toHexString(numberRepresentation));
 		val.setDecValue(Integer.toString(numberRepresentation));
 		val.setUTF8Value("Placeholder");
@@ -78,13 +77,14 @@ public class NumberConverter
 		return string.matches("\\d+");
 	}
 
-	public ArrayList<ValuesToConvert> getFin()
+	public void setFin(ArrayList<ValuesToConvert> finalizedArray)
+	{
+		this.fin = finalizedArray;
+	}
+	
+	public ArrayList<ValuesToConvert> getFinalizedArray()
 	{
 		return fin;
-	}
-	public void setFin(ArrayList<ValuesToConvert> fin)
-	{
-		this.fin = fin;
 	}
 
 	

@@ -46,7 +46,7 @@
     <string name="long_number_input">Yes, this is possible but it\'s getting silly now</string>
     <string name="title_activity_number_converter">NumberConverterActivity</string>
     <string name="does_not_exist">Value not applicable</string>
-    <string name="do_something_please">Do something, pleaseäÛÜü</string>
+    <string name="do_something_please">Do something. Please</string>
     
     <!-- Converter Functions -->
 	<string name="do_conversion">Convert!</string>
@@ -58,6 +58,5 @@
 	<string name="binary_value">Binary Value:</string>
 	<string name="decimal_value">Decimal:</string>
 	<string name="hex_value">Hexadecimal:</string>
-
 
 </resources>
