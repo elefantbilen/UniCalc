@@ -30,7 +30,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.unicalc.MainActivity" />
         </activity>
-
         <activity
             android:name="com.example.unicalc.NumberConverterActivity"
             android:label="@string/title_activity_number_converter"
@@ -38,6 +37,10 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.unicalc.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.unicalc.DeciderActivity"
+            android:label="@string/title_activity_decider" >
         </activity>
     </application>
 

@@ -69,15 +69,17 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_calculator=0x7f030000;
-        public static final int activity_main=0x7f030001;
-        public static final int activity_number_converter=0x7f030002;
-        public static final int converted_information=0x7f030003;
+        public static final int activity_decider=0x7f030001;
+        public static final int activity_main=0x7f030002;
+        public static final int activity_number_converter=0x7f030003;
+        public static final int converted_information=0x7f030004;
     }
     public static final class menu {
         public static final int calculator=0x7f090000;
         public static final int data_helper=0x7f090001;
-        public static final int main=0x7f090002;
-        public static final int number_converter=0x7f090003;
+        public static final int decider=0x7f090002;
+        public static final int main=0x7f090003;
+        public static final int number_converter=0x7f090004;
     }
     public static final class string {
         public static final int UTF8=0x7f070026;
@@ -137,6 +139,7 @@ public final class R {
          */
         public static final int submitted_value=0x7f070024;
         public static final int title_activity_calculator=0x7f070003;
+        public static final int title_activity_decider=0x7f07002a;
         public static final int title_activity_number_converter=0x7f070020;
     }
     public static final class style {

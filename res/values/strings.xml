@@ -6,7 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Bearden\'s All Purpose Multi Power Tool for coping with the housing market crisis</string>
     <string name="title_activity_calculator">CalculatorActivity</string>
-	<string name="not_applicable">Not Applicable</string>
+    <string name="not_applicable">Not Applicable</string>
 
     <!-- Main Menu Button Names -->
     <string name="number_converter">Number Converter</string>
@@ -47,16 +47,17 @@
     <string name="title_activity_number_converter">NumberConverterActivity</string>
     <string name="does_not_exist">Value not applicable</string>
     <string name="do_something_please">Do something. Please</string>
-    
+
     <!-- Converter Functions -->
-	<string name="do_conversion">Convert!</string>
-	
-	<!-- Converter Labels -->
-	<string name="submitted_value">Submitted Value:</string>
-	<string name="ascii">ASCII:</string>
-	<string name="UTF8">UTF-8:</string>
-	<string name="binary_value">Binary Value:</string>
-	<string name="decimal_value">Decimal:</string>
-	<string name="hex_value">Hexadecimal:</string>
+    <string name="do_conversion">Convert!</string>
+
+    <!-- Converter Labels -->
+    <string name="submitted_value">Submitted Value:</string>
+    <string name="ascii">ASCII:</string>
+    <string name="UTF8">UTF-8:</string>
+    <string name="binary_value">Binary Value:</string>
+    <string name="decimal_value">Decimal:</string>
+    <string name="hex_value">Hexadecimal:</string>
+    <string name="title_activity_decider">DeciderActivity</string>
 
 </resources>
