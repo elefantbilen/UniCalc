@@ -90,5 +90,11 @@
     <string name="title_activity_ip">IPActivity</string>
     <string name="title_activity_colour_picker">ColourPickerActivity</string>
     <string name="title_activity_note_pad">NotePadActivity</string>
+    
+    <!-- IP helper Labels -->
+    <string name="ip">IP</string>
+    <string name="dot">.</string>
+    <string name="btn_txt_start_ip_check">Start IP check</string>
+    <string name="aaa">aaaaag</string>
 
 </resources>

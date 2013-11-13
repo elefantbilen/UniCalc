@@ -37,12 +37,13 @@ public final class R {
         public static final int textview_back=0x7f020004;
     }
     public static final class id {
-        public static final int UTF=0x7f0a0022;
-        public static final int action_settings=0x7f0a0025;
-        public static final int ascii_value=0x7f0a0021;
+        public static final int UTF=0x7f0a0027;
+        public static final int action_settings=0x7f0a002a;
+        public static final int ascii_value=0x7f0a0026;
         public static final int binary_mode=0x7f0a0013;
-        public static final int button_convert=0x7f0a001e;
-        public static final int button_gridview=0x7f0a001c;
+        public static final int btn_send_ip_address=0x7f0a0020;
+        public static final int button_convert=0x7f0a0023;
+        public static final int button_gridview=0x7f0a0021;
         public static final int command_button_clear=0x7f0a0012;
         public static final int command_button_divide=0x7f0a0005;
         public static final int command_button_equals=0x7f0a0011;
@@ -53,8 +54,8 @@ public final class R {
         public static final int decider_yes_no_button=0x7f0a0015;
         public static final int decider_yes_no_tally=0x7f0a0017;
         public static final int decimal_mode=0x7f0a0014;
-        public static final int decimal_value=0x7f0a0024;
-        public static final int hexa_value=0x7f0a0023;
+        public static final int decimal_value=0x7f0a0029;
+        public static final int hexa_value=0x7f0a0028;
         public static final int num_button_0=0x7f0a000e;
         public static final int num_button_1=0x7f0a000a;
         public static final int num_button_2=0x7f0a000b;
@@ -67,14 +68,18 @@ public final class R {
         public static final int num_button_9=0x7f0a0004;
         public static final int num_button_comma=0x7f0a000f;
         public static final int number_bar=0x7f0a0001;
-        public static final int number_converter_listview=0x7f0a001f;
-        public static final int number_converter_user_input=0x7f0a001d;
-        public static final int original_value=0x7f0a0020;
+        public static final int number_converter_listview=0x7f0a0024;
+        public static final int number_converter_user_input=0x7f0a0022;
+        public static final int original_value=0x7f0a0025;
         public static final int randomized_number=0x7f0a001b;
         public static final int randomizer_first_number=0x7f0a0018;
         public static final int randomizer_second_number=0x7f0a0019;
         public static final int randomizer_start=0x7f0a001a;
         public static final int temp_number_bar=0x7f0a0000;
+        public static final int txt_ip_byte_1=0x7f0a001c;
+        public static final int txt_ip_byte_2=0x7f0a001d;
+        public static final int txt_ip_byte_3=0x7f0a001e;
+        public static final int txt_ip_byte_4=0x7f0a001f;
     }
     public static final class layout {
         public static final int activity_calculator=0x7f030000;
@@ -85,6 +90,7 @@ public final class R {
         public static final int activity_note_pad=0x7f030005;
         public static final int activity_number_converter=0x7f030006;
         public static final int converted_information=0x7f030007;
+        public static final int layout_imports_ip=0x7f030008;
     }
     public static final class menu {
         public static final int calculator=0x7f090000;
@@ -119,6 +125,7 @@ public final class R {
         public static final int _minus=0x7f070022;
         public static final int _multiply=0x7f070020;
         public static final int _plus=0x7f070021;
+        public static final int aaa=0x7f070043;
         public static final int action_settings=0x7f070005;
         public static final int answer_goes_here=0x7f07003a;
         /**  Overall 
@@ -130,6 +137,7 @@ public final class R {
          */
         public static final int binary=0x7f070025;
         public static final int binary_value=0x7f070030;
+        public static final int btn_txt_start_ip_check=0x7f070042;
         public static final int colour_picker=0x7f070011;
         /**  Titles 
          */
@@ -146,9 +154,13 @@ public final class R {
         public static final int do_conversion=0x7f07002c;
         public static final int do_something_please=0x7f07002b;
         public static final int does_not_exist=0x7f07002a;
+        public static final int dot=0x7f070041;
         public static final int end_number=0x7f070038;
         public static final int hello_world=0x7f070006;
         public static final int hex_value=0x7f070032;
+        /**  IP helper Labels 
+         */
+        public static final int ip=0x7f070040;
         public static final int ip_calc=0x7f070010;
         public static final int label_no=0x7f07000b;
         public static final int label_tally=0x7f07000c;

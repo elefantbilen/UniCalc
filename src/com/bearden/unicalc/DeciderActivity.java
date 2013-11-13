@@ -59,11 +59,10 @@ public class DeciderActivity extends Activity
 			@Override
 			public boolean onKey(View v, int keyCode, KeyEvent event)
 			{
-				Log.d("1", "Inne");
-				if(keyCode == KeyEvent.KEYCODE_ENTER)
+				if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP)
 					getIntervalRandomNumber(v);
 					
-				return false;
+				return false; //This way, numbers will be accepted. Might not be best practice exactly...
 			}
 		});
 		
