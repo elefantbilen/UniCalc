@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.unicalc"
+    package="com.bearden.unicalc"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -41,6 +41,30 @@
         <activity
             android:name="com.bearden.unicalc.DeciderActivity"
             android:label="@string/title_activity_decider" >
+        </activity>
+        <activity
+            android:name="com.bearden.unicalc.IPActivity"
+            android:label="@string/title_activity_ip"
+            android:parentActivityName="com.bearden.unicalc.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.bearden.unicalc.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.bearden.unicalc.ColourPickerActivity"
+            android:label="@string/title_activity_colour_picker"
+            android:parentActivityName="com.bearden.unicalc.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.bearden.unicalc.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.bearden.unicalc.NotePadActivity"
+            android:label="@string/title_activity_note_pad"
+            android:parentActivityName="com.bearden.unicalc.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.bearden.unicalc.MainActivity" />
         </activity>
     </application>
 

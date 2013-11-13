@@ -1,6 +1,6 @@
 package com.bearden.unicalc;
 
-import com.example.unicalc.R;
+import com.bearden.unicalc.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,10 +10,8 @@ import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.GridView;
 
 public class MainActivity extends Activity
@@ -21,11 +19,12 @@ public class MainActivity extends Activity
 
 	TypedArray buttonStrings;
 	Class<?>[] listOfClassesForActivites = //Not sure if this is the best way but it its easy to find
-		{ 	CalculatorActivity.class, 
+		{ 	
+			CalculatorActivity.class, 
 			NumberConverterActivity.class,
-			NumberConverterActivity.class,
-			NumberConverterActivity.class,
-			NumberConverterActivity.class,
+			IPActivity.class,
+			ColourPickerActivity.class,
+			NotePadActivity.class,
 			DeciderActivity.class
 		};
 	

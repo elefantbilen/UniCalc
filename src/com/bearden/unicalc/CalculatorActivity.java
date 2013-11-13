@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
-import com.example.unicalc.R;
+import com.bearden.unicalc.R;
 
 import android.os.Bundle;
 import android.app.Activity;

@@ -2,7 +2,7 @@ package com.bearden.unicalc;
 
 import java.util.ArrayList;
 
-import com.example.unicalc.R;
+import com.bearden.unicalc.R;
 
 import android.os.Bundle;
 import android.app.Activity;

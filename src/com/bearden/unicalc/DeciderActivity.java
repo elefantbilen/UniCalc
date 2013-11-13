@@ -1,6 +1,6 @@
 package com.bearden.unicalc;
 
-import com.example.unicalc.R;
+import com.bearden.unicalc.R;
 
 import android.app.Activity;
 import android.content.Context;
