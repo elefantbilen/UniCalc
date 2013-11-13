@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.unicalc.MainActivity"
+            android:name="com.bearden.unicalc.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,23 +23,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.unicalc.CalculatorActivity"
+            android:name="com.bearden.unicalc.CalculatorActivity"
             android:label="@string/title_activity_calculator"
-            android:parentActivityName="com.example.unicalc.MainActivity" >
+            android:parentActivityName="com.bearden.unicalc.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.unicalc.NumberConverterActivity"
+            android:name="com.bearden.unicalc.NumberConverterActivity"
             android:label="@string/title_activity_number_converter"
-            android:parentActivityName="com.example.unicalc.MainActivity" >
+            android:parentActivityName="com.bearden.unicalc.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.unicalc.DeciderActivity"
+            android:name="com.bearden.unicalc.DeciderActivity"
             android:label="@string/title_activity_decider" >
         </activity>
     </application>

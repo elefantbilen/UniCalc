@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
+    <!-- Shared Preferences -->
+    <string name="shared_preferences_name">com.bearden.powertool</string>
+    <string name="shared_preferences_decider_num_yes">shared_preferences_decider_num_yes</string>
+    <string name="shared_preferences_decider_num_no">shared_preferences_decider_num_no</string>
+    
  	<!-- Titles -->
     <string name="decider_header"><b>Bearden Decider For the Most Modern of Men</b></string>
 
@@ -12,6 +17,12 @@
     <string name="title_activity_calculator">CalculatorActivity</string>
     <string name="not_applicable">Not Applicable</string>
 	<string name="press_button">Press<br/>button</string>
+	
+	<!-- Overall titles -->
+	<string name="label_yes">Yes</string>
+	<string name="label_no">No</string>
+	<string name="label_tally">Tally: </string>
+	<string name="label_totals">Totals: </string>
 
     <!-- Main Menu Button Names -->
     <string name="number_converter">Number Converter</string>
@@ -69,7 +80,7 @@
     <string name="should_i_do_it">Should I do it?</string>
     <string name="decider_yes">Oui</string>
     <string name="decider_no">Non</string>
-    <string name="tally">Tally: </string>
+    
         
     
 
