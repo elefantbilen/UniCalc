@@ -29,37 +29,6 @@
 	    android:stretchMode="columnWidth"
 	    android:gravity="center"/>
 
-    <!-- 
-    <LinearLayout
-        style="@android:style/ButtonBar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
     
-	    <Button
-	        style="?android:attr/buttonBarButtonStyle"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:onClick="startCalculator"
-	        android:text="@string/reg_calc"/>
-	    
-	    <Button
-	        style="?android:attr/buttonBarButtonStyle"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:onClick="startCalculator"
-	        android:text="@string/ip_calc"/>
-	    
-	  	<Button
-	        style="?android:attr/buttonBarButtonStyle"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_weight="1"
-	        android:onClick="startNumberConverter"
-	        android:text="@string/number_converter"/>
-    
-    </LinearLayout> -->
 
 </LinearLayout>

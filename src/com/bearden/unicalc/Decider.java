@@ -1,8 +1,8 @@
 package com.bearden.unicalc;
 
 import java.util.Random;
-
 import android.content.Context;
+import android.util.Log;
 
 public class Decider
 {
@@ -37,6 +37,13 @@ public class Decider
 		
 		numNo++;
 		return false;
+	}
+	
+	public int getRandomFromInterval(int start, int end)
+	{
+		int a = rand.nextInt((end - start) + 1) + start;
+		Log.d("1", "rand is: " + a);
+		return a;
 	}
 
 }

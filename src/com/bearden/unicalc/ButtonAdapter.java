@@ -1,5 +1,7 @@
 package com.bearden.unicalc;
 
+import java.util.ArrayList;
+
 import com.example.unicalc.R;
 
 import android.content.Context;
@@ -19,7 +21,7 @@ public class ButtonAdapter extends BaseAdapter
 	public ButtonAdapter(Context c, TypedArray ta)
 	{
 		mContext = c;
-		buttonStrings = ta;		
+		buttonStrings = ta;
 	}
 	
 	@Override
@@ -29,9 +31,9 @@ public class ButtonAdapter extends BaseAdapter
 	}
 
 	@Override
-	public Object getItem(int arg0)
+	public Object getItem(int position)
 	{
-		return null;
+		return 0;
 	}
 
 	@Override
@@ -54,7 +56,7 @@ public class ButtonAdapter extends BaseAdapter
 			button.setClickable(false);
 			button.setTextSize(12);
 			button.setBackground(button.getResources().getDrawable(R.drawable.button_back));
-			
+
 		}
 		else
 			button = (Button)convertView;

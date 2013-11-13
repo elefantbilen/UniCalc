@@ -6,11 +6,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 
 public class MainActivity extends Activity
@@ -34,8 +37,10 @@ public class MainActivity extends Activity
 		setContentView(R.layout.activity_main);
 		setUpButtons();	
 		buttonStrings.recycle();
+		
 	}
 	
+
 	private void setUpButtons()
 	{
 		GridView gridView = (GridView)findViewById(R.id.button_gridview);
@@ -54,29 +59,6 @@ public class MainActivity extends Activity
 		
 	}
 	
-	/**
-	 * Method for linking each class to the buttons on the MainActivity
-	 * After implementing all this method will become obsolete as the classes
-	 * can be chosen directly from the array
-	 * 
-	 * @param position position in array of buttons
-	 * @return The class whose position is the same as the button array
-	 */
-	private Class<?> linkButtonsToIntent(int position)
-	{
-		
-		switch(position)
-		{
-			case 0:
-				return listOfClassesForActivites[0];
-			case 4:
-				return listOfClassesForActivites[5];
-			
-			default:
-				return listOfClassesForActivites[1];
-		}
-		
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)

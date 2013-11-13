@@ -38,7 +38,6 @@
         android:layout_width="0dip"
         android:layout_height="50dp"
         android:layout_weight="1"
-
         android:text="@string/should_i_do_it"
         android:background="@drawable/button_back"/>
        	
@@ -67,13 +66,110 @@
 	    android:layout_height="2dp"
 	    android:background="@color/heading"
 	    android:layout_marginTop="10dp"
-	    android:layout_marginBottom="10dp"/>
+	    android:layout_marginBottom="20dp"/>
     
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/decider_header"
         android:textSize="15sp" />
+    
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="5dp"
+	    android:background="@color/stroke"
+	    android:layout_marginBottom="5dp"/>
+    
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@color/heading"
+	    android:layout_marginTop="10dp"
+	    android:layout_marginBottom="10dp"/>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+	    android:layout_height="55dp" 
+        android:orientation="horizontal">
+    
+    <EditText
+        android:id="@+id/randomizer_first_number"
+        android:inputType="number"
+        android:hint="@string/start_number"
+        android:imeOptions="actionNext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="10dp"
+		android:paddingBottom="10dp"
+		android:paddingLeft="2dp"
+		android:paddingRight="2dp"
+		android:textSize="15sp"
+        android:background="@drawable/textview_back"/>
+    
+    <View
+	    android:layout_width="0dp"
+	    android:layout_height="0dp"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp" />
+
+    
+    <EditText
+        android:id="@+id/randomizer_second_number"
+        android:inputType="number"
+        android:hint="@string/end_number"
+        android:imeOptions="actionGo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="10dp"
+		android:paddingBottom="10dp"
+		android:paddingLeft="2dp"
+		android:paddingRight="2dp"
+		android:textSize="15sp"
+        android:background="@drawable/textview_back"/>
+    
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+	    android:layout_height="55dp" 
+        android:orientation="horizontal">
+    
+    <Button
+        android:id="@+id/randomizer_start"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="10dp"
+		android:paddingBottom="10dp"
+		android:paddingLeft="2dp"
+		android:paddingRight="2dp"
+		android:textSize="15sp"
+		android:text="@string/start_randomization"
+        android:background="@drawable/button_back"/>
+    
+    <View
+	    android:layout_width="0dp"
+	    android:layout_height="0dp"
+	    android:layout_marginLeft="10dp"
+	    android:layout_marginRight="10dp" />
+    
+    <TextView
+        android:id="@+id/randomized_number"
+        android:hint="@string/end_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:paddingTop="10dp"
+		android:paddingBottom="10dp"
+		android:paddingLeft="2dp"
+		android:paddingRight="2dp"
+		android:textSize="15sp"
+        android:background="@drawable/textview_back"/>
+    
+    </LinearLayout>
     
     <View
 	    android:layout_width="fill_parent"
