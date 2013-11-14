@@ -6,7 +6,7 @@
         When done press the <i>Done</i> button</string>
     <string name="lbl_subnet_mask">Subnet Mask:</string>
     <string name="lbl_given_no_hosts">Hosts needed:</string>
-    <string name="lbl_space_needed_in_network">Addresses needed:</string>
+    <string name="lbl_space_needed_in_network">Addresses Consumed:</string>
        
     
 </resources>

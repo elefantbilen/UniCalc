@@ -9,11 +9,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
+import android.view.View.OnTouchListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -95,12 +98,44 @@ public class IPActivity extends Activity
 		{
 			int size = subnetTextViews.size();
 			SubnetGroups subnets = new SubnetGroups(this, hostsNeeded);
-			subnetTextViews.add(subnets);
-			//layoutToPopulate.addView(subnetTextViews.get(0).getTextView());
-			layoutToPopulate.addView(subnetTextViews.get(size).getLinearLayout());
-			Log.d("1", "size second: " + subnetTextViews.size());
+			subnets.getButton().setOnTouchListener(new SubnetsAddedListener());
+			//subnetTextViews.add(subnets);	<-- First idea was to add all the classes to a list. Might not be necessary. But kept here as reminder
+			layoutToPopulate.addView(subnets.getLinearLayout());
+			
 		}
 	}
+	
+	private void doHaptic(View view)
+	{
+		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+	}
+	
+	private class SubnetsAddedListener implements OnTouchListener
+	{
+		@Override
+		public boolean onTouch(View v, MotionEvent event)
+		{
+			Log.d("1", "asdsad");
+			if(event.getAction() == KeyEvent.ACTION_UP)
+			{
+				doHaptic(v);
+				deleteSubnetFromList(v);
+			}
+			return false;
+		}		
+	}
+	
+	private void deleteSubnetFromList(View v)
+	{
+		Log.d("1", "view: " + v);
+		LinearLayout viewTodelete = (LinearLayout)v.getParent();
+		LinearLayout parentContainingDeletee = (LinearLayout) viewTodelete.getParent();
+		//((LinearLayout)v.getParent().getParent()).remo
+		Log.d("1", "view to delete: " + viewTodelete.getId() + "view delete from" + parentContainingDeletee.getId());
+		parentContainingDeletee.removeView(viewTodelete);
+	}
+	
+	
 	
 	public void ipConvert(View view)
 	{

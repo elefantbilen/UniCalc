@@ -92,10 +92,10 @@ public class SubnetGroups
 	private void findNeededSubnetSize()
 	{
 		int i = 0;
-		
+		int actualNoAddresses = hostsWanted + 2;
 		while(true)
 		{
-			if(Math.pow(2,i) > hostsWanted)
+			if(Math.pow(2,i) >= actualNoAddresses)
 				break;
 			else
 			{
@@ -110,16 +110,21 @@ public class SubnetGroups
 	private String getStringRepresentationOfSubnets()
 	{	
 		return c.getResources().getString(R.string.lbl_given_no_hosts) + 
-				" " + subnetSizeNeeded +
+				" " + hostsWanted +
 				"\n" + c.getResources().getString(R.string.lbl_space_needed_in_network) +
 				" " + subnetSizeNeeded + 
 				"\n" + c.getResources().getString(R.string.lbl_subnet_mask) + 
-				" " + subnetMask;
+				" \\" + subnetMask;
 	}
 	
 	
 	/*GETTERS AND SETTERS*/
 	
+	public Button getButton()
+	{
+		return button;
+	}
+
 	public LinearLayout getLinearLayout()
 	{
 		findNeededSubnetSize();
