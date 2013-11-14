@@ -1,5 +1,9 @@
 package com.bearden.unicalc;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,10 +13,11 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.View.OnKeyListener;
 
 public class IPActivity extends Activity
 {
@@ -23,7 +28,9 @@ public class IPActivity extends Activity
 	private int byte4 = 0;
 	
 	private int ipAddrArray[] = {byte1, byte2, byte3, byte4};
+	private List<SubnetGroups> subnetTextViews;
 	int gris = 0;
+	private LinearLayout layoutToPopulate;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -33,6 +40,7 @@ public class IPActivity extends Activity
 		// Show the Up button in the action bar.
 		setupActionBar();
 		TextView t = (TextView)findViewById(R.id.txt_ip_byte_4);
+		
 		t.setOnKeyListener(new OnKeyListener()
 		{			
 			@Override
@@ -47,6 +55,51 @@ public class IPActivity extends Activity
 				return false;
 			}
 		});
+		
+		t = (EditText)findViewById(R.id.txt_user_added_subnet_groups);
+		t.setOnKeyListener(new EnterListener());
+		subnetTextViews = new ArrayList<SubnetGroups>();
+		layoutToPopulate = (LinearLayout)findViewById(R.id.populate_with_subnet_groups);
+	}
+	
+	//TODO Refactor these listeners ^ v
+	private class EnterListener implements OnKeyListener
+	{
+
+		@Override
+		public boolean onKey(View v, int keyCode, KeyEvent event)
+		{
+			if(keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_UP)
+			{
+				addSubnet(v);
+			}
+			return false;
+		}
+		
+	}
+	
+	public void addSubnet(View view)
+	{
+		EditText editText = (EditText)findViewById(R.id.txt_user_added_subnet_groups);
+		int hostsNeeded = 0;
+		try
+		{
+			hostsNeeded = Integer.parseInt(editText.getText().toString());
+		}
+		catch(NumberFormatException e)
+		{
+			giveUserToast(R.string.label_no);
+		}
+		
+		if(hostsNeeded > 0)
+		{
+			int size = subnetTextViews.size();
+			SubnetGroups subnets = new SubnetGroups(this, hostsNeeded);
+			subnetTextViews.add(subnets);
+			//layoutToPopulate.addView(subnetTextViews.get(0).getTextView());
+			layoutToPopulate.addView(subnetTextViews.get(size).getLinearLayout());
+			Log.d("1", "size second: " + subnetTextViews.size());
+		}
 	}
 	
 	public void ipConvert(View view)

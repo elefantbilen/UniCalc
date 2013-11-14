@@ -8,6 +8,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context=".IPActivity" >
+    
+    <ScrollView 
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout 
+        android:layout_width="match_parent"
+   		android:layout_height="match_parent"
+   		android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,14 +28,26 @@
 	    android:layout_height="5dp"
 	    android:background="@color/stroke"
 	    android:layout_marginBottom="5dp"/>
+    
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/txt_input_your_ip_address_space" />
+    
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@color/heading"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginBottom="5dp"/>
       
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_marginTop="20dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
 	    android:layout_height="55dp" 
-        android:orientation="horizontal">
+        android:orientation="horizontal">        
         
     <include 
         layout="@layout/layout_imports_ip"
@@ -113,5 +134,115 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:layout_marginLeft="15dp" />
+    
+    <View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@color/heading_end"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginBottom="25dp"/>
+    
+   	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_input_all_hosts" />
+   	
+   	<View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@color/heading"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginBottom="5dp"/>
+   	
+   	
+   	<LinearLayout
+   	    android:id="@+id/populate_with_subnet_groups"
+        android:layout_width="fill_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+	    android:layout_height="wrap_content" 
+        android:orientation="vertical">
+   	
+	   	<LinearLayout
+	        android:layout_width="fill_parent"
+		    android:layout_height="55dp" 
+		    android:layout_marginBottom="15dp"
+	        android:orientation="horizontal">
+		    
+		  	<EditText 
+		        android:id="@+id/txt_user_added_subnet_groups"
+		        android:inputType="number"
+		        android:imeOptions="actionGo"
+		        android:maxLength="3"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:layout_weight="2"
+		        android:gravity="center"
+		        android:hint="@string/ip"
+		        android:background="@drawable/textview_back"/>
+		   	
+		   	<View
+			    android:layout_width="0dp"
+			    android:layout_height="0dp"
+			    android:layout_marginLeft="10dp"
+			    android:layout_marginRight="10dp" />
+		    
+		    
+		    <Button 
+		        android:id="@+id/btn_send_subnet_groups"
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:layout_weight="2"
+		        android:text="@string/btn_txt_start_ip_check"
+		        android:background="@drawable/button_back"
+		        android:onClick="addSubnet"
+		        android:paddingLeft="5dp"
+		        android:paddingRight="5dp"
+		        android:gravity="center" />													
+	   
+	   	</LinearLayout>
+	   	
+	   	<!-- Keep for testing purposes. This is how all added subnets should look 
+	   	
+	   	<LinearLayout 
+	   	    android:layout_width="fill_parent"
+		    android:layout_height="55dp" 
+		    android:layout_marginBottom="15dp"
+	        android:orientation="horizontal">
+	   	
+			<TextView
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/testing" />
+			
+			<Button
+		        android:layout_width="0dp"
+		        android:layout_height="fill_parent"
+		        android:layout_weight="2"
+		        android:text="@string/delete"
+		        android:background="@drawable/button_back"
+		        android:paddingLeft="5dp"
+		        android:paddingRight="5dp"
+		        android:gravity="center" />		
+		
+		</LinearLayout>
+   	-->
+   	</LinearLayout>
+   	
+   	
+   	<View
+	    android:layout_width="fill_parent"
+	    android:layout_height="2dp"
+	    android:background="@color/heading_end"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginBottom="25dp"/>
+   	
+   		<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/testing" />
+   		
+   		</LinearLayout>
+	</ScrollView>
      
 </LinearLayout>

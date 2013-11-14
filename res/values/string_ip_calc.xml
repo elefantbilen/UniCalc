@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="txt_input_your_ip_address_space">1. Please Input Your IP Address Space</string>
+    <string name="txt_input_all_hosts">
+        2. Add each group of hosts with the <i>Add Group</i> button.
+        When done press the <i>Done</i> button</string>
+    <string name="lbl_subnet_mask">Subnet Mask:</string>
+    <string name="lbl_given_no_hosts">Hosts needed:</string>
+    <string name="lbl_space_needed_in_network">Addresses needed:</string>
+       
+    
+</resources>
