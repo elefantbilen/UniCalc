@@ -96,12 +96,11 @@ public class IPActivity extends Activity
 		
 		if(hostsNeeded > 0)
 		{
-			int size = subnetTextViews.size();
 			SubnetGroups subnets = new SubnetGroups(this, hostsNeeded);
 			subnets.getButton().setOnTouchListener(new SubnetsAddedListener());
-			//subnetTextViews.add(subnets);	<-- First idea was to add all the classes to a list. Might not be necessary. But kept here as reminder
-			layoutToPopulate.addView(subnets.getLinearLayout());
-			
+			subnetTextViews.add(subnets);	//<-- First idea was to add all the classes to a list. Might not be necessary. But kept here as reminder
+			layoutToPopulate.addView(subnets.getLinearLayout());			
+			Log.d("1", "size of list" + subnetTextViews.size());
 		}
 	}
 	
@@ -130,9 +129,17 @@ public class IPActivity extends Activity
 		Log.d("1", "view: " + v);
 		LinearLayout viewTodelete = (LinearLayout)v.getParent();
 		LinearLayout parentContainingDeletee = (LinearLayout) viewTodelete.getParent();
-		//((LinearLayout)v.getParent().getParent()).remo
+		
 		Log.d("1", "view to delete: " + viewTodelete.getId() + "view delete from" + parentContainingDeletee.getId());
 		parentContainingDeletee.removeView(viewTodelete);
+		Log.d("1", "size of list" + subnetTextViews.size());
+		
+		if(subnetTextViews.contains(viewTodelete) || subnetTextViews.contains(parentContainingDeletee))
+		{
+			Log.d("1", "fann");
+		}
+		else
+			Log.d("1", "fann inte");
 	}
 	
 	
