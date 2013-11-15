@@ -19,6 +19,8 @@ import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,9 +31,12 @@ public class IPActivity extends Activity
 	private int byte2 = 0;
 	private int byte3 = 0;
 	private int byte4 = 0;
+	private int netWorkPrefix = 0;
 	
 	private int ipAddrArray[] = {byte1, byte2, byte3, byte4};
-	private List<SubnetGroups> subnetTextViews;
+	private ArrayList<SubnetGroups> listOfSubnets;
+	private CalculateNetwork netWorkCalculator;
+
 	int gris = 0;
 	private LinearLayout layoutToPopulate;
 	
@@ -61,7 +66,7 @@ public class IPActivity extends Activity
 		
 		t = (EditText)findViewById(R.id.txt_user_added_subnet_groups);
 		t.setOnKeyListener(new EnterListener());
-		subnetTextViews = new ArrayList<SubnetGroups>();
+		listOfSubnets = new ArrayList<SubnetGroups>();
 		layoutToPopulate = (LinearLayout)findViewById(R.id.populate_with_subnet_groups);
 	}
 	
@@ -81,6 +86,12 @@ public class IPActivity extends Activity
 		
 	}
 	
+	public void constructSubnetRecommendation(View view)
+	{
+		doHaptic(view);
+		netWorkCalculator = new CalculateNetwork(listOfSubnets, ipAddrArray, netWorkPrefix);
+	}
+	
 	public void addSubnet(View view)
 	{
 		EditText editText = (EditText)findViewById(R.id.txt_user_added_subnet_groups);
@@ -96,12 +107,15 @@ public class IPActivity extends Activity
 		
 		if(hostsNeeded > 0)
 		{
-			SubnetGroups subnets = new SubnetGroups(this, hostsNeeded);
-			subnets.getButton().setOnTouchListener(new SubnetsAddedListener());
-			subnetTextViews.add(subnets);	//<-- First idea was to add all the classes to a list. Might not be necessary. But kept here as reminder
-			layoutToPopulate.addView(subnets.getLinearLayout());			
-			Log.d("1", "size of list" + subnetTextViews.size());
+			SubnetGroups subnet = new SubnetGroups(this, hostsNeeded);
+
+			subnet.getButton().setOnTouchListener(new SubnetsAddedListener(subnet));
+			listOfSubnets.add(subnet);	//<-- First idea was to add all the classes to a list. Might not be necessary. But kept here as reminder
+			layoutToPopulate.addView(subnet.getLinearLayout());
 		}
+		
+		if(listOfSubnets.size() > 0)
+			findViewById(R.id.btn_construct_subnets).setVisibility(View.VISIBLE);
 	}
 	
 	private void doHaptic(View view)
@@ -111,35 +125,43 @@ public class IPActivity extends Activity
 	
 	private class SubnetsAddedListener implements OnTouchListener
 	{
+		private SubnetGroups subnetToDelete;
+		
+		public SubnetsAddedListener(SubnetGroups s)
+		{
+			subnetToDelete = s;
+		}
+		
 		@Override
 		public boolean onTouch(View v, MotionEvent event)
 		{
-			Log.d("1", "asdsad");
 			if(event.getAction() == KeyEvent.ACTION_UP)
 			{
 				doHaptic(v);
-				deleteSubnetFromList(v);
+				deleteSubnetFromList(v, subnetToDelete);
 			}
 			return false;
 		}		
 	}
 	
-	private void deleteSubnetFromList(View v)
+	private void deleteSubnetFromList(View v, SubnetGroups subnetToDelete)
 	{
-		Log.d("1", "view: " + v);
+		for(int i = 0; i < listOfSubnets.size(); i++)
+		{
+			Log.d("1", Integer.toString(listOfSubnets.get(i).getHostsWanted()));
+		}
 		LinearLayout viewTodelete = (LinearLayout)v.getParent();
 		LinearLayout parentContainingDeletee = (LinearLayout) viewTodelete.getParent();
-		
-		Log.d("1", "view to delete: " + viewTodelete.getId() + "view delete from" + parentContainingDeletee.getId());
 		parentContainingDeletee.removeView(viewTodelete);
-		Log.d("1", "size of list" + subnetTextViews.size());
+		listOfSubnets.remove(subnetToDelete);
 		
-		if(subnetTextViews.contains(viewTodelete) || subnetTextViews.contains(parentContainingDeletee))
+		for(int i = 0; i < listOfSubnets.size(); i++)
 		{
-			Log.d("1", "fann");
+			Log.d("1", "va: " + Integer.toString(listOfSubnets.get(i).getHostsWanted()));
 		}
-		else
-			Log.d("1", "fann inte");
+		
+		if(listOfSubnets.size() == 0)
+			findViewById(R.id.btn_construct_subnets).setVisibility(View.GONE);
 	}
 	
 	
@@ -165,6 +187,10 @@ public class IPActivity extends Activity
 				if(ipAddrArray[i] > 255)
 					giveUserToast(R.string.label_no);
 			}
+			
+			netWorkPrefix = Integer.parseInt(((EditText)
+					findViewById(R.id.txt_ip_network_prefix)).
+					getText().toString());
 		}
 		catch(NumberFormatException e)
 		{

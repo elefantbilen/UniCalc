@@ -38,14 +38,16 @@ public final class R {
         public static final int textview_back=0x7f020004;
     }
     public static final class id {
-        public static final int UTF=0x7f0a002b;
-        public static final int action_settings=0x7f0a002e;
-        public static final int ascii_value=0x7f0a002a;
+        public static final int UTF=0x7f0a002d;
+        public static final int action_settings=0x7f0a0033;
+        public static final int ascii_value=0x7f0a002c;
         public static final int binary_mode=0x7f0a0013;
-        public static final int btn_send_ip_address=0x7f0a0021;
-        public static final int btn_send_subnet_groups=0x7f0a0024;
-        public static final int button_convert=0x7f0a0027;
-        public static final int button_gridview=0x7f0a0025;
+        public static final int btn_construct_subnets=0x7f0a0026;
+        public static final int btn_delete_subnet_item=0x7f0a0032;
+        public static final int btn_send_ip_address=0x7f0a0022;
+        public static final int btn_send_subnet_groups=0x7f0a0025;
+        public static final int button_convert=0x7f0a0029;
+        public static final int button_gridview=0x7f0a0027;
         public static final int command_button_clear=0x7f0a0012;
         public static final int command_button_divide=0x7f0a0005;
         public static final int command_button_equals=0x7f0a0011;
@@ -56,8 +58,9 @@ public final class R {
         public static final int decider_yes_no_button=0x7f0a0015;
         public static final int decider_yes_no_tally=0x7f0a0017;
         public static final int decimal_mode=0x7f0a0014;
-        public static final int decimal_value=0x7f0a002d;
-        public static final int hexa_value=0x7f0a002c;
+        public static final int decimal_value=0x7f0a002f;
+        public static final int hexa_value=0x7f0a002e;
+        public static final int layou_subnet_item=0x7f0a0030;
         public static final int num_button_0=0x7f0a000e;
         public static final int num_button_1=0x7f0a000a;
         public static final int num_button_2=0x7f0a000b;
@@ -70,10 +73,10 @@ public final class R {
         public static final int num_button_9=0x7f0a0004;
         public static final int num_button_comma=0x7f0a000f;
         public static final int number_bar=0x7f0a0001;
-        public static final int number_converter_listview=0x7f0a0028;
-        public static final int number_converter_user_input=0x7f0a0026;
-        public static final int original_value=0x7f0a0029;
-        public static final int populate_with_subnet_groups=0x7f0a0022;
+        public static final int number_converter_listview=0x7f0a002a;
+        public static final int number_converter_user_input=0x7f0a0028;
+        public static final int original_value=0x7f0a002b;
+        public static final int populate_with_subnet_groups=0x7f0a0023;
         public static final int randomized_number=0x7f0a001b;
         public static final int randomizer_first_number=0x7f0a0018;
         public static final int randomizer_second_number=0x7f0a0019;
@@ -84,7 +87,9 @@ public final class R {
         public static final int txt_ip_byte_2=0x7f0a001e;
         public static final int txt_ip_byte_3=0x7f0a001f;
         public static final int txt_ip_byte_4=0x7f0a0020;
-        public static final int txt_user_added_subnet_groups=0x7f0a0023;
+        public static final int txt_ip_network_prefix=0x7f0a0021;
+        public static final int txt_subnet_item=0x7f0a0031;
+        public static final int txt_user_added_subnet_groups=0x7f0a0024;
     }
     public static final class layout {
         public static final int activity_calculator=0x7f030000;
@@ -95,8 +100,10 @@ public final class R {
         public static final int activity_note_pad=0x7f030005;
         public static final int activity_number_converter=0x7f030006;
         public static final int converted_information=0x7f030007;
-        public static final int layout_imports_ip=0x7f030008;
-        public static final int subnet_child_layout=0x7f030009;
+        public static final int ip_added_subnet_item=0x7f030008;
+        public static final int layout_imports_horizontal_divider=0x7f030009;
+        public static final int layout_imports_ip=0x7f03000a;
+        public static final int subnet_child_layout=0x7f03000b;
     }
     public static final class menu {
         public static final int calculator=0x7f090000;
@@ -131,7 +138,7 @@ public final class R {
         public static final int _minus=0x7f070029;
         public static final int _multiply=0x7f070027;
         public static final int _plus=0x7f070028;
-        public static final int aaa=0x7f07004a;
+        public static final int aaa=0x7f07004c;
         public static final int action_settings=0x7f07000a;
         public static final int answer_goes_here=0x7f070041;
         /**  Overall 
@@ -143,7 +150,7 @@ public final class R {
          */
         public static final int binary=0x7f07002c;
         public static final int binary_value=0x7f070037;
-        public static final int btn_txt_start_ip_check=0x7f070049;
+        public static final int btn_txt_start_ip_check=0x7f07004b;
         public static final int colour_picker=0x7f070018;
         /**  Titles 
          */
@@ -161,7 +168,7 @@ public final class R {
         public static final int do_conversion=0x7f070033;
         public static final int do_something_please=0x7f070032;
         public static final int does_not_exist=0x7f070031;
-        public static final int dot=0x7f070048;
+        public static final int dot=0x7f07004a;
         public static final int end_number=0x7f07003f;
         public static final int hello_world=0x7f07000b;
         public static final int hex_value=0x7f070039;
@@ -175,6 +182,7 @@ public final class R {
         /**  Overall titles 
          */
         public static final int label_yes=0x7f070011;
+        public static final int lbl_construct_subnets=0x7f07004d;
         public static final int lbl_given_no_hosts=0x7f070003;
         public static final int lbl_space_needed_in_network=0x7f070004;
         public static final int lbl_subnet_mask=0x7f070002;
@@ -187,6 +195,7 @@ public final class R {
         /**  Main Menu Button Names 
          */
         public static final int number_converter=0x7f070015;
+        public static final int prefix=0x7f070048;
         public static final int press_button=0x7f07000e;
         public static final int rand_decider=0x7f07001a;
         public static final int reg_calc=0x7f070016;
@@ -198,6 +207,7 @@ public final class R {
         /**  Decider Labels 
          */
         public static final int should_i_do_it=0x7f07003b;
+        public static final int slash=0x7f070049;
         public static final int start_number=0x7f07003e;
         public static final int start_randomization=0x7f070040;
         /**  Converter Labels 

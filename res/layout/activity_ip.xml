@@ -67,11 +67,8 @@
         android:hint="@string/ip"
         android:background="@drawable/textview_back"/> -->
 
-    <View
-	    android:layout_width="0dp"
-	    android:layout_height="0dp"
-	    android:layout_marginLeft="10dp"
-	    android:layout_marginRight="10dp" />
+    <include 
+        layout="@layout/layout_imports_horizontal_divider" />
     
 	<EditText 
         android:id="@+id/txt_ip_byte_2"
@@ -85,12 +82,8 @@
         android:hint="@string/ip"
         android:background="@drawable/textview_back"/>
 	
-
-    <View
-	    android:layout_width="0dp"
-	    android:layout_height="0dp"
-	    android:layout_marginLeft="10dp"
-	    android:layout_marginRight="10dp" />
+    <include 
+        layout="@layout/layout_imports_horizontal_divider" />
 	
 	<EditText 
         android:id="@+id/txt_ip_byte_3"
@@ -104,14 +97,36 @@
         android:hint="@string/ip"
         android:background="@drawable/textview_back"/>
             
-	<View
-	    android:layout_width="0dp"
-	    android:layout_height="0dp"
-	    android:layout_marginLeft="10dp"
-	    android:layout_marginRight="10dp" />
+    <include 
+        layout="@layout/layout_imports_horizontal_divider" />
             
 	<EditText 
         android:id="@+id/txt_ip_byte_4"
+        android:inputType="number"
+        android:imeOptions="actionNext"
+        android:maxLength="3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:hint="@string/ip"
+        android:background="@drawable/textview_back"/>
+		
+    <include 
+        layout="@layout/layout_imports_horizontal_divider" />
+	
+	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:text="@string/slash" />
+	
+    <include 
+        layout="@layout/layout_imports_horizontal_divider" />
+	
+	<EditText 
+        android:id="@+id/txt_ip_network_prefix"
         android:inputType="number"
         android:imeOptions="actionGo"
         android:maxLength="3"
@@ -119,7 +134,7 @@
         android:layout_height="50dp"
         android:layout_weight="4"
         android:gravity="center"
-        android:hint="@string/ip"
+        android:hint="@string/prefix"
         android:background="@drawable/textview_back"/>
     
     </LinearLayout>
@@ -228,6 +243,18 @@
 		</LinearLayout>
    	-->
    	</LinearLayout>
+   	
+	<Button
+	    android:id="@+id/btn_construct_subnets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_construct_subnets"
+        android:background="@drawable/button_back"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:visibility="gone"
+        android:onClick="constructSubnetRecommendation"
+        android:gravity="center" />		
    	
    	
    	<View

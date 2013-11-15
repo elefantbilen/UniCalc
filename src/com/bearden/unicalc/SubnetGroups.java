@@ -39,7 +39,6 @@ public class SubnetGroups
 		
 	private void makeTextView()
 	{
-
 		LayoutParams params = new LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 						
@@ -48,7 +47,6 @@ public class SubnetGroups
 		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 15);
 		textView.setGravity(Gravity.TOP);
 		textView.setText(getStringRepresentationOfSubnets());
-		//textView.setBackground(c.getResources().getDrawable(R.drawable.textview_back));
 		
 	}
 	

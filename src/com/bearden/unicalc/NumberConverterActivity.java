@@ -18,9 +18,9 @@ import android.widget.ListView;
 
 public class NumberConverterActivity extends Activity
 {
-	ArrayList<ValuesToConvert> conv;
-	EditText ed;
-	NumberConverter numConv;
+	//private ArrayList<ValuesToConvert> conv;
+	private EditText ed;
+	private NumberConverter numConv;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -73,10 +73,10 @@ public class NumberConverterActivity extends Activity
 		{
 			hideKeyboard();
 			numConv.startConversion(e.getText().toString());
-			conv = numConv.getFinalizedArray();
+			//conv = numConv.getFinalizedArray();
 	
 			ListView listView = (ListView)findViewById(R.id.number_converter_listview);
-			listView.setAdapter(new PrintListViewObjects(this, conv));
+			listView.setAdapter(new PrintListViewObjects(this, numConv.getFinalizedArray()));
 		
 		}
 	}
