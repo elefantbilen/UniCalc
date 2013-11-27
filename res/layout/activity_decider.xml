@@ -15,18 +15,11 @@
         android:text="@string/decider_header"
         android:textSize="15sp" />
     
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="5dp"
-	    android:background="@color/stroke"
-	    android:layout_marginBottom="5dp"/>
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
     
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@color/heading"
-	    android:layout_marginTop="10dp"
-	    android:layout_marginBottom="15dp"/>
+	<include 
+        layout="@layout/layout_imports_orange_divider" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -61,12 +54,8 @@
         android:layout_height="wrap_content"
         android:textSize="15sp" />
     
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@color/heading"
-	    android:layout_marginTop="10dp"
-	    android:layout_marginBottom="20dp"/>
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
     
     <TextView
         android:layout_width="wrap_content"
@@ -74,18 +63,11 @@
         android:text="@string/decider_header"
         android:textSize="15sp" />
     
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="5dp"
-	    android:background="@color/stroke"
-	    android:layout_marginBottom="5dp"/>
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
     
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@color/heading"
-	    android:layout_marginTop="10dp"
-	    android:layout_marginBottom="10dp"/>
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
     
     <LinearLayout
         android:layout_width="fill_parent"
@@ -171,11 +153,8 @@
     
     </LinearLayout>
     
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@color/heading"
-	    android:layout_marginTop="15dp"/>
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
     
     
      

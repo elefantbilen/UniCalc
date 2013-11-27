@@ -7,6 +7,11 @@ import com.bearden.unicalc.R;
 import android.content.Context;
 import android.util.Log;
 
+/**
+ * This class will calculate the character representation of numbers and vice versa
+ * 
+ * //TODO A better string split. Figure out how to split on integers and chars i.e. 23ey4 = 23, e, y, 4
+ */
 public class NumberConverter
 {
 	private ArrayList<ValuesToConvert> fin;
@@ -25,15 +30,27 @@ public class NumberConverter
 		return fin;
 	}
 	
+	/**
+	 * Splits a string into a string array
+	 * 
+	 * @param string the string to split
+	 * @return A new string array containing all the values
+	 */
 	private String[] splitStringForNumbers(String string)
 	{	
 		Log.d("1", "börjar split");
 		//String[] splitString = string.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)|(?!^)");
-		String[] splitString = string.split("(?!^)"); //TODO Only a placeholder for now. Figure out how to split on integers and chars i.e. 23ey4 = 23, e, y, 4
+		String[] splitString = string.split("(?!^)"); 
 
 		return splitString;
 	}
 	
+	/**
+	 * Iterates through the string array and converts its' value
+	 * through two different methods depending on if the value is
+	 * an integer or a character
+	 * @param tokString
+	 */
 	private void convertAndAdd(String[] tokString)
 	{
 		for(int i = 0; i < tokString.length; i++)
@@ -45,6 +62,12 @@ public class NumberConverter
 		}
 	}
 	
+	/**
+	 * Creates an instance of ValuesToConvert which will hold the different
+	 * values from this string.
+	 * 
+	 * @param string
+	 */
 	private void fromNumberToChar(String string)
 	{
 		ValuesToConvert val = new ValuesToConvert();
@@ -57,6 +80,12 @@ public class NumberConverter
 		fin.add(val);
 	}
 	
+	/**
+	 * Creates an instance of ValuesToConvert which will hold the different
+	 * values from this string.
+	 * 
+	 * @param string
+	 */
 	private void fromCharToNumber(String string)
 	{
 		ValuesToConvert val = new ValuesToConvert();
@@ -74,21 +103,23 @@ public class NumberConverter
 		fin.add(val);
 	}
 	
+	/**
+	 * Tests if a string is a number
+	 * @param string
+	 * @return
+	 */
 	private boolean isANumber(String string)
 	{
 		return string.matches("\\d+");
 	}
 
-	public void setFin(ArrayList<ValuesToConvert> finalizedArray)
-	{
-		this.fin = finalizedArray;
-	}
-	
+	/**
+	 * Getter method of the prepared ArrayList of ValuesToConvert objects containing all the values
+	 * @return
+	 */
 	public ArrayList<ValuesToConvert> getFinalizedArray()
 	{
 		return fin;
 	}
 
-	
-	
 }

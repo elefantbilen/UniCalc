@@ -8,4 +8,9 @@
         <item>@string/note_pad</item>
         <item>@string/rand_decider</item>
     </integer-array>
+    
+    <integer-array name="note_array">
+        <item>@string/delete_this_note</item>
+        <item>@string/cancel</item>
+    </integer-array>
 </resources>

@@ -19,7 +19,6 @@ public class CalculateNetwork
 		this.ipAddrArray = ipAddrArray;
 		this.netWorkPrefix = netWorkPrefix;
 		sorter();
-		print();
 		findAddressSpace();
 	}
 	
@@ -42,25 +41,10 @@ public class CalculateNetwork
 		}
 		
 		totalPossibleAddresses -= 2;
-		
-		//if(sumOf(hostsNeeded) > totalPossibleAddresses) 
-			//fail
-		
-		print();
-	}
-	
-	private void getNumAddressesNeededForAllSubnets()
-	{
-		long total = 0;
-		
-		long biggest = listOfsubnets.get(0).getSubnetSizeNeeded();
-		
-		
 	}
 	
 	private void sorter()
 	{
-
 		Collections.sort(listOfsubnets, new Comparator<SubnetGroups>()
 		{
 			@Override
@@ -69,18 +53,5 @@ public class CalculateNetwork
 				return sub2.getHostsWanted() -  sub1.getHostsWanted();
 			}
 		});
-
 	}
-	
-	private void print()
-	{
-		
-		//for(int i = 0; i < listOfsubnets.size(); i++)
-			//Log.d("1", "" + listOfsubnets.get(i).getHostsWanted());
-		
-		//Log.d("1", "arr: " + ipAddrArray[2]);
-			
-		Log.d("1", "max: " + totalPossibleAddresses);
-	}
-
 }

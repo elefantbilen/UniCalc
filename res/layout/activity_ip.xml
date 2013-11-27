@@ -22,12 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
-    
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="5dp"
-	    android:background="@color/stroke"
-	    android:layout_marginBottom="5dp"/>
+        
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
     
     <TextView
         android:layout_width="wrap_content"
@@ -35,12 +32,8 @@
         android:layout_marginTop="20dp"
         android:text="@string/txt_input_your_ip_address_space" />
     
-    <View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@color/heading"
-	    android:layout_marginTop="5dp"
-	    android:layout_marginBottom="5dp"/>
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
       
     <LinearLayout
         android:layout_width="fill_parent"
@@ -70,47 +63,23 @@
     <include 
         layout="@layout/layout_imports_horizontal_divider" />
     
-	<EditText 
-        android:id="@+id/txt_ip_byte_2"
-        android:inputType="number"
-        android:imeOptions="actionNext"
-        android:maxLength="3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_weight="4"
-        android:gravity="center"
-        android:hint="@string/ip"
-        android:background="@drawable/textview_back"/>
+    <include 
+        layout="@layout/layout_imports_ip"
+        android:id="@+id/txt_ip_byte_2" />
 	
     <include 
         layout="@layout/layout_imports_horizontal_divider" />
 	
-	<EditText 
-        android:id="@+id/txt_ip_byte_3"
-        android:inputType="number"
-        android:imeOptions="actionNext"
-        android:maxLength="3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_weight="4"
-        android:gravity="center"
-        android:hint="@string/ip"
-        android:background="@drawable/textview_back"/>
+    <include 
+        layout="@layout/layout_imports_ip"
+        android:id="@+id/txt_ip_byte_3" />
             
     <include 
         layout="@layout/layout_imports_horizontal_divider" />
             
-	<EditText 
-        android:id="@+id/txt_ip_byte_4"
-        android:inputType="number"
-        android:imeOptions="actionNext"
-        android:maxLength="3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_weight="4"
-        android:gravity="center"
-        android:hint="@string/ip"
-        android:background="@drawable/textview_back"/>
+    <include 
+        layout="@layout/layout_imports_ip"
+        android:id="@+id/txt_ip_byte_4" />
 		
     <include 
         layout="@layout/layout_imports_horizontal_divider" />
@@ -150,10 +119,20 @@
         android:paddingRight="5dp"
         android:layout_marginLeft="15dp" />
     
+    
+       	<LinearLayout
+   	    android:id="@+id/populate_with_subnet_groups"
+   	    android:visibility="gone"
+        android:layout_width="fill_parent"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+	    android:layout_height="wrap_content" 
+        android:orientation="vertical">
+
     <View
 	    android:layout_width="fill_parent"
 	    android:layout_height="2dp"
-	    android:background="@color/heading_end"
+	    android:background="@color/color_grey"
 	    android:layout_marginTop="5dp"
 	    android:layout_marginBottom="25dp"/>
     
@@ -162,21 +141,11 @@
         android:layout_height="wrap_content"
         android:text="@string/txt_input_all_hosts" />
    	
-   	<View
-	    android:layout_width="fill_parent"
-	    android:layout_height="2dp"
-	    android:background="@color/heading"
-	    android:layout_marginTop="5dp"
-	    android:layout_marginBottom="5dp"/>
+	<include 
+        layout="@layout/layout_imports_teal_divider" />
    	
    	
-   	<LinearLayout
-   	    android:id="@+id/populate_with_subnet_groups"
-        android:layout_width="fill_parent"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-	    android:layout_height="wrap_content" 
-        android:orientation="vertical">
+
    	
 	   	<LinearLayout
 	        android:layout_width="fill_parent"
@@ -242,9 +211,8 @@
 		
 		</LinearLayout>
    	-->
-   	</LinearLayout>
    	
-	<Button
+   		<Button
 	    android:id="@+id/btn_construct_subnets"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -256,18 +224,17 @@
         android:onClick="constructSubnetRecommendation"
         android:gravity="center" />		
    	
+   	</LinearLayout>
+   	
+
+   	
    	
    	<View
 	    android:layout_width="fill_parent"
 	    android:layout_height="2dp"
-	    android:background="@color/heading_end"
+	    android:background="@color/color_grey"
 	    android:layout_marginTop="5dp"
 	    android:layout_marginBottom="25dp"/>
-   	
-   		<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/testing" />
    		
    		</LinearLayout>
 	</ScrollView>

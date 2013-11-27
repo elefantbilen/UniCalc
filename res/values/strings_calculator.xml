@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Calculator -->
+    
+    <!-- Number Buttons -->
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_0">0</string>
+    <string name="_.">.</string>
+
+    <!-- Calculator Functions -->
+    <string name="_divide">/</string>
+    <string name="_multiply">*</string>
+    <string name="_plus">+</string>
+    <string name="_minus">-</string>
+    <string name="_equals">=</string>
+    <string name="_clear">C</string>
+
+    <!-- Calculator Modes -->
+    <string name="binary">Binary</string>
+    <string name="decimal">Decimal</string>
+
+    <!-- Calculator User Information -->
+    <string name="divide_by_0">Divided by 0, values restored</string>
+    <string name="long_number_input">Yes, this is possible but it\'s getting silly now</string>
+    <string name="title_activity_number_converter">NumberConverterActivity</string>
+    <string name="does_not_exist">Value not applicable</string>
+    <string name="do_something_please">Do something. Please</string>
+   
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Note -->
+    <string name="new_note">New Note</string>
+    <string name="delete_all">Delete All</string>
+    <string name="chose_old_note">Choose operation</string>
+    <string name="delete_this_note">Delete this note</string>
+    <string name="cancel">Cancel</string>
+
+</resources>

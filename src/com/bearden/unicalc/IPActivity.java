@@ -1,11 +1,8 @@
 package com.bearden.unicalc;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import android.app.Activity;
-import android.content.Context;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -19,8 +16,6 @@ import android.view.View.OnKeyListener;
 import android.view.View.OnTouchListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -168,6 +163,8 @@ public class IPActivity extends Activity
 	
 	public void ipConvert(View view)
 	{
+		boolean everythingOk = true;
+		
 		int idsForIPInput[] = 
 			{
 				R.id.txt_ip_byte_1, 
@@ -185,27 +182,40 @@ public class IPActivity extends Activity
 						getText().toString());
 				
 				if(ipAddrArray[i] > 255)
+				{
 					giveUserToast(R.string.label_no);
+					everythingOk = false;
+				}
 			}
 			
 			netWorkPrefix = Integer.parseInt(((EditText)
 					findViewById(R.id.txt_ip_network_prefix)).
 					getText().toString());
+			
+			if(netWorkPrefix > 32)
+				everythingOk = false;
 		}
 		catch(NumberFormatException e)
 		{
 			giveUserToast(R.string.aaa);
+			everythingOk = false;
+		}
+		
+		if(everythingOk)
+		{
+			Log.d("1", "allt ok: " + ipAddrArray[0] + "." + ipAddrArray[1] + "." + ipAddrArray[2] + "." + ipAddrArray[3] + " /" + netWorkPrefix);
+			findViewById(R.id.populate_with_subnet_groups).setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			findViewById(R.id.populate_with_subnet_groups).setVisibility(View.GONE);
 		}
 		
 	}
 	
 	private void giveUserToast(int message)
 	{
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
-
-		Toast toast = Toast.makeText(context, message, duration);
-		toast.show();
+		Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 	}
 
 	/**

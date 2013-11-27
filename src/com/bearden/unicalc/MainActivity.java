@@ -34,11 +34,9 @@ public class MainActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setUpButtons();	
-		buttonStrings.recycle();
-		
+		buttonStrings.recycle();		
 	}
 	
-
 	private void setUpButtons()
 	{
 		GridView gridView = (GridView)findViewById(R.id.button_gridview);
@@ -61,11 +59,10 @@ public class MainActivity extends Activity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	
+	/*
 	public void startCalculator(View view)
 	{
 		Intent intent = new Intent(this, CalculatorActivity.class);
@@ -76,5 +73,5 @@ public class MainActivity extends Activity
 	{
 		Intent intent = new Intent(this, NumberConverterActivity.class);
 		startActivity(intent);
-	}
+	}*/
 }

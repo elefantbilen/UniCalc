@@ -1,9 +1,6 @@
 package com.bearden.unicalc;
 
-import java.util.ArrayList;
-
 import com.bearden.unicalc.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.HapticFeedbackConstants;
@@ -16,7 +13,7 @@ import android.widget.GridView;
 public class ButtonAdapter extends BaseAdapter
 {
 	private Context mContext;
-	TypedArray buttonStrings;
+	private TypedArray buttonStrings;
 	
 	public ButtonAdapter(Context c, TypedArray ta)
 	{
@@ -56,7 +53,6 @@ public class ButtonAdapter extends BaseAdapter
 			button.setClickable(false);
 			button.setTextSize(12);
 			button.setBackground(button.getResources().getDrawable(R.drawable.button_back));
-
 		}
 		else
 			button = (Button)convertView;

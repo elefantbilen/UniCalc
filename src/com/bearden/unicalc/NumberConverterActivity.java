@@ -1,9 +1,6 @@
 package com.bearden.unicalc;
 
-import java.util.ArrayList;
-
 import com.bearden.unicalc.R;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
@@ -16,9 +13,16 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 
+/**
+ * The activity for converting numbers Holds an object of NumberConverter class. 
+ * The user is prompted to enter a string which will get converted to other representations
+ * such as ascii. When entering a number instead the user will get presented with the
+ * corresponding character.
+ * 
+ * TODO The string dividing operation is not fully implemented yet  
+ */
 public class NumberConverterActivity extends Activity
 {
-	//private ArrayList<ValuesToConvert> conv;
 	private EditText ed;
 	private NumberConverter numConv;
 	
@@ -36,12 +40,11 @@ public class NumberConverterActivity extends Activity
 			public boolean onKey(View v, int keyCode, KeyEvent event)
 			{
 				if(keyCode == KeyEvent.KEYCODE_ENTER)
-					sortChars(v);
+					getDecodedChars(v);
 					
 				return false;
 			}
-		});
-		
+		});		
 	}
 
 	@Override
@@ -52,6 +55,10 @@ public class NumberConverterActivity extends Activity
 		return true;
 	}
 	
+	/**
+	 * Hides the keyboard when user presses the button to start the conversion.
+	 * Keybord is hidden automatically on "enter" press.
+	 */
 	private void hideKeyboard()
 	{
 		InputMethodManager inputManager = (InputMethodManager)
@@ -62,10 +69,10 @@ public class NumberConverterActivity extends Activity
 	}
 	
 	/**
-	 * Only a place holder for now. Testing. Afterwards Convert button must go to another method
-	 * Must define ascii, unicode, UTF-8, int values, hex values, bin values
+	 * Sends the string to the NumberConverter class. The activity will take the result
+	 * in an array and send it to an adapter to display each result in a ListView
 	 */
-	public void sortChars(View view)
+	public void getDecodedChars(View view)
 	{
 		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 		EditText e = (EditText)findViewById(R.id.number_converter_user_input);
@@ -73,10 +80,8 @@ public class NumberConverterActivity extends Activity
 		{
 			hideKeyboard();
 			numConv.startConversion(e.getText().toString());
-			//conv = numConv.getFinalizedArray();
-	
 			ListView listView = (ListView)findViewById(R.id.number_converter_listview);
-			listView.setAdapter(new PrintListViewObjects(this, numConv.getFinalizedArray()));
+			listView.setAdapter(new ConverterAdapter(this, numConv.getFinalizedArray()));
 		
 		}
 	}

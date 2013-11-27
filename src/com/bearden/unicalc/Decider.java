@@ -1,20 +1,17 @@
 package com.bearden.unicalc;
 
 import java.util.Random;
-import android.content.Context;
 import android.util.Log;
 
 public class Decider
 {
-	Random rand;
-	Context mContext;
+	private Random rand;
 	private int numYes;
 	private int numNo;
 	
-	public Decider(Context c)
+	public Decider()
 	{
 		rand = new Random();
-		mContext = c;
 	}
 	
 	public int getNumYes()
@@ -27,6 +24,10 @@ public class Decider
 		return numNo;
 	}
 
+	/**
+	 * Returns a a randomized answer consisting of True or False
+	 * @return
+	 */
 	public boolean getYesNoRandom()
 	{
 		if(1 == rand.nextInt(2))
@@ -39,6 +40,12 @@ public class Decider
 		return false;
 	}
 	
+	/**
+	 * Will return a random number between (and including) the user submitted values
+	 * @param start the starting number
+	 * @param end the last possible number
+	 * @return the randomized number
+	 */
 	public int getRandomFromInterval(int start, int end)
 	{
 		int a = rand.nextInt((end - start) + 1) + start;

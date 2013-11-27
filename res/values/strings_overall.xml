@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Overall -->
+    <string name="app_name">Bearden Power Tool</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Bearden\'s All Purpose Multi Power Tool</string>
+    <string name="title_activity_calculator">CalculatorActivity</string>
+    <string name="not_applicable">Not Applicable</string>
+    <string name="press_button">Press<br />button</string>
+    <string name="testing">TEST TEST TEST TEST TEST</string>
+    <string name="delete">Delete</string>
+
+    <!-- Overall titles -->
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="label_tally">Tally: </string>
+    <string name="label_totals">Totals: </string>
+
+    <!-- Main Menu Button Names -->
+    <string name="number_converter">Number Converter</string>
+    <string name="reg_calc">A normal calculator</string>
+    <string name="ip_calc">A calculator for IP</string>
+    <string name="colour_picker">Colour Picker</string>
+    <string name="note_pad">Note Pad</string>
+    <string name="rand_decider">Decider for Modern Man</string>
+
+   
+
+</resources>

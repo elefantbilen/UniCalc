@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Shared Preferences -->
+    <string name="shared_preferences_name">com.bearden.powertool</string>
+    <string name="shared_preferences_decider_num_yes">shared_preferences_decider_num_yes</string>
+    <string name="shared_preferences_decider_num_no">shared_preferences_decider_num_no</string>
+
+
+</resources>

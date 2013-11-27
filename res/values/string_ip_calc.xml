@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    
     <string name="txt_input_your_ip_address_space">1. Input IP Address Space and network prefix</string>
     <string name="txt_input_all_hosts">
         2. Add each group of hosts with the <i>Add Group</i> button.
@@ -7,6 +8,16 @@
     <string name="lbl_subnet_mask">Subnet Mask:</string>
     <string name="lbl_given_no_hosts">Hosts needed:</string>
     <string name="lbl_space_needed_in_network">Addresses Consumed:</string>
+    
+    <!-- IP helper Labels -->
+    <string name="ip">IP</string>
+    <string name="prefix">Prefix</string>
+    <string name="slash">/</string>
+    <string name="dot">.</string>
+    <string name="btn_txt_start_ip_check">Start IP check</string>
+    <string name="aaa">aaaaag</string>
+    <string name="lbl_construct_subnets">Construct subnet recommendation</string>
+    <string name="title_activity_single_note">SingleNoteActivity</string>
        
     
 </resources>
