@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,27 +8,52 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     tools:context=".MainActivity" >
-
+    
     <TextView
+        android:id="@+id/hello_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/hello"
+        android:textSize="@dimen/big_text_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/welcoming_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hello_box"
+        android:text="@string/welcoming_message" />
     
+    
+    <Button
+        android:id="@+id/info_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/round_button"
+        android:text="@string/info_i" 
+        android:textColor="@android:color/white"
+        android:textStyle="bold"/>
     
 	<GridView 
 	    android:id="@+id/button_gridview"
 	    android:layout_width="fill_parent" 
-	    android:layout_height="fill_parent"
-	    android:background="@color/ivory"
+	    android:layout_height="wrap_content"
 	    android:paddingTop="5dp"
-	    android:layout_marginTop="20dp"
+	    android:layout_marginTop="10dp"
+	    android:paddingBottom="5dp"
+	    android:layout_marginBottom="10dp"
 	    android:numColumns="3"
 	    android:clipChildren="true"
 	    android:verticalSpacing="5dp"
 	    android:horizontalSpacing="1dp"
 	    android:stretchMode="columnWidth"
+	    android:layout_below="@id/welcoming_box"
+	    android:layout_above="@id/info_button"
 	    android:gravity="center"/>
 
-    
 
-</LinearLayout>
+</RelativeLayout>

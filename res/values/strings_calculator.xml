@@ -31,7 +31,6 @@
     <!-- Calculator User Information -->
     <string name="divide_by_0">Divided by 0, values restored</string>
     <string name="long_number_input">Yes, this is possible but it\'s getting silly now</string>
-    <string name="title_activity_number_converter">NumberConverterActivity</string>
     <string name="does_not_exist">Value not applicable</string>
     <string name="do_something_please">Do something. Please</string>
    

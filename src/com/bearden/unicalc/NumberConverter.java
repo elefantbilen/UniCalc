@@ -1,11 +1,8 @@
 package com.bearden.unicalc;
 
 import java.util.ArrayList;
-
 import com.bearden.unicalc.R;
-
 import android.content.Context;
-import android.util.Log;
 
 /**
  * This class will calculate the character representation of numbers and vice versa
@@ -25,7 +22,7 @@ public class NumberConverter
 	public ArrayList<ValuesToConvert> startConversion(String rawString)
 	{
 		fin = new ArrayList<ValuesToConvert>();
-		String[] tokenizedString = splitStringForNumbers(rawString);
+		ArrayList<String> tokenizedString = splitStringForNumbers(rawString);
 		convertAndAdd(tokenizedString);
 		return fin;
 	}
@@ -36,13 +33,33 @@ public class NumberConverter
 	 * @param string the string to split
 	 * @return A new string array containing all the values
 	 */
-	private String[] splitStringForNumbers(String string)
+	private ArrayList<String> splitStringForNumbers(String string)
 	{	
-		Log.d("1", "börjar split");
-		//String[] splitString = string.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)|(?!^)");
-		String[] splitString = string.split("(?!^)"); 
-
-		return splitString;
+		String[] splitString;
+		splitString = string.split("(?!^)");
+		ArrayList<String> unitString = new ArrayList<String>();
+		
+		StringBuilder sBuild = new StringBuilder();
+		int i = 0;
+		while(i < splitString.length)
+		{
+			if (isANumber(splitString[i]))
+			{
+				while (i < splitString.length && isANumber(splitString[i])) // <-- This order is important. Length check first to avoid index out of bound
+				{
+					sBuild.append(splitString[i]);
+					i++;
+				}
+				unitString.add(sBuild.toString());
+				sBuild = new StringBuilder();
+			}
+			else
+			{
+				unitString.add(splitString[i]);
+				i++;
+			}
+		}
+		return unitString;
 	}
 	
 	/**
@@ -51,14 +68,14 @@ public class NumberConverter
 	 * an integer or a character
 	 * @param tokString
 	 */
-	private void convertAndAdd(String[] tokString)
+	private void convertAndAdd(ArrayList<String> tokString)
 	{
-		for(int i = 0; i < tokString.length; i++)
+		for(int i = 0; i < tokString.size(); i++)
 		{
-			if(isANumber(tokString[i]))
-				fromNumberToChar(tokString[i]);
+			if(isANumber(tokString.get(i)))
+				fromNumberToChar(tokString.get(i));
 			else
-				fromCharToNumber(tokString[i]);
+				fromCharToNumber(tokString.get(i));
 		}
 	}
 	

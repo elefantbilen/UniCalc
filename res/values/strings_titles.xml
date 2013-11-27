@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Titles -->
+    <string name="app_name">BeardenPowerTools</string>
+    <string name="title_activity_single_note">Create/Edit a Note</string>
+	<string name="title_activity_decider">Help to Decide</string>
+    <string name="title_activity_number_converter">Character Converter</string>
+    <string name="title_activity_ip">IP Translator</string>
+    <string name="title_activity_calculator">A Regular Calculator</string>
+    <string name="title_activity_colour_picker">Colour Picker</string>
+    <string name="title_activity_note_pad">Note Pad</string>
+   
+
+</resources>

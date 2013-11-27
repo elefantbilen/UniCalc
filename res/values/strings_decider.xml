@@ -15,10 +15,6 @@
 
     <!-- Decider User Information -->
     <string name="missing_number">Please enter two numbers (Reasonably smaller than 2,147,483,647 as well, thank you very much)</string>
-    <string name="bad_interval">First number should be lower than the second</string>
-    <string name="title_activity_ip">IPActivity</string>
-    <string name="title_activity_colour_picker">ColourPickerActivity</string>
-    <string name="title_activity_note_pad">NotePadActivity</string>
-    
+    <string name="bad_interval">First number should be lower than the second</string>    
    
 </resources>

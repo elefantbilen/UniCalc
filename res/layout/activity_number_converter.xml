@@ -9,26 +9,46 @@
     android:orientation="vertical"
     tools:context=".NumberConverterActivity" >
 
-    <EditText
-        android:id="@+id/number_converter_user_input"
-        android:inputType="text"
-        android:hint="@string/do_something_please"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-		android:paddingBottom="10dp"
-		android:paddingLeft="2dp"
-		android:paddingRight="2dp"
-		android:textSize="25sp"
-        android:background="@drawable/textview_back"/>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/linear_items_height"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="@dimen/view_big_horizontal_margin"
+        >
+        
+	    <EditText
+	        android:id="@+id/number_converter_user_input"
+	        android:inputType="text"
+	        android:hint="@string/do_something_please"
+	        android:layout_width="0dp"
+	        android:layout_weight="8"
+	        android:layout_height="fill_parent"
+	        android:paddingTop="10dp"
+			android:paddingBottom="10dp"
+			android:paddingLeft="2dp"
+			android:paddingRight="2dp"
+			android:textSize="25sp"
+	        android:background="@drawable/textview_back"/>
+	
+	    <include 
+	        layout="@layout/layout_imports_horizontal_divider"/>
+	    
+	    <Button 
+	        android:id="@+id/button_convert"
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:layout_weight="1"
+	        android:onClick="getDecodedChars"
+	        android:text="@string/do_conversion"
+	        android:background="@drawable/button_back"/>
+    
+    </LinearLayout>
+    
+    <include 
+        layout="@layout/layout_imports_divider_header_content"/>
 
-    <Button 
-        android:id="@+id/button_convert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="sortChars"
-        android:text="@string/do_conversion"
-        android:background="@drawable/button_back"/>
     
     <ListView 
         android:id="@+id/number_converter_listview"
