@@ -7,6 +7,7 @@ public class Note
 {
 	String title="";
 	String message = "";
+	String date = "";
 	long id = 0;
 }
 

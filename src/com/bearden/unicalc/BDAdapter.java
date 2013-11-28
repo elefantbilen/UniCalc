@@ -1,10 +1,15 @@
 package com.bearden.unicalc;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.bearden.unicalc.BeardenDBContract.NoteEntry;
 
@@ -20,9 +25,8 @@ public class BDAdapter
 	/**
 	 * Database name and version
 	 */
-	public static final int DATABASE_VERSION = 2;
+	public static final int DATABASE_VERSION = 3;
 	public static String DATABASE_NAME = "BeardenPowerTool.db";
-	
 	
 	/**
 	 * Standard strings for queries
@@ -34,7 +38,8 @@ public class BDAdapter
 	    		NoteEntry.TABLE_NOTES + " (" +
 	    		NoteEntry._ID + " INTEGER PRIMARY KEY," +
 	    		NoteEntry.NOTE_TITLE + TEXT_TYPE + COMMA_SEP +
-	    		NoteEntry.NOTE_MESSAGE + TEXT_TYPE +" )";
+	    		NoteEntry.NOTE_MESSAGE + TEXT_TYPE + COMMA_SEP +
+	    		NoteEntry.NOTE_LAST_EDITED + TEXT_TYPE + " )";
 
 	
 	private static final String SQL_DELETE_ENTRIES =
@@ -83,7 +88,28 @@ public class BDAdapter
 	 * TODO Might need a sorting order later
 	 * @return
 	 */
-	public Cursor getAllNoteTitles()
+	public Cursor getAllNoteTitlesAndDate()
+	{
+		String[] projection = {
+				NoteEntry._ID,
+				NoteEntry.NOTE_TITLE,
+				NoteEntry.NOTE_LAST_EDITED
+			};
+			
+			Cursor c = db.query(
+				    NoteEntry.TABLE_NOTES,  // The table to query
+				    projection,             // The columns to return
+				    null,
+				    null,
+				    null,
+				    null,
+				    null// The sort order
+				    );
+		return c;
+	}
+	
+	
+	/*public Cursor getAllNoteTitles()
 	{
 		String[] projection = {
 				NoteEntry._ID,
@@ -101,7 +127,7 @@ public class BDAdapter
 				    null// The sort order
 				    );
 		return c;
-	}
+	}*/
 	
 	/**
 	 * Fetches a single note from the database based on the passed id
@@ -114,7 +140,8 @@ public class BDAdapter
 		String[] projection = {
 				NoteEntry._ID,
 				NoteEntry.NOTE_TITLE,
-				NoteEntry.NOTE_MESSAGE
+				NoteEntry.NOTE_MESSAGE,
+				NoteEntry.NOTE_LAST_EDITED
 			};
 		String[] where = {"" + id};
 		
@@ -132,6 +159,7 @@ public class BDAdapter
 		Note note = new Note();
 		note.title = c.getString(NoteEntry.COL_NOTE_TITLE);
 		note.message = c.getString(NoteEntry.COL_NOTE_MESSAGE);
+		note.date = c.getString(NoteEntry.COL_LAST_EDITED);
 		
 		return note;
 	}
@@ -187,6 +215,10 @@ public class BDAdapter
 		ContentValues values = new ContentValues();
 		values.put(NoteEntry.NOTE_TITLE, note.title);
 		values.put(NoteEntry.NOTE_MESSAGE, note.message);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Date date = new Date();
+		Log.d("1", dateFormat.format(date));
+		values.put(NoteEntry.NOTE_LAST_EDITED, dateFormat.format(date));
 		
 		long id = db.insert(
 				NoteEntry.TABLE_NOTES, 
@@ -207,6 +239,11 @@ public class BDAdapter
 		ContentValues values = new ContentValues();
 		values.put(NoteEntry.NOTE_TITLE, note.title);
 		values.put(NoteEntry.NOTE_MESSAGE, note.message);
+		
+
+		Date date = new Date();
+
+		values.put(NoteEntry.NOTE_LAST_EDITED, new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(date));
 		
 	    db.update(NoteEntry.TABLE_NOTES, values, NoteEntry._ID + "=" + id, null);
 	    

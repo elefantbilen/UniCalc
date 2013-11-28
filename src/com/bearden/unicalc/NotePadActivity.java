@@ -16,12 +16,13 @@ import android.widget.SimpleCursorAdapter;
 
 import com.bearden.unicalc.BeardenDBContract.NoteEntry;
 
-public class NotePadActivity extends FragmentActivity implements EditNoteDialog.EditNoteDialogListener
+public class NotePadActivity extends FragmentActivity implements
+		EditNoteDialog.EditNoteDialogListener
 {
 	private BDAdapter bdAdapter;
 	private SimpleCursorAdapter myCursorAdapter;
 	private long currentDBID;
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -29,47 +30,52 @@ public class NotePadActivity extends FragmentActivity implements EditNoteDialog.
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_note_pad);
 		setupActionBar();
-		
-		//bdAdapter = new BDAdapter(getApplicationContext());
+
+		// bdAdapter = new BDAdapter(getApplicationContext());
 		bdAdapter = BDAdapter.getInstance(getApplicationContext());
 		fillListView();
 
 	}
-	
+
 	private void fillListView()
 	{
 		bdAdapter.openConnection();
-		
-		Cursor c = bdAdapter.getAllNoteTitles();
+
+		Cursor c = bdAdapter.getAllNoteTitlesAndDate();
 		startManagingCursor(c);
 		c.moveToFirst();
 
-		String[] fromFieldNames = new String[] 
-				{NoteEntry.NOTE_TITLE, NoteEntry.NOTE_MESSAGE};
+		//String[] fromFieldNames = new String[]
+		//{ NoteEntry.NOTE_TITLE, NoteEntry.NOTE_MESSAGE };
+		
+		String[] fromFieldNames = new String[]
+		{ NoteEntry.NOTE_TITLE, NoteEntry.NOTE_LAST_EDITED };
+		
+		Log.d("1", "1111");
 		int[] toViewIDs = new int[]
-				{R.id.title, R.id.message};
-		
-		myCursorAdapter = 
-				new SimpleCursorAdapter(
-						this,		// Context
-						R.layout.note_row_layout,	// Row layout template
-						c,					// cursor (set of DB records to map)
-						fromFieldNames,			// DB Column names
-						toViewIDs				// View IDs to put information in
-						);
-		
+		{ R.id.title, R.id.date_and_time };
+		Log.d("1", "2222");
+		myCursorAdapter = new SimpleCursorAdapter(this, // Context
+				R.layout.note_row_layout, // Row layout template
+				c, // cursor (set of DB records to map)
+				fromFieldNames, // DB Column names
+				toViewIDs // View IDs to put information in
+		);
+		Log.d("1", "3333");
 		// Set the adapter for the list view
 		ListView myList = (ListView) findViewById(R.id.list_note);
 		myList.setAdapter(myCursorAdapter);
+		Log.d("1", "4444");
 		registerListClickCallback();
 	}
-	
+
 	public void createNewNote(View view)
 	{
-		Intent intent = new Intent(getApplicationContext(), SingleNoteActivity.class);
+		Intent intent = new Intent(getApplicationContext(),
+				SingleNoteActivity.class);
 		startActivity(intent);
 	}
-	
+
 	public void deleteAll(View view)
 	{
 		Log.d("1", "Del all");
@@ -77,71 +83,72 @@ public class NotePadActivity extends FragmentActivity implements EditNoteDialog.
 		Log.d("1", "Del all färdig");
 		fillListView();
 	}
-	
-	
+
 	@Override
 	public void onStop()
 	{
 		super.onStop();
-		//bdAdapter.closeConnection();
+		// bdAdapter.closeConnection();
 	}
-	
+
 	@Override
 	public void onDestroy()
 	{
 		super.onDestroy();
 		Log.d("1", "Destroy");
 	}
-	
-	private void registerListClickCallback() {
+
+	private void registerListClickCallback()
+	{
 		Log.d("1", "registrerar");
 		ListView myList = (ListView) findViewById(R.id.list_note);
 		myList.setLongClickable(true);
-		myList.setOnItemClickListener(new AdapterView.OnItemClickListener() 
+		myList.setOnItemClickListener(new AdapterView.OnItemClickListener()
 		{
 			@Override
-			public void onItemClick(AdapterView<?> parent, View viewClicked, 
-					int position, long idInDB) 
+			public void onItemClick(AdapterView<?> parent, View viewClicked,
+					int position, long idInDB)
 			{
-				
+
 				Log.d("1", "aaaaa");
 				Log.d("1", "idInDB " + idInDB + " pos: " + position);
-				Intent intent = new Intent(getApplicationContext(), SingleNoteActivity.class);
+				Intent intent = new Intent(getApplicationContext(),
+						SingleNoteActivity.class);
 				intent.putExtra("databaseId", idInDB);
-				
-	    		startActivity(intent);
+
+				startActivity(intent);
 
 			}
 		});
-		
-		myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() 
+
+		myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
 		{
-	        @Override
-	        public boolean onItemLongClick(AdapterView<?> parent, View view,
-	                final int position, long id) 
-	        {
-	        	currentDBID = id;
-	        	bringUpDialog();
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					final int position, long id)
+			{
+				currentDBID = id;
+				bringUpDialog();
 
 				return true;
-	        }
+			}
 		});
 	}
-	
+
 	public void bringUpDialog()
 	{
-	    DialogFragment noteDialogFragment = new EditNoteDialog();
-	    noteDialogFragment.show(getSupportFragmentManager(), "sko");
-	    Log.d("1", "IGEN");
-	    }
-	
+		DialogFragment noteDialogFragment = new EditNoteDialog();
+		noteDialogFragment.show(getSupportFragmentManager(), "sko");
+		Log.d("1", "IGEN");
+	}
+
 	@Override
 	public void userChoice(DialogFragment dialog, int choice)
 	{
-		if(choice == EditNoteDialog.CHOICE_DELETE)
+		if (choice == EditNoteDialog.CHOICE_DELETE)
 		{
-        	bdAdapter.deleteNote(currentDBID);
-        	fillListView();
+			bdAdapter.deleteNote(currentDBID);
+			fillListView();
 		}
 	}
 
@@ -154,7 +161,7 @@ public class NotePadActivity extends FragmentActivity implements EditNoteDialog.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -181,8 +188,5 @@ public class NotePadActivity extends FragmentActivity implements EditNoteDialog.
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-
-
 
 }

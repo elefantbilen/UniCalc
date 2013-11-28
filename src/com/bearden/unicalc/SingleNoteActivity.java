@@ -31,6 +31,7 @@ public class SingleNoteActivity extends Activity
 			t.setText(note.title);
 			t = (EditText)findViewById(R.id.the_message);
 			t.setText(note.message);
+			Log.d("1", "date: " + note.date);
 		}
 	}
 	

@@ -88,12 +88,21 @@ public class NumberConverter
 	private void fromNumberToChar(String string)
 	{
 		ValuesToConvert val = new ValuesToConvert();
+		int number = Integer.parseInt(string);
 		
-		val.setOriginalValue(string);
-		val.setAsciiValue(Character.toString((char)Integer.parseInt(string)));	
-		val.setHexValue(Integer.toHexString(Integer.parseInt(string)));
-		val.setDecValue(string);
-		val.setUTF8Value("Placeholder");
+		if(number < 33)
+		{
+			val.setAsciiValue(SpecialCharsEnum.values()[number].name());	
+		}
+		else
+		{
+			val.setAsciiValue(Character.toString((char)Integer.parseInt(string)));
+		}
+			val.setOriginalValue(string);
+			val.setHexValue(Integer.toHexString(Integer.parseInt(string)));
+			val.setDecValue(string);
+			val.setUTF8Value("Placeholder");
+		
 		fin.add(val);
 	}
 	
