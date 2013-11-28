@@ -9,18 +9,18 @@ package com.bearden.unicalc;
 
 public final class R {
     public static final class array {
-        public static final int button_strings=0x7f040000;
-        public static final int note_array=0x7f040001;
+        public static final int button_strings=0x7f050000;
+        public static final int note_array=0x7f050001;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int color_grey=0x7f050004;
-        public static final int color_orange=0x7f050003;
-        public static final int color_red_orange=0x7f050005;
-        public static final int color_teal=0x7f050002;
-        public static final int color_yellow_grey=0x7f050000;
-        public static final int ivory=0x7f050001;
+        public static final int color_grey=0x7f040004;
+        public static final int color_orange=0x7f040003;
+        public static final int color_red_orange=0x7f040005;
+        public static final int color_teal=0x7f040002;
+        public static final int color_yellow_grey=0x7f040000;
+        public static final int ivory=0x7f040001;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
