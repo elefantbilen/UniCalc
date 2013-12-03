@@ -12,11 +12,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.bearden.unicalc.MainActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="portrait">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,43 +24,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.bearden.unicalc.CalculatorActivity"
+            android:name="com.bearden.unicalc.calculator.CalculatorActivity"
             android:label="@string/title_activity_calculator"
-            android:parentActivityName="com.bearden.unicalc.MainActivity" 
-            android:screenOrientation="portrait">
+            android:parentActivityName="com.bearden.unicalc.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.bearden.unicalc.NumberConverterActivity"
+            android:name="com.bearden.unicalc.converter.NumberConverterActivity"
             android:label="@string/title_activity_number_converter"
-            android:parentActivityName="com.bearden.unicalc.MainActivity" 
-            android:screenOrientation="portrait">
+            android:parentActivityName="com.bearden.unicalc.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.bearden.unicalc.DeciderActivity"
+            android:name="com.bearden.unicalc.decider.DeciderActivity"
             android:label="@string/title_activity_decider"
-            android:parentActivityName="com.bearden.unicalc.MainActivity" 
-            android:screenOrientation="portrait">
+            android:parentActivityName="com.bearden.unicalc.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.bearden.unicalc.IPActivity"
+            android:name="com.bearden.unicalc.networkhelper.IPActivity"
             android:label="@string/title_activity_ip"
-            android:parentActivityName="com.bearden.unicalc.MainActivity" 
-            android:screenOrientation="portrait">
+            android:parentActivityName="com.bearden.unicalc.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.bearden.unicalc.ColourPickerActivity"
+            android:name="com.bearden.unicalc.colourpicker.ColourPickerActivity"
             android:label="@string/title_activity_colour_picker"
             android:parentActivityName="com.bearden.unicalc.MainActivity"
             android:screenOrientation="portrait" >
@@ -69,18 +69,26 @@
                 android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.bearden.unicalc.NotePadActivity"
+            android:name="com.bearden.unicalc.notepad.NotePadActivity"
             android:label="@string/title_activity_note_pad"
-            android:parentActivityName="com.bearden.unicalc.MainActivity" 
-            android:screenOrientation="portrait">
+            android:parentActivityName="com.bearden.unicalc.MainActivity"
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.bearden.unicalc.SingleNoteActivity"
+            android:name="com.bearden.unicalc.notepad.SingleNoteActivity"
             android:label="@string/title_activity_single_note"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.bearden.unicalc.mindmap.MindMapActivity"
+            android:label="@string/title_activity_mind_map"
+            android:parentActivityName="com.bearden.unicalc.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.bearden.unicalc.MainActivity" />
         </activity>
     </application>
 

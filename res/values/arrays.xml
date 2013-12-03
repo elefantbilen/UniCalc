@@ -7,30 +7,7 @@
         <item>@string/title_activity_colour_picker</item>
         <item>@string/title_activity_note_pad</item>
         <item>@string/title_activity_decider</item>
-                <item>@string/title_activity_calculator</item>
-        <item>@string/title_activity_number_converter</item>
-        <item>@string/title_activity_ip</item>
-        <item>@string/title_activity_colour_picker</item>
-        <item>@string/title_activity_note_pad</item>
-        <item>@string/title_activity_decider</item>
-                <item>@string/title_activity_calculator</item>
-        <item>@string/title_activity_number_converter</item>
-        <item>@string/title_activity_ip</item>
-        <item>@string/title_activity_colour_picker</item>
-        <item>@string/title_activity_note_pad</item>
-        <item>@string/title_activity_decider</item>
-                <item>@string/title_activity_calculator</item>
-        <item>@string/title_activity_number_converter</item>
-        <item>@string/title_activity_ip</item>
-        <item>@string/title_activity_colour_picker</item>
-        <item>@string/title_activity_note_pad</item>
-        <item>@string/title_activity_decider</item>
-                <item>@string/title_activity_calculator</item>
-        <item>@string/title_activity_number_converter</item>
-        <item>@string/title_activity_ip</item>
-        <item>@string/title_activity_colour_picker</item>
-        <item>@string/title_activity_note_pad</item>
-        <item>@string/title_activity_decider</item>
+		<item>@string/title_activity_mind_map</item>
     </integer-array>
     
     <integer-array name="note_array">

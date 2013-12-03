@@ -1,6 +1,13 @@
 package com.bearden.unicalc;
 
 import com.bearden.unicalc.R;
+import com.bearden.unicalc.calculator.CalculatorActivity;
+import com.bearden.unicalc.colourpicker.ColourPickerActivity;
+import com.bearden.unicalc.converter.NumberConverterActivity;
+import com.bearden.unicalc.decider.DeciderActivity;
+import com.bearden.unicalc.mindmap.MindMapActivity;
+import com.bearden.unicalc.networkhelper.IPActivity;
+import com.bearden.unicalc.notepad.NotePadActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,7 +31,8 @@ public class MainActivity extends Activity
 			IPActivity.class,
 			ColourPickerActivity.class,
 			NotePadActivity.class,
-			DeciderActivity.class
+			DeciderActivity.class,
+			MindMapActivity.class
 		};
 	
 	@Override

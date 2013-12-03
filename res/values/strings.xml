@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Bearden\'s All Purpose Multi Power Tool</string>
+    <string name="not_applicable">Not Applicable</string>
+    <string name="press_button">Press<br />button</string>
+    <string name="testing">TEST TEST TEST TEST TEST</string>
+    <string name="delete">Delete</string>
+
+    <!-- Overall titles -->
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="label_tally">Tally: </string>
+    <string name="label_totals">Totals: </string>
+    <string name="hello">Hello</string>
+    
+    <string name="welcoming_message">Welcome to the Bearden all purpose Multi Power Tool. 
+        Choose activity from the buttons here or press the <i>i</i> at the bottom for mor information </string>
+        
+    <string name="info_i"><i>i</i></string>
 
 </resources>
