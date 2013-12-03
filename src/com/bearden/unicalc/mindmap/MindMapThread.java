@@ -47,7 +47,8 @@ public class MindMapThread extends Thread
 				//mindMapView.draw(c);
 				synchronized (surfaceHolder)
 				{
-					mindMapView.onDraw(c);
+					//mindMapView.onDraw(c);
+					mindMapView.draw(c);
 				}
 	
 				

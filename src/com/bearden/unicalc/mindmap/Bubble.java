@@ -20,6 +20,30 @@ public class Bubble extends Drawable
 	private int x,y, radius;
 	private boolean clearToDelete = false;
 
+	public Bubble(Context context, int x, int y, int radius)
+	{
+				
+		paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setStrokeWidth(10);
+		paint.setColor(Color.GREEN);
+		paint.setStyle(Style.FILL);
+		this.x = x;
+		this.y = y;
+		this.radius = radius;
+		
+	}
+	
+	public void setFocusedColour()
+	{
+		paint.setColor(Color.DKGRAY);
+	}
+	
+	public void setStandardColour()
+	{
+		paint.setColor(Color.GREEN);
+	}
+	
 	public int getX()
 	{
 		return x;
@@ -39,22 +63,6 @@ public class Bubble extends Drawable
 	{
 		this.y = y;
 	}
-
-	public Bubble(Context context, int x, int y, int radius)
-	{
-		
-		Log.d("1", "Bubble konstruktor");
-		
-		paint = new Paint();
-		paint.setAntiAlias(true);
-		paint.setStrokeWidth(10);
-		paint.setColor(Color.GREEN);
-		paint.setStyle(Style.FILL);
-		this.x = x;
-		this.y = y;
-		this.radius = radius;
-		
-	}
 	
 	public void delete(Canvas canvas)
 	{
@@ -73,15 +81,6 @@ public class Bubble extends Drawable
 		this.radius = radius;
 	}
 	
-	public int getCentreX()
-	{
-		return x + (radius/2);
-	}
-	
-	public int getCentreY()
-	{
-		return y + (radius/2);
-	}
 
 	@Override
 	public void draw(Canvas canvas)

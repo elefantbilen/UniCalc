@@ -4,5 +4,6 @@
     <!-- Note -->
     <string name="title_activity_mind_map">Mind Map</string>
 	<string name="add_item">Add an item</string>
+	<string name="add_connector">Add a connector</string>
     
 </resources>

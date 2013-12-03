@@ -15,7 +15,9 @@
 	    android:id="@+id/mind_map"
 	    android:layout_below="@id/abc"
 	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" />
+	    android:layout_height="wrap_content" >
+
+	    </com.bearden.unicalc.mindmap.MindMapView>
 	
 	<LinearLayout 
 	    android:id="@+id/mind_map_buttons"
@@ -23,8 +25,7 @@
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal"
 	    android:layout_alignBottom="@id/mind_map" 
-	    style="?android:attr/buttonBarStyle"
-	    android:visibility="gone">
+	    style="?android:attr/buttonBarStyle">
 
 	
 	<Button 

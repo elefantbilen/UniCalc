@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,31 +26,21 @@ public class MindMapActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_mind_map);
-		// Show the Up button in the action bar.
 		setupActionBar();
-		
-		
+				
 		mindMapView = (MindMapView)findViewById(R.id.mind_map);
-
-		//mindMapView.getThread();
-		//bubble = new Bubble(this);
+		mindMapThread = mindMapView.getThread();
+		
+		registerForContextMenu(mindMapView);
+		
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
 	private void setupActionBar()
 	{
-
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-
 	}
 
 	@Override
@@ -55,6 +48,15 @@ public class MindMapActivity extends Activity
 	{
 		getMenuInflater().inflate(R.menu.mind_map, menu);
 		return true;
+	}
+	
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
+	{
+		super.onCreateContextMenu(menu, v, menuInfo);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.bubble_colour_menu, menu);
+		Log.d("1", "onCreateContextMenu");
 	}
 
 	@Override
@@ -74,10 +76,30 @@ public class MindMapActivity extends Activity
 				return true;
 			case R.id.add_bubble:
 				mindMapView.createNewBubble();
+			case R.id.add_connector:
+				mindMapView.setAddConnectorMode();
+				
 				return true;
 
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public void onPause()
+	{
+		super.onPause();
+		Log.d("1", "onPause");
+		Log.d("1", "tråd: " + mindMapThread);
+		mindMapThread.setOff();
+		try
+		{
+			Log.d("1", "Onstop");
+			mindMapThread.join();
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 }
