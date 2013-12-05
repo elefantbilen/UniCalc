@@ -13,9 +13,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Paint.Style;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -36,8 +38,9 @@ import android.widget.TextView;
 
  * 1. Zoom valfritt stället / scroll
  * 2. Ändra storlek
-
+ * 3. Home press/Call etc. ->crash
  * 4. Byt Färg Bubbles/Connector
+ * 
 
  */
 
@@ -52,7 +55,7 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	private static final int MODE_REMOVE_CONNECTOR = 4;
 	private static final int MODE_REMOVE_BUBBLE = 5;
 
-	
+	int tempa = 0;
 	
 	private int currentMode = MODE_NORMAL;
 	
@@ -60,11 +63,22 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	private static int NO_BUBBLE_CHOSEN = -1;	
 	private static int STANDARD_BUBBLE_WIDTH = 100;
 	
-
 	private Context mContext;
 	private SurfaceHolder surfaceHolder;
 	private ScaleGestureDetector mScaleDetector;
+	
+	/* Screen adjusters and touches */
 	private float mScaleFactor = 1.f;
+	private float translateX = 1.f;
+	private float translateY = 1.f;
+	private float previouslyTranslateX = 1.f;
+	private float previouslyTranslateY = 1.f;
+	
+	private float startPressX = 0f;
+	private float startPressY = 0f;
+	
+	private float totalMovedX = 0;
+	private float totalMovedY = 0;
 	
 	
 	private Bubble[] bubblesToConnect = {null, null};
@@ -75,13 +89,9 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	private int gris = 0;
 	private LinkedList<Bubble> bubbleList; 
 	private LinkedList<Connector> connectorList;
-	private Dialog dialog;
 
-	private int longPressTime = 1000;
-	
 	private MindMapThread mindMapThread;
 	private int chosenBubble = -1;
-	private int chosenConnector = -1;
 	
 	public MindMapView(Context context, AttributeSet attrs)
 	{
@@ -95,8 +105,7 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		
 		bubbleList = new LinkedList<Bubble>(); 
 		connectorList = new LinkedList<Connector>();
-		
-		dialog = new Dialog(mContext);		
+
 	}
 
 	private class ScaleListener	extends ScaleGestureDetector.SimpleOnScaleGestureListener 
@@ -109,10 +118,13 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 				mScaleFactor *= detector.getScaleFactor();
 				// Don't let the object get too small or too large.
 				mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+
 			}
 			return true;
 		}
+
     }
+	
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
@@ -124,19 +136,30 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		{	
 			case MotionEvent.ACTION_DOWN:
 				chosenBubble = getTouchedBubble(getCorrectedUserTouch(event.getX()), getCorrectedUserTouch(event.getY()));
-
+				Log.d("1", "finger x: " + getCorrectedUserTouch(event.getX()) + " y: " + 
+				getCorrectedUserTouch(event.getY()));
+				startPressX = event.getX() - previouslyTranslateX;
+				startPressY = event.getY() - previouslyTranslateY;
+				
 				if(currentMode == MODE_ADD_CONNECTOR && chosenBubble != NO_BUBBLE_CHOSEN)
 					addConnector(chosenBubble);
 				else if(currentMode == MODE_REMOVE_CONNECTOR && chosenBubble != NO_BUBBLE_CHOSEN)
 					removeConnector(chosenBubble);
 				break;
 			case MotionEvent.ACTION_UP:
+					previouslyTranslateX = translateX;
+					previouslyTranslateY = translateY;
 				break;
 			case MotionEvent.ACTION_MOVE:
 				if(chosenBubble != -1)
 				{
 					bubbleList.get(chosenBubble).setX((int) getCorrectedUserTouch(event.getX()));
 					bubbleList.get(chosenBubble).setY((int) getCorrectedUserTouch(event.getY()));
+				}
+				else
+				{
+					translateX = event.getX() - startPressX;
+					translateY = event.getY() - startPressY;
 				}
 				break;
 		}
@@ -151,8 +174,8 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		{	
 			for(int i = 0; i < bubbleList.size(); i++)
 			{
-				if(Math.abs(bubbleList.get(i).getX() - touchX) < getCorrectedUserTouch(25)  &&
-						Math.abs(bubbleList.get(i).getY() - touchY) < getCorrectedUserTouch(25))
+				if(Math.abs(bubbleList.get(i).getX() - touchX) < getCorrectedUserTouch((STANDARD_BUBBLE_WIDTH) * mScaleFactor)  &&
+						Math.abs(bubbleList.get(i).getY() - touchY) < getCorrectedUserTouch((STANDARD_BUBBLE_WIDTH) * mScaleFactor))
 				{						
 					return i;
 				}
@@ -402,25 +425,42 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	protected void onDraw(Canvas canvas)
 	{
 
+		canvas.save();	//TODO Check if necessary
 
-	}
-	
-	@Override
-	public void draw(Canvas canvas)
-	{
-		//canvas.save();	//TODO Check if necessary
 		canvas.scale(mScaleFactor, mScaleFactor);
-		canvas.drawColor(Color.WHITE);
+		canvas.translate(translateX / mScaleFactor, translateY / mScaleFactor);
+		super.onDraw(canvas);
+
+		//Log.d("1", "Efter translate: " + canvasX + " scale: " + mScaleFactor);
+		//canvas.restore();	//TODO Check if necessary
 		
 		
+		/* DRAWING CODE */
+		canvas.drawColor(Color.GREEN);
+		Paint paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setStrokeWidth(10);
+		paint.setColor(Color.BLACK);
+		paint.setStyle(Style.FILL);
+		canvas.drawCircle(333,444, 59,paint);	
+		//canvas.translate(canvasX, canvasY);
+		canvas.drawCircle(323,444, 59,paint);
+		//canvas.translate(canvasX, canvasY);
+		canvas.drawCircle(333,444, 59,paint);
 		for(Connector c : connectorList)
 			c.draw(canvas);
 		
 		for(Bubble b : bubbleList)
+		{
 			b.draw(canvas);
-		
-		//canvas.restore();	//TODO Check if necessary
+			tempa++;
+			if(tempa % 40 == 0)
+			Log.d("1", "bubbleplace x: " + b.getX() + " y: " + b.getY() );
+		}
+		canvas.restore();
 	}
+	
+	
 
 
 }

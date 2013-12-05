@@ -91,7 +91,6 @@ public class Bubble extends Drawable
 	
 	public void delete(Canvas canvas)
 	{
-		Log.d("1", "Delete");
 		paint.setColor(Color.TRANSPARENT);
 		clearToDelete = true;
 	}

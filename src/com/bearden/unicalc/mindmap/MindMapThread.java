@@ -29,7 +29,7 @@ public class MindMapThread extends Thread
 		isRunning = false;
 	}
 	
-	@SuppressLint("WrongCall")
+	//@SuppressLint("WrongCall")
 	@Override
 	public void run()
 	{
@@ -47,11 +47,8 @@ public class MindMapThread extends Thread
 				//mindMapView.draw(c);
 				synchronized (surfaceHolder)
 				{
-					//mindMapView.onDraw(c);
-					mindMapView.draw(c);
+					mindMapView.onDraw(c);
 				}
-	
-				
 			}
 			finally
 			{
