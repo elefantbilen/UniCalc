@@ -4,9 +4,9 @@
           android:title="@string/add_item"
           android:showAsAction="ifRoom" />
     
-    <item android:id="@+id/add_connector"
-          android:title="@string/add_connector"
-          android:showAsAction="ifRoom" />
+     <item android:id="@+id/create_bitmap"
+          android:title="@string/create_bitmap"
+          android:showAsAction="ifRoom" /> 
 
     <item
         android:id="@+id/action_settings"

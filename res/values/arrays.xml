@@ -14,4 +14,13 @@
         <item>@string/delete_this_note</item>
         <item>@string/cancel</item>
     </integer-array>
+    
+    <integer-array name="bubble_operations">
+        <item>@string/bubble_set_text</item>
+        <item>@string/bubble_set_size</item>
+        <item>@string/bubble_set_colour</item>
+        <item>@string/bubble_add_connector</item>
+        <item>@string/bubble_remove_connector</item>
+        <item>@string/bubble_remove_bubble</item>
+    </integer-array>
 </resources>

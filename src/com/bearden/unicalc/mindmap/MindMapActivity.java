@@ -1,6 +1,7 @@
 package com.bearden.unicalc.mindmap;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.widget.RelativeLayout;
 
 import com.bearden.unicalc.R;
 
@@ -51,12 +53,11 @@ public class MindMapActivity extends Activity
 	}
 	
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo)
-	{
-		super.onCreateContextMenu(menu, v, menuInfo);
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.bubble_colour_menu, menu);
-		Log.d("1", "onCreateContextMenu");
+	public void onCreateContextMenu(ContextMenu menu, View v,
+	                                ContextMenuInfo menuInfo) {
+	    super.onCreateContextMenu(menu, v, menuInfo);
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.bubble_colour_menu, menu);
 	}
 
 	@Override
@@ -65,36 +66,44 @@ public class MindMapActivity extends Activity
 		switch (item.getItemId())
 		{
 			case android.R.id.home:
-				// This ID represents the Home or Up button. In the case of this
-				// activity, the Up button is shown. Use NavUtils to allow users
-				// to navigate up one level in the application structure. For
-				// more details, see the Navigation pattern on Android Design:
-				//
-				// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-				//
 				NavUtils.navigateUpFromSameTask(this);
 				return true;
 			case R.id.add_bubble:
 				mindMapView.createNewBubble();
-			case R.id.add_connector:
-				mindMapView.setAddConnectorMode();
-				
 				return true;
-
+			case R.id.create_bitmap:
+				createBitmap();
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	private void createBitmap()
+	{
+		RelativeLayout layout = (RelativeLayout)findViewById(R.layout.activity_mind_map);
+		Bitmap map = convertToBitmap(layout);
+	}
+	
+    protected Bitmap convertToBitmap(RelativeLayout layout) {
+
+        Bitmap map;
+
+        layout.setDrawingCacheEnabled(true);
+
+        layout.buildDrawingCache();
+
+        return map=layout.getDrawingCache();
+
+
+    }
 	
 	@Override
 	public void onPause()
 	{
 		super.onPause();
-		Log.d("1", "onPause");
-		Log.d("1", "tråd: " + mindMapThread);
 		mindMapThread.setOff();
 		try
 		{
-			Log.d("1", "Onstop");
 			mindMapThread.join();
 		} catch (InterruptedException e)
 		{

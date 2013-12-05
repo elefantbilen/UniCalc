@@ -1,5 +1,7 @@
 package com.bearden.unicalc.mindmap;
 
+import com.bearden.unicalc.R;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,16 +14,35 @@ import android.view.View;
 
 public class Connector extends Drawable
 {
+	public Bubble getConnectedBubbleOne()
+	{
+		return connectedBubbleOne;
+	}
+
+	public void setConnectedBubbleOne(Bubble connectedBubbleOne)
+	{
+		this.connectedBubbleOne = connectedBubbleOne;
+	}
+
+	public Bubble getConnectedBubbleTwo()
+	{
+		return connectedBubbleTwo;
+	}
+
+	public void setConnectedBubbleTwo(Bubble connectedBubbleTwo)
+	{
+		this.connectedBubbleTwo = connectedBubbleTwo;
+	}
+
 	Bubble connectedBubbleOne;
 	Bubble connectedBubbleTwo;
 	Paint paint;
 	
 	public Connector(Context context, Bubble b1, Bubble b2)
 	{
-
 		paint = new Paint();
 		paint.setStrokeWidth(10);
-		paint.setColor(Color.RED);
+		paint.setColor(context.getResources().getColor(R.color.color_yellow_grey));
 		paint.setStyle(Style.FILL);
 		
 		connectedBubbleOne = b1;
