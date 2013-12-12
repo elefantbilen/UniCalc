@@ -6,6 +6,6 @@
         android:title="brown" />
     <item 
         android:id="@+id/green"
-        android:title="green" />"
+        android:title="green" />
 
 </menu>

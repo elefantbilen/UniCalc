@@ -19,16 +19,17 @@ public class Bubble extends Drawable
 {
 	private Paint paint;
 	private TextPaint textPaint;
-	private int x,y, radius;
+	private float x,y, radius;
 	private boolean clearToDelete = false;
 	private int bubbleColour;
 	private int textColour;
 	private int textSize = 35;
 	private String bubbleText = "";
 
-	public Bubble(Context context, int x, int y, int radius)
+	public Bubble(Context context, float x2, float y2, float radius)
 	{
-		bubbleColour = context.getResources().getColor(R.color.color_orange);
+		//super(context);
+		bubbleColour = context.getResources().getColor(R.color.color_grey);
 		textColour = context.getResources().getColor(android.R.color.black);
 		
 		paint = new Paint();
@@ -43,8 +44,8 @@ public class Bubble extends Drawable
 		textPaint.setTextAlign(Paint.Align.CENTER);
 		textPaint.setTextSize(textSize);
 		bubbleText = "testtest";
-		this.x = x;
-		this.y = y;
+		this.x = x2;
+		this.y = y2;
 		this.radius = radius;
 		
 	}
@@ -69,7 +70,7 @@ public class Bubble extends Drawable
 		paint.setColor(bubbleColour);
 	}
 	
-	public int getX()
+	public float getX()
 	{
 		return x;
 	}
@@ -79,7 +80,7 @@ public class Bubble extends Drawable
 		this.x = x;
 	}
 
-	public int getY()
+	public float getY()
 	{
 		return y;
 	}
@@ -95,7 +96,7 @@ public class Bubble extends Drawable
 		clearToDelete = true;
 	}
 
-	public int getRadius()
+	public float getRadius()
 	{
 		return radius;
 	}
@@ -105,9 +106,18 @@ public class Bubble extends Drawable
 		this.radius = radius;
 	}
 	
+	//@Override
+	public void drawa(Canvas canvas)
+	{
+		canvas.drawCircle(x, y, radius, paint);
+		
+		canvas.drawText(bubbleText, getX(), getY(), textPaint);
+	}
+	
 	@Override
 	public void draw(Canvas canvas)
 	{
+		// TODO Auto-generated method stub
 		canvas.drawCircle(x, y, radius, paint);
 		canvas.drawText(bubbleText, getX(), getY(), textPaint);
 	}
@@ -120,14 +130,19 @@ public class Bubble extends Drawable
 	}
 
 	@Override
-	public void setAlpha(int alpha)
+	public void setAlpha(int arg0)
 	{
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void setColorFilter(ColorFilter cf)
+	public void setColorFilter(ColorFilter arg0)
 	{
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		
 	}
+
+
+
 }

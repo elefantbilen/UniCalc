@@ -25,7 +25,7 @@ public class BDAdapter
 	/**
 	 * Database name and version
 	 */
-	public static final int DATABASE_VERSION = 3;
+	public static final int DATABASE_VERSION = 1;
 	public static String DATABASE_NAME = "BeardenPowerTool.db";
 	
 	/**
@@ -39,7 +39,8 @@ public class BDAdapter
 	    		NoteEntry._ID + " INTEGER PRIMARY KEY," +
 	    		NoteEntry.NOTE_TITLE + TEXT_TYPE + COMMA_SEP +
 	    		NoteEntry.NOTE_MESSAGE + TEXT_TYPE + COMMA_SEP +
-	    		NoteEntry.NOTE_LAST_EDITED + TEXT_TYPE + " )";
+	    		NoteEntry.NOTE_LAST_EDITED + TEXT_TYPE + COMMA_SEP +
+	    		NoteEntry.NOTE_FIRST_CREATED + TEXT_TYPE + " )";
 
 	
 	private static final String SQL_DELETE_ENTRIES =
@@ -88,7 +89,7 @@ public class BDAdapter
 	 * TODO Might need a sorting order later
 	 * @return
 	 */
-	public Cursor getAllNoteTitlesAndDate()
+	public Cursor getAllNoteTitlesAndEditDate()
 	{
 		String[] projection = {
 				NoteEntry._ID,
@@ -141,7 +142,8 @@ public class BDAdapter
 				NoteEntry._ID,
 				NoteEntry.NOTE_TITLE,
 				NoteEntry.NOTE_MESSAGE,
-				NoteEntry.NOTE_LAST_EDITED
+				NoteEntry.NOTE_LAST_EDITED,
+				NoteEntry.NOTE_FIRST_CREATED
 			};
 		String[] where = {"" + id};
 		
@@ -159,7 +161,8 @@ public class BDAdapter
 		Note note = new Note();
 		note.title = c.getString(NoteEntry.COL_NOTE_TITLE);
 		note.message = c.getString(NoteEntry.COL_NOTE_MESSAGE);
-		note.date = c.getString(NoteEntry.COL_LAST_EDITED);
+		note.editDate = c.getString(NoteEntry.COL_LAST_EDITED);
+		note.creationDate = c.getString(NoteEntry.COL_FIRST_CREATED);
 		
 		return note;
 	}
@@ -219,7 +222,7 @@ public class BDAdapter
 		Date date = new Date();
 		Log.d("1", dateFormat.format(date));
 		values.put(NoteEntry.NOTE_LAST_EDITED, dateFormat.format(date));
-		
+		values.put(NoteEntry.NOTE_FIRST_CREATED, dateFormat.format(date));
 		long id = db.insert(
 				NoteEntry.TABLE_NOTES, 
 				null, 
@@ -240,11 +243,8 @@ public class BDAdapter
 		values.put(NoteEntry.NOTE_TITLE, note.title);
 		values.put(NoteEntry.NOTE_MESSAGE, note.message);
 		
-
 		Date date = new Date();
-
-		values.put(NoteEntry.NOTE_LAST_EDITED, new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(date));
-		
+		values.put(NoteEntry.NOTE_LAST_EDITED, new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(date));	
 	    db.update(NoteEntry.TABLE_NOTES, values, NoteEntry._ID + "=" + id, null);
 	    
 	    return 0;
@@ -273,8 +273,10 @@ public class BDAdapter
 	
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-		{
+		{Log.d("1", "onUpgrade");
 			db.execSQL(SQL_DELETE_ENTRIES); //One statement for each table. Just one atm
+			//db.execSQL("ALTER TABLE " + NoteEntry.TABLE_NOTES + " ADD COLUMN " + NoteEntry.NOTE_FIRST_CREATED);
+			
 			onCreate(db);
 		}
 		

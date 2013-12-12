@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
@@ -31,10 +32,11 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //TODO Undersökmöjligheten att göra draw istället för onDraw!
 
-/*TODO
+/*TODO	NOTE!!! VID ÄNDRING AV ZOOM KOMMER FINGERPROBLEMET ATT OBJEKTEN FLYTTAS RUNT OM MAN TRYCKER PÅ OLIKA DELAR AV SKÄRMEN
 
  * 1. Zoom valfritt stället / scroll
  * 2. Ändra storlek
@@ -48,12 +50,18 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 {
 	/* Modes */
 	private static int MODE_NORMAL = 10;
+	
+	/* EditBubbleDialog Constants */
 	private static final int MODE_SET_TEXT = 0;
 	private static final int MODE_SET_SIZE = 1;
 	private static final int MODE_SET_COLOUR = 2;
 	private static final int MODE_ADD_CONNECTOR = 3;
 	private static final int MODE_REMOVE_CONNECTOR = 4;
 	private static final int MODE_REMOVE_BUBBLE = 5;
+	private static final int MODE_SCALING = 6;
+	
+	/* Create new bubble dialog constants */
+	private static final int MODE_ADD_BUBBLE = 0;
 
 	int tempa = 0;
 	
@@ -68,19 +76,21 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	private ScaleGestureDetector mScaleDetector;
 	
 	/* Screen adjusters and touches */
-	private float mScaleFactor = 1.f;
+	//private float mScaleFactor = 1.f;
 	private float translateX = 1.f;
 	private float translateY = 1.f;
-	private float previouslyTranslateX = 1.f;
-	private float previouslyTranslateY = 1.f;
+	private float previouslyTranslateX = 0.f;
+	private float previouslyTranslateY = 0.f;
 	
 	private float startPressX = 0f;
 	private float startPressY = 0f;
 	
-	private float totalMovedX = 0;
-	private float totalMovedY = 0;
+	//private float totalMovedX = 0;
+	//private float totalMovedY = 0;
 	
-	
+	private float touchForDialogX = 0;
+	private float touchForDialogY = 0;
+
 	private Bubble[] bubblesToConnect = {null, null};
 	private Bubble[] bubblesToDisconnect = {null, null};
 	
@@ -101,14 +111,16 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		surfaceHolder.addCallback(this); // <-- not sure	
 		mindMapThread = new MindMapThread(this, surfaceHolder);
 		
-		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
+		//mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
 		
 		bubbleList = new LinkedList<Bubble>(); 
 		connectorList = new LinkedList<Connector>();
+		createNewBubble(300,300);
+		
 
 	}
-
-	private class ScaleListener	extends ScaleGestureDetector.SimpleOnScaleGestureListener 
+	
+	/*private class ScaleListener	extends ScaleGestureDetector.SimpleOnScaleGestureListener 
     {
 		@Override
 		public boolean onScale(ScaleGestureDetector detector) 
@@ -118,26 +130,59 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 				mScaleFactor *= detector.getScaleFactor();
 				// Don't let the object get too small or too large.
 				mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
-
+				currentMode = MODE_SCALING;
 			}
 			return true;
 		}
 
-    }
+    }*/
+	
+	final GestureDetector gestureDetector = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() 
+	{
+		
+	    public void onLongPress(MotionEvent event) 
+	    {
+	    	chosenBubble = getTouchedBubble(getCorrectedUserTouchX(event.getX()), getCorrectedUserTouchY(event.getY()));
+	    	Log.d("1", "Longpress bubble: " + chosenBubble);
+	        if(chosenBubble != NO_BUBBLE_CHOSEN) //Pressed a bubble = edit dialog
+	        {
+	        	bubbleDialog();
+	        	doHaptic(getRootView());
+	        }
+	        else	//Pressed canvas, create bubble
+	        {
+	        	touchForDialogX = event.getX();
+	        	touchForDialogY = event.getY();
+	        	doHaptic(getRootView());
+	        	createNewBubbleDialog();
+	        }
+	        
+
+	    }
+	    
+	    public boolean onDown(MotionEvent event)
+	    {
+	    	return true;
+	    }
+	    
+	    @Override
+	    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+	    {
+	    	return true;
+	    }
+	    
+
+	});
 	
 	
 	@Override
 	public boolean onTouchEvent(MotionEvent event)
 	{
-		mScaleDetector.onTouchEvent(event);
-		gestureDetector.onTouchEvent(event);
 		
-		switch(event.getAction())
+		switch(event.getAction() & MotionEvent.ACTION_MASK)
 		{	
 			case MotionEvent.ACTION_DOWN:
-				chosenBubble = getTouchedBubble(getCorrectedUserTouch(event.getX()), getCorrectedUserTouch(event.getY()));
-				Log.d("1", "finger x: " + getCorrectedUserTouch(event.getX()) + " y: " + 
-				getCorrectedUserTouch(event.getY()));
+				chosenBubble = getTouchedBubble(getCorrectedUserTouchX(event.getX()), getCorrectedUserTouchY(event.getY()));
 				startPressX = event.getX() - previouslyTranslateX;
 				startPressY = event.getY() - previouslyTranslateY;
 				
@@ -147,22 +192,35 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 					removeConnector(chosenBubble);
 				break;
 			case MotionEvent.ACTION_UP:
+				if(currentMode == MODE_SCALING)
+					currentMode = MODE_NORMAL;
+				else
+				{
 					previouslyTranslateX = translateX;
 					previouslyTranslateY = translateY;
+					
+					//totalMovedX += translateX;
+					//totalMovedY += translateY;
+				}
+
 				break;
 			case MotionEvent.ACTION_MOVE:
 				if(chosenBubble != -1)
 				{
-					bubbleList.get(chosenBubble).setX((int) getCorrectedUserTouch(event.getX()));
-					bubbleList.get(chosenBubble).setY((int) getCorrectedUserTouch(event.getY()));
+					bubbleList.get(chosenBubble).setX((int) getCorrectedUserTouchX(event.getX()));
+					bubbleList.get(chosenBubble).setY((int) getCorrectedUserTouchY(event.getY()));
 				}
-				else
+				else 
 				{
 					translateX = event.getX() - startPressX;
 					translateY = event.getY() - startPressY;
+
 				}
 				break;
 		}
+		
+		//mScaleDetector.onTouchEvent(event);
+		gestureDetector.onTouchEvent(event);
 
 		return true;
 	}
@@ -174,9 +232,10 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		{	
 			for(int i = 0; i < bubbleList.size(); i++)
 			{
-				if(Math.abs(bubbleList.get(i).getX() - touchX) < getCorrectedUserTouch((STANDARD_BUBBLE_WIDTH) * mScaleFactor)  &&
-						Math.abs(bubbleList.get(i).getY() - touchY) < getCorrectedUserTouch((STANDARD_BUBBLE_WIDTH) * mScaleFactor))
-				{						
+				if(Math.abs(bubbleList.get(i).getX() - touchX) < getCorrectedCanvasX((STANDARD_BUBBLE_WIDTH) )  &&
+						Math.abs(bubbleList.get(i).getY() - touchY) < getCorrectedCanvasY((STANDARD_BUBBLE_WIDTH) ))
+				{	
+					Log.d("1", "bubblePlace x: " + bubbleList.get(i).getX() + " y: " + bubbleList.get(i).getY());
 					return i;
 				}
 			}
@@ -187,7 +246,6 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	
 	private void removeConnector(int bubble)
 	{
-		Log.d("1", "i removeConn");
 		if(bubblesToDisconnect[0] == null)
 		{
 			Bubble b = bubbleList.get(bubble);
@@ -197,22 +255,16 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		}
 		else if(bubblesToDisconnect[1] == null)
 		{	
-			bubblesToDisconnect[1] = bubbleList.get(chosenBubble);
-			//Connector c1 = new Connector(mContext, bubblesToDisconnect[0], bubblesToDisconnect[1]);
-			
-			Log.d("1", "Ska göra kollen här");
+			bubblesToDisconnect[1] = bubbleList.get(chosenBubble);			
 			
 			synchronized (surfaceHolder)
 			{
 				Iterator<Connector> it = connectorList.iterator();
-				Log.d("1", "kom förbi iteratorstart");
 				while(it.hasNext())
 				{
-					Log.d("1", "hasnext");
 					Connector c = it.next();
 					if((c.getConnectedBubbleOne() == bubblesToDisconnect[0] || c.getConnectedBubbleOne() == bubblesToDisconnect[1]) &&
 							(c.getConnectedBubbleTwo() == bubblesToDisconnect[0] || c.getConnectedBubbleTwo() == bubblesToDisconnect[1])){
-						Log.d("1", "HIT");
 						it.remove();
 					}
 				}
@@ -255,7 +307,6 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 
 		Bubble b = bubbleList.get(bubble);
 		Iterator<Connector> connIterator = connectorList.iterator();
-		Iterator<Bubble> bubbleIterator = bubbleList.iterator(); // kanske inte behövs
 		synchronized (surfaceHolder)
 		{
 			while(connIterator.hasNext())
@@ -263,7 +314,6 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 				Connector c = connIterator.next();
 				if(c.getConnectedBubbleOne() == b || c.connectedBubbleTwo == b)
 				{
-					Log.d("1", "Remove connector");
 					connIterator.remove();
 				}
 			}
@@ -273,11 +323,21 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 
 	}
 	
-	private void newDialog()
+	/* DIALOGS */
+	private void bubbleDialog()
 	{
 		AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
 		builder.setTitle("Titlez: " + chosenBubble);
 		builder.setItems(R.array.bubble_operations, new MenuListener());
+		builder.show();
+	}
+	
+	private void createNewBubbleDialog()
+	{
+		AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
+		builder.setTitle("New Bubble");
+		builder.setItems(R.array.canvas_operations, new NewBubbleMenu());
+		
 		builder.show();
 	}
 	
@@ -313,8 +373,6 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	
 	private class MenuListener implements DialogInterface.OnClickListener
 	{
-
-
 		@Override
 		public void onClick(DialogInterface dialog, int which)
 		{
@@ -337,26 +395,31 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 
 		}
 	}
-
-	final GestureDetector gestureDetector = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener() 
+	
+	private class NewBubbleMenu implements DialogInterface.OnClickListener
 	{
-		
-	    public void onLongPress(MotionEvent event) 
-	    {
-	    	chosenBubble = getTouchedBubble(getCorrectedUserTouch(event.getX()), getCorrectedUserTouch(event.getY()));
-	        if(chosenBubble != NO_BUBBLE_CHOSEN)
-	        {
-	        	newDialog();
-	        	doHaptic(getRootView());
-	        }
+		@Override
+		public void onClick(DialogInterface dialog, int which)
+		{
+			switch(which)
+			{
+				case MODE_ADD_BUBBLE:
+					chosenBubble = createNewBubble(touchForDialogX, touchForDialogY);
+					setTextDialog(chosenBubble);
+					break;
+				default:
+					break;
+			}
 
-	    }
-	});
+		}
+	}
+
+
 	
 	String temp = "inget";
-	public void createNewBubble()
+	public int createNewBubble()
 	{
-		if(gris % 2 ==0)
+	/*	if(gris % 2 ==0)
 			debugX += 100;
 		else
 			debugY += 100;
@@ -370,7 +433,22 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 			bubbleList.add(bubble);
 		}
 		
+		return bubbleList.size() - 1; //Get the index of the added bubble;*/ return 0;
+	}
+	
+	
+	public int createNewBubble(float x, float y)
+	{
 
+		Bubble bubble = new Bubble(getContext(), x, y, STANDARD_BUBBLE_WIDTH);
+		
+		Log.d("1", "bubble created at x: " + x + " y: " + y );
+		synchronized (surfaceHolder)
+		{
+			bubbleList.add(bubble);
+		}
+		
+		return bubbleList.size() - 1; //Get the index of the added bubble;
 	}
 	
 	private void doHaptic(View view)
@@ -378,19 +456,36 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 	}
 	
-	private float getCorrectedUserTouch(float touch)
+	private float getCorrectedUserTouchX(float touch)
 	{
-		return touch / mScaleFactor;
+		Log.d("1", "Get correct x touchX: " + touch);
+		return (touch) ;
 	}
 	
-
+	private float getCorrectedUserTouchY(float touch)
+	{
+		Log.d("1", "touchY: " + touch);
+		return (touch);
+	}
+	
+	private float getCorrectedCanvasX(float canvasX)
+	{
+		Log.d("1", "Get correct canvasX: " + canvasX);
+		return (canvasX) ;
+	}
+	
+	private float getCorrectedCanvasY(float canvasY)
+	{
+		Log.d("1", "touchY: " + canvasY);
+		return (canvasY);
+	}
 
 	
 	@Override
 	public void surfaceChanged(SurfaceHolder holder, int format, int width,
 			int height)
 	{
-		Log.d("1", "Surface changed");
+		Log.d("1", "Surface changed width " + width + "height: " + height);
 		// TODO Auto-generated method stub		
 	}
 
@@ -424,11 +519,14 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-
+		//Log.d("1", "clipBounds: " + canvas.getClipBounds());
 		canvas.save();	//TODO Check if necessary
 
-		canvas.scale(mScaleFactor, mScaleFactor);
-		canvas.translate(translateX / mScaleFactor, translateY / mScaleFactor);
+		//canvas.scale(mScaleFactor, mScaleFactor); //<---standard scale at origo
+		//canvas.scale(mScaleFactor, mScaleFactor); 
+		//canvas.scale(mScaleFactor, mScaleFactor,mScaleDetector.getFocusX(), mScaleDetector.getFocusY()); //<---scale at center
+
+		canvas.translate(translateX , translateY );
 		super.onDraw(canvas);
 
 		//Log.d("1", "Efter translate: " + canvasX + " scale: " + mScaleFactor);
@@ -436,17 +534,16 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		
 		
 		/* DRAWING CODE */
-		canvas.drawColor(Color.GREEN);
+		/*
 		Paint paint = new Paint();
 		paint.setAntiAlias(true);
 		paint.setStrokeWidth(10);
 		paint.setColor(Color.BLACK);
 		paint.setStyle(Style.FILL);
-		canvas.drawCircle(333,444, 59,paint);	
-		//canvas.translate(canvasX, canvasY);
-		canvas.drawCircle(323,444, 59,paint);
-		//canvas.translate(canvasX, canvasY);
-		canvas.drawCircle(333,444, 59,paint);
+		canvas.drawCircle(333,444, 59,paint);	*/
+
+		canvas.drawColor(Color.WHITE);
+		
 		for(Connector c : connectorList)
 			c.draw(canvas);
 		
@@ -454,8 +551,8 @@ public class MindMapView extends SurfaceView implements SurfaceHolder.Callback
 		{
 			b.draw(canvas);
 			tempa++;
-			if(tempa % 40 == 0)
-			Log.d("1", "bubbleplace x: " + b.getX() + " y: " + b.getY() );
+			//if(tempa % 40 == 0)
+			//Log.d("1", "numBubbles: " + bubbleList.size());
 		}
 		canvas.restore();
 	}

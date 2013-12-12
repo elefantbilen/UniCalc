@@ -1,18 +1,27 @@
 package com.bearden.unicalc.notepad;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.text.Layout;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bearden.unicalc.R;
 import com.bearden.unicalc.R.id;
@@ -20,8 +29,8 @@ import com.bearden.unicalc.R.layout;
 import com.bearden.unicalc.R.menu;
 import com.bearden.unicalc.notepad.BeardenDBContract.NoteEntry;
 
-public class NotePadActivity extends FragmentActivity implements
-		EditNoteDialog.EditNoteDialogListener
+public class NotePadActivity extends FragmentActivity //implements
+		//EditNoteDialog.EditNoteDialogListener
 {
 	private BDAdapter bdAdapter;
 	private SimpleCursorAdapter myCursorAdapter;
@@ -45,7 +54,7 @@ public class NotePadActivity extends FragmentActivity implements
 	{
 		bdAdapter.openConnection();
 
-		Cursor c = bdAdapter.getAllNoteTitlesAndDate();
+		Cursor c = bdAdapter.getAllNoteTitlesAndEditDate();
 		startManagingCursor(c);
 		c.moveToFirst();
 
@@ -113,9 +122,7 @@ public class NotePadActivity extends FragmentActivity implements
 			public void onItemClick(AdapterView<?> parent, View viewClicked,
 					int position, long idInDB)
 			{
-
-				Log.d("1", "aaaaa");
-				Log.d("1", "idInDB " + idInDB + " pos: " + position);
+				Log.d("1", "Vanligt klick med id: " + idInDB);
 				Intent intent = new Intent(getApplicationContext(),
 						SingleNoteActivity.class);
 				intent.putExtra("databaseId", idInDB);
@@ -138,7 +145,32 @@ public class NotePadActivity extends FragmentActivity implements
 			}
 		});
 	}
+	
+	private void bringUpDialog( )
+	{	
 
+		AlertDialog.Builder builder = 
+				new AlertDialog.Builder(this)
+					.setTitle("Delete Note?")
+					.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							Log.d("1", " number" + currentDBID);
+							bdAdapter.deleteNote(currentDBID);
+							fillListView();
+							Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+						}
+					})
+		
+					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{}
+					});
+		
+		builder.show();
+	}
+/*
 	public void bringUpDialog()
 	{
 		DialogFragment noteDialogFragment = new EditNoteDialog();
@@ -154,7 +186,7 @@ public class NotePadActivity extends FragmentActivity implements
 			bdAdapter.deleteNote(currentDBID);
 			fillListView();
 		}
-	}
+	}*/
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.

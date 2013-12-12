@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MindMapActivity" >
+    tools:context=".MindMap" >
 
     <TextView
         android:id="@+id/abc"
@@ -20,45 +20,35 @@
 
 	    </com.bearden.unicalc.mindmap.MindMapView>
 	
-	<LinearLayout 
-	    android:id="@+id/mind_map_buttons"
+	<TextView 
+	    android:id="@+id/___1"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal"
-	    android:visibility="gone"
-	    android:layout_alignBottom="@id/mind_map" 
-	    style="?android:attr/buttonBarStyle">
-
+	    android:text="asd"
+	    android:layout_alignParentLeft="true"/>
 	
-	<Button 
-	    android:id ="@+id/change_size"
+	<TextView 
+	    android:id="@+id/___2"
 	    android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        style="?android:attr/buttonBarButtonStyle"/>
-	
-	<Button 
-	    android:id ="@+id/change_colour"
-	    android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2"
-        style="?android:attr/buttonBarButtonStyle"/>
+	    android:layout_height="wrap_content"
+	    android:text="asd"
+	    android:layout_alignParentRight="true"/>
 		
-	<Button 
-	    android:id ="@+id/delete_bubble"
+	<TextView 
+	    android:id="@+id/___3"
 	    android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3"
-        style="?android:attr/buttonBarButtonStyle"/>
-	
-	<Button 
-	    android:id ="@+id/connect_bubble"
+	    android:layout_height="wrap_content"
+	    android:text="asd"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentBottom="true"/>
+			
+	<TextView 
+	    android:id="@+id/___4"
 	    android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="4"
-        style="?android:attr/buttonBarButtonStyle"/>
-	
-	</LinearLayout>
+	    android:layout_height="wrap_content"
+	    android:text="asd"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentBottom="true"/>
 	
   <!--    
     <com.bearden.unicalc.mindmap.Bubble

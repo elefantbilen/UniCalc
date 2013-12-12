@@ -90,6 +90,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.bearden.unicalc.MainActivity" />
         </activity>
+        <activity
+            android:name="com.bearden.unicalc.snake.SnakeActivity"
+            android:label="@string/title_activity_snake" >
+        </activity>
     </application>
 
 </manifest>

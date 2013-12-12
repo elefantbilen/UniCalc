@@ -6,6 +6,8 @@ import com.bearden.unicalc.R.layout;
 import com.bearden.unicalc.R.menu;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,26 +25,21 @@ public class SingleNoteActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_single_note);
-		
 		Intent intent = getIntent();
 		id = intent.getLongExtra("databaseId", 0);
 		bdAdapter = BDAdapter.getInstance(this);
-
 		if(id != 0) //In this case we will edit an existing note
 		{
 			Note note = bdAdapter.getSingleNote(id);
-			
 			EditText t = (EditText)findViewById(R.id.the_title);
 			t.setText(note.title);
 			t = (EditText)findViewById(R.id.the_message);
 			t.setText(note.message);
-			Log.d("1", "date: " + note.date);
 		}
 	}
 	
-	@Override
-	public void onBackPressed()
-	{	
+	private void saveNote()
+	{
 		Note note = new Note();
 		note.title = ((EditText)findViewById(R.id.the_title)).getText().toString();
 		note.message = ((EditText)findViewById(R.id.the_message)).getText().toString();
@@ -59,9 +56,42 @@ public class SingleNoteActivity extends Activity
 		{
 			bdAdapter.insertNewNote(note);
 		}
-		super.onBackPressed();
-
 		
+		finish();
+	}
+	
+	private AlertDialog dialog;
+	@Override
+	public void onBackPressed()
+	{	
+		if(dialog == null)
+		{
+		AlertDialog.Builder builder = 
+				new AlertDialog.Builder(this)
+					.setTitle("Save this note?")
+					.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							saveNote();		
+						}
+					})
+		
+					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which)
+						{
+							finish();
+						}
+					});
+		
+		builder.show();
+		}
+		else
+		{
+
+			super.onBackPressed();
+			dialog = null;
+		}
 	}
 
 	@Override

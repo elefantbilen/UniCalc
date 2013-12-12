@@ -49,10 +49,10 @@ public class Connector extends Drawable
 		connectedBubbleTwo = b2;
 	}
 	
+
 	@Override
 	public void draw(Canvas canvas)
 	{
-		//canvas.drawLine(50, 50, 450, 720, paint);
 		canvas.drawLine(connectedBubbleOne.getX(), connectedBubbleOne.getY(), connectedBubbleTwo.getX(), connectedBubbleTwo.getY(), paint);
 	}
 

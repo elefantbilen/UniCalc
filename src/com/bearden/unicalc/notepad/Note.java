@@ -7,7 +7,8 @@ public class Note
 {
 	String title="";
 	String message = "";
-	String date = "";
+	String creationDate = "";
+	String editDate = "";
 	long id = 0;
 }
 

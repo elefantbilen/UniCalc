@@ -10,6 +10,6 @@
     <string name="title_activity_calculator">A Regular Calculator</string>
     <string name="title_activity_colour_picker">Colour Picker</string>
     <string name="title_activity_note_pad">Note Pad</string>
-   
+    <string name="title_activity_snake">Snake</string>
 
 </resources>

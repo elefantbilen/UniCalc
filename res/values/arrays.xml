@@ -8,6 +8,7 @@
         <item>@string/title_activity_note_pad</item>
         <item>@string/title_activity_decider</item>
 		<item>@string/title_activity_mind_map</item>
+		<item>@string/title_activity_snake</item>
     </integer-array>
     
     <integer-array name="note_array">
@@ -22,5 +23,9 @@
         <item>@string/bubble_add_connector</item>
         <item>@string/bubble_remove_connector</item>
         <item>@string/bubble_remove_bubble</item>
+    </integer-array>
+        
+    <integer-array name="canvas_operations">
+        <item>@string/bubble_add_bubble</item>
     </integer-array>
 </resources>

@@ -13,5 +13,6 @@
 	<string name="bubble_add_connector">Add a connector</string>
 	<string name="bubble_remove_connector">Remove a connector</string>
 	<string name="bubble_remove_bubble">Remove this bubble</string>
+	<string name="bubble_add_bubble">Add a bubble</string>
 	    
 </resources>
