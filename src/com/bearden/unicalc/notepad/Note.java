@@ -5,10 +5,9 @@ package com.bearden.unicalc.notepad;
  */
 public class Note
 {
-	String title="";
-	String message = "";
-	String creationDate = "";
-	String editDate = "";
-	long id = 0;
+	public String title="";
+	public String message = "";
+	public String creationDate = "";
+	public String editDate = "";
 }
 

@@ -82,18 +82,7 @@
             android:label="@string/title_activity_single_note"
             android:screenOrientation="portrait" >
         </activity>
-        <activity
-            android:name="com.bearden.unicalc.mindmap.MindMapActivity"
-            android:label="@string/title_activity_mind_map"
-            android:parentActivityName="com.bearden.unicalc.MainActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.bearden.unicalc.snake.SnakeActivity"
-            android:label="@string/title_activity_snake" >
-        </activity>
+
     </application>
 
 </manifest>

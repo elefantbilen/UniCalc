@@ -1,10 +1,6 @@
 package com.bearden.unicalc.converter;
 
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.id;
-import com.bearden.unicalc.R.layout;
-import com.bearden.unicalc.R.menu;
-
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;

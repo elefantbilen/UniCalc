@@ -1,13 +1,6 @@
 package com.bearden.unicalc.calculator;
 
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.color;
-import com.bearden.unicalc.R.drawable;
-import com.bearden.unicalc.R.id;
-import com.bearden.unicalc.R.layout;
-import com.bearden.unicalc.R.menu;
-import com.bearden.unicalc.R.string;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;

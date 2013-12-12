@@ -5,29 +5,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
-import android.text.Layout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.id;
-import com.bearden.unicalc.R.layout;
-import com.bearden.unicalc.R.menu;
-import com.bearden.unicalc.notepad.BeardenDBContract.NoteEntry;
+import com.bearden.unicalc.database.BDAdapter;
+import com.bearden.unicalc.database.BeardenDBContract.NoteEntry;
 
 public class NotePadActivity extends FragmentActivity //implements
 		//EditNoteDialog.EditNoteDialogListener

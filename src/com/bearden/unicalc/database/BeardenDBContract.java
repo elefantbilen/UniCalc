@@ -1,4 +1,4 @@
-package com.bearden.unicalc.notepad;
+package com.bearden.unicalc.database;
 
 import android.provider.BaseColumns;
 

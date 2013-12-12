@@ -3,10 +3,7 @@ package com.bearden.unicalc.calculator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
-
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.id;
-
 import android.view.View;
 import android.widget.Button;
 

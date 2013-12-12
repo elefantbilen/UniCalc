@@ -1,12 +1,7 @@
 package com.bearden.unicalc.converter;
 
 import java.util.ArrayList;
-
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.id;
-import com.bearden.unicalc.R.layout;
-import com.bearden.unicalc.R.string;
-
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;

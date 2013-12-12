@@ -1,16 +1,13 @@
 package com.bearden.unicalc.notepad;
 
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.id;
-import com.bearden.unicalc.R.layout;
-import com.bearden.unicalc.R.menu;
+import com.bearden.unicalc.database.BDAdapter;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.EditText;
 

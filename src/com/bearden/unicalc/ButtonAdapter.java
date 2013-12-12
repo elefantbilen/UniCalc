@@ -1,6 +1,5 @@
 package com.bearden.unicalc;
 
-import com.bearden.unicalc.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.HapticFeedbackConstants;

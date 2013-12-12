@@ -2,8 +2,6 @@ package com.bearden.unicalc.converter;
 
 import java.util.ArrayList;
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.string;
-
 import android.content.Context;
 
 /**

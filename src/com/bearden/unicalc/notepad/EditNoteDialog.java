@@ -1,9 +1,6 @@
 package com.bearden.unicalc.notepad;
 
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.array;
-import com.bearden.unicalc.R.string;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

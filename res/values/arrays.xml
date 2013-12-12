@@ -3,29 +3,12 @@
     <integer-array name="button_strings">
         <item>@string/title_activity_calculator</item>
         <item>@string/title_activity_number_converter</item>
-        <item>@string/title_activity_ip</item>
-        <item>@string/title_activity_colour_picker</item>
         <item>@string/title_activity_note_pad</item>
         <item>@string/title_activity_decider</item>
-		<item>@string/title_activity_mind_map</item>
-		<item>@string/title_activity_snake</item>
     </integer-array>
     
     <integer-array name="note_array">
         <item>@string/delete_this_note</item>
         <item>@string/cancel</item>
-    </integer-array>
-    
-    <integer-array name="bubble_operations">
-        <item>@string/bubble_set_text</item>
-        <item>@string/bubble_set_size</item>
-        <item>@string/bubble_set_colour</item>
-        <item>@string/bubble_add_connector</item>
-        <item>@string/bubble_remove_connector</item>
-        <item>@string/bubble_remove_bubble</item>
-    </integer-array>
-        
-    <integer-array name="canvas_operations">
-        <item>@string/bubble_add_bubble</item>
     </integer-array>
 </resources>

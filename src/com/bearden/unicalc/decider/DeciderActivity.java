@@ -1,13 +1,6 @@
 package com.bearden.unicalc.decider;
 
 import com.bearden.unicalc.R;
-import com.bearden.unicalc.R.color;
-import com.bearden.unicalc.R.drawable;
-import com.bearden.unicalc.R.id;
-import com.bearden.unicalc.R.layout;
-import com.bearden.unicalc.R.menu;
-import com.bearden.unicalc.R.string;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
