@@ -4,6 +4,7 @@ import com.bearden.unicalc.R;
 import com.bearden.unicalc.calculator.CalculatorActivity;
 import com.bearden.unicalc.converter.NumberConverterActivity;
 import com.bearden.unicalc.decider.DeciderActivity;
+import com.bearden.unicalc.information.InformationActivity;
 import com.bearden.unicalc.notepad.NotePadActivity;
 import android.app.Activity;
 import android.content.Intent;
@@ -25,7 +26,8 @@ public class MainActivity extends Activity
 			CalculatorActivity.class, 
 			NumberConverterActivity.class,
 			NotePadActivity.class,
-			DeciderActivity.class
+			DeciderActivity.class,
+			InformationActivity.class
 		};
 	
 	@Override

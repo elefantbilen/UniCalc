@@ -9,8 +9,61 @@
     tools:context=".InformationActivity" >
 
     <TextView
+        android:id="@+id/ett"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
+    
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="go"
+        android:layout_toRightOf="@id/ett"/>
+    
+            <TextView
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/ett"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/color_yellow_grey"
+        android:text="sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsaadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsdadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada" />
+    
+    
+    <TextView
+        android:id="@+id/visa"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/ett"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/color_orange"
+        android:visibility="gone"
+        android:text="sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
+        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada" />
+    
 
+    
+ 
 </RelativeLayout>

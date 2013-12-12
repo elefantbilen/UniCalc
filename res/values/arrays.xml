@@ -5,6 +5,7 @@
         <item>@string/title_activity_number_converter</item>
         <item>@string/title_activity_note_pad</item>
         <item>@string/title_activity_decider</item>
+        <item>@string/title_activity_decider</item>
     </integer-array>
     
     <integer-array name="note_array">

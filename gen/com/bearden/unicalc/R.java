@@ -55,28 +55,29 @@ public final class R {
         public static final int textview_back=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b002d;
-        public static final int add_note_button=0x7f0b0020;
-        public static final int ascii_value=0x7f0b0028;
+        public static final int action_settings=0x7f0b002f;
+        public static final int add_note_button=0x7f0b0022;
+        public static final int ascii_value=0x7f0b002a;
         public static final int binary_mode=0x7f0b0013;
-        public static final int button_convert=0x7f0b0023;
-        public static final int button_gridview=0x7f0b001f;
+        public static final int button_convert=0x7f0b0025;
+        public static final int button_gridview=0x7f0b0021;
         public static final int command_button_clear=0x7f0b0012;
         public static final int command_button_divide=0x7f0b0005;
         public static final int command_button_equals=0x7f0b0011;
         public static final int command_button_minus=0x7f0b0010;
         public static final int command_button_multiply=0x7f0b0009;
         public static final int command_button_plus=0x7f0b000d;
-        public static final int date_and_time=0x7f0b002c;
+        public static final int date_and_time=0x7f0b002e;
         public static final int decider_yes_no_answer=0x7f0b0016;
         public static final int decider_yes_no_button=0x7f0b0015;
         public static final int decider_yes_no_tally=0x7f0b0017;
         public static final int decimal_mode=0x7f0b0014;
-        public static final int decimal_value=0x7f0b002a;
-        public static final int hello_box=0x7f0b001c;
-        public static final int hexa_value=0x7f0b0029;
-        public static final int info_button=0x7f0b001e;
-        public static final int list_note=0x7f0b0021;
+        public static final int decimal_value=0x7f0b002c;
+        public static final int ett=0x7f0b001c;
+        public static final int hello_box=0x7f0b001e;
+        public static final int hexa_value=0x7f0b002b;
+        public static final int info_button=0x7f0b0020;
+        public static final int list_note=0x7f0b0023;
         public static final int num_button_0=0x7f0b000e;
         public static final int num_button_1=0x7f0b000a;
         public static final int num_button_2=0x7f0b000b;
@@ -89,18 +90,19 @@ public final class R {
         public static final int num_button_9=0x7f0b0004;
         public static final int num_button_comma=0x7f0b000f;
         public static final int number_bar=0x7f0b0001;
-        public static final int number_converter_listview=0x7f0b0024;
-        public static final int number_converter_user_input=0x7f0b0022;
-        public static final int original_value=0x7f0b0027;
+        public static final int number_converter_listview=0x7f0b0026;
+        public static final int number_converter_user_input=0x7f0b0024;
+        public static final int original_value=0x7f0b0029;
         public static final int randomized_number=0x7f0b001b;
         public static final int randomizer_first_number=0x7f0b0018;
         public static final int randomizer_second_number=0x7f0b0019;
         public static final int randomizer_start=0x7f0b001a;
         public static final int temp_number_bar=0x7f0b0000;
-        public static final int the_message=0x7f0b0026;
-        public static final int the_title=0x7f0b0025;
-        public static final int title=0x7f0b002b;
-        public static final int welcoming_box=0x7f0b001d;
+        public static final int the_message=0x7f0b0028;
+        public static final int the_title=0x7f0b0027;
+        public static final int title=0x7f0b002d;
+        public static final int visa=0x7f0b001d;
+        public static final int welcoming_box=0x7f0b001f;
     }
     public static final class integer {
         public static final int max_chars_textviews=0x7f070000;
