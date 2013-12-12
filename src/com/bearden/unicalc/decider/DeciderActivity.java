@@ -92,7 +92,6 @@ public class DeciderActivity extends Activity {
 
 	private void getIntervalRandomNumber(View v) {
 		doHaptic(v);
-		Log.d("1", "enter");
 		try {
 			int first = Integer
 					.parseInt(((EditText) findViewById(R.id.randomizer_first_number))
@@ -102,11 +101,12 @@ public class DeciderActivity extends Activity {
 					.parseInt(((EditText) findViewById(R.id.randomizer_second_number))
 							.getText().toString());
 
-			if (first >= second)
-				giveUserToast(R.string.bad_interval);
-			else
+
 				randomizedNumber.setText(Integer.toString(decider
 						.getRandomFromInterval(first, second)));
+
+				new Blinker2().execute();
+
 
 		} catch (NumberFormatException e) {
 			giveUserToast(R.string.missing_number);
@@ -218,5 +218,38 @@ public class DeciderActivity extends Activity {
 			return null;
 		}
 	}
+	
+
+	/**
+	 * private class for making the text view blink on submit
+	 */
+	private class Blinker2 extends AsyncTask<Void, Void, Void> {
+		@Override
+		protected Void doInBackground(Void... params) {
+			try {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						randomizedNumber.getBackground().setColorFilter(
+								getResources().getColor(R.color.color_teal),
+								PorterDuff.Mode.MULTIPLY);
+					}
+				});
+
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			runOnUiThread(new Runnable() {
+				@Override
+				public void run() {
+					randomizedNumber.setBackground(getResources().getDrawable(
+							R.drawable.textview_back));
+				}
+			});
+			return null;
+		}
+	}
+	
 
 }

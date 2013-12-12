@@ -45,7 +45,7 @@ public class ButtonAdapter extends BaseAdapter
 		if(convertView == null)
 		{
 			button = new Button(mContext);
-			button.setLayoutParams(new GridView.LayoutParams(300,200));
+			button.setLayoutParams(new GridView.LayoutParams(400,300));
 			button.setPadding(2, 2, 2, 2);		
 			button.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 			button.setFocusable(false);

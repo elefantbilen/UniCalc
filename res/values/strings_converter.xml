@@ -11,6 +11,7 @@
     <string name="binary_value">Binary Value:</string>
     <string name="decimal_value">Decimal:</string>
     <string name="hex_value">Hexadecimal:</string>
+    <string name="char_to_convert">String to convert</string>
 
 
 </resources>

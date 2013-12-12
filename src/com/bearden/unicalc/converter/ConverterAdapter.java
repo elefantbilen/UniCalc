@@ -55,7 +55,6 @@ public class ConverterAdapter extends BaseAdapter
 			holder.txtAscii = (TextView)convertView.findViewById(R.id.ascii_value);
 			holder.txtHexa = (TextView)convertView.findViewById(R.id.hexa_value);
 			holder.txtDeca = (TextView)convertView.findViewById(R.id.decimal_value);
-			holder.txtUTF8 = (TextView)convertView.findViewById(R.id.UTF);
 			convertView.setTag(holder);
 		}
 		else
@@ -75,8 +74,6 @@ public class ConverterAdapter extends BaseAdapter
 				"\t" + valueInfo.get(position).getHexValue());
 		holder.txtDeca.setText(mContext.getResources().getString(R.string.decimal_value) + 
 				"\t" + valueInfo.get(position).getDecValue());
-		holder.txtUTF8.setText(mContext.getResources().getString(R.string.UTF8) +
-				"\t" + valueInfo.get(position).getUTF8Value());
 		
 		return convertView;
 	}

@@ -29,6 +29,8 @@ public class NumberConverter
 	
 	/**
 	 * Splits a string into a string array
+	 * First splits the string for every character. Will then append values if
+	 * they were integers i.e. 1,4,3 > 143
 	 * 
 	 * @param string the string to split
 	 * @return A new string array containing all the values
@@ -90,18 +92,22 @@ public class NumberConverter
 		ValuesToConvert val = new ValuesToConvert();
 		int number = Integer.parseInt(string);
 		
-		if(number < 33)
-		{
+		if(number < 33 )
 			val.setAsciiValue(SpecialCharsEnum.values()[number].name());	
-		}
-		else
-		{
+		else if(number < 127)
 			val.setAsciiValue(Character.toString((char)Integer.parseInt(string)));
-		}
+		else if(number == 127)
+			val.setAsciiValue("Delete");
+		else if(number <= 255)
+			val.setAsciiValue(Character.toString((char)Integer.parseInt(string)) + " (Extended ASCII)");
+		else
+			val.setAsciiValue("Not a valid ASCII number");
+		
+	
 			val.setOriginalValue(string);
+		
 			val.setHexValue(Integer.toHexString(Integer.parseInt(string)));
 			val.setDecValue(string);
-			val.setUTF8Value("Placeholder");
 		
 		fin.add(val);
 	}
@@ -117,7 +123,11 @@ public class NumberConverter
 		ValuesToConvert val = new ValuesToConvert();
 		int numberRepresentation = (int)string.charAt(0);
 				
-		val.setOriginalValue(string);
+		if(numberRepresentation == 32)
+			val.setOriginalValue("Space");
+		else	
+			val.setOriginalValue(string);
+		
 		if(numberRepresentation < 128)
 			val.setAsciiValue(Integer.toString(numberRepresentation));
 		else

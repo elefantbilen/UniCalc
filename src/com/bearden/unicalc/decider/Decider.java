@@ -48,6 +48,12 @@ public class Decider
 	 */
 	public int getRandomFromInterval(int start, int end)
 	{
+		if(start > end)
+		{
+			int temp = start;
+			start = end;
+			end = temp;
+		}
 		int a = rand.nextInt((end - start) + 1) + start;
 		Log.d("1", "rand is: " + a);
 		return a;

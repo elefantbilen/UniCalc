@@ -6,6 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_marginTop="15dp"
     android:orientation="vertical"
     tools:context=".DeciderActivity" >
 
@@ -15,11 +16,8 @@
         android:text="@string/decider_header"
         android:textSize="15sp" />
     
-	<include 
-        layout="@layout/layout_imports_teal_divider" />
-    
-	<include 
-        layout="@layout/layout_imports_orange_divider" />
+    <include 
+        layout="@layout/layout_imports_divider_header_content"/>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -54,8 +52,16 @@
         android:layout_height="wrap_content"
         android:textSize="15sp" />
     
+   	<include 
+	    layout="@layout/layout_imports_vertical_divider"/>
+    
 	<include 
-        layout="@layout/layout_imports_teal_divider" />
+        layout="@layout/layout_grey_divider" />
+
+	<include 
+	    layout="@layout/layout_imports_vertical_divider_big"/>
+	<include 
+	    layout="@layout/layout_imports_vertical_divider_big"/>
     
     <TextView
         android:layout_width="wrap_content"
@@ -64,10 +70,7 @@
         android:textSize="15sp" />
     
 	<include 
-        layout="@layout/layout_imports_teal_divider" />
-    
-	<include 
-        layout="@layout/layout_imports_teal_divider" />
+        layout="@layout/layout_imports_divider_header_content"/>
     
     <LinearLayout
         android:layout_width="fill_parent"
@@ -154,7 +157,7 @@
     </LinearLayout>
     
 	<include 
-        layout="@layout/layout_imports_teal_divider" />
+        layout="@layout/layout_grey_divider" />
     
     
      

@@ -3,12 +3,14 @@ package com.bearden.unicalc.database;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import com.bearden.unicalc.database.BeardenDBContract.NoteEntry;
 import com.bearden.unicalc.notepad.Note;
 

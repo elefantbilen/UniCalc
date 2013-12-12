@@ -55,8 +55,7 @@ public final class R {
         public static final int textview_back=0x7f020005;
     }
     public static final class id {
-        public static final int UTF=0x7f0b0029;
-        public static final int action_settings=0x7f0b002e;
+        public static final int action_settings=0x7f0b002d;
         public static final int add_note_button=0x7f0b0020;
         public static final int ascii_value=0x7f0b0028;
         public static final int binary_mode=0x7f0b0013;
@@ -68,14 +67,14 @@ public final class R {
         public static final int command_button_minus=0x7f0b0010;
         public static final int command_button_multiply=0x7f0b0009;
         public static final int command_button_plus=0x7f0b000d;
-        public static final int date_and_time=0x7f0b002d;
+        public static final int date_and_time=0x7f0b002c;
         public static final int decider_yes_no_answer=0x7f0b0016;
         public static final int decider_yes_no_button=0x7f0b0015;
         public static final int decider_yes_no_tally=0x7f0b0017;
         public static final int decimal_mode=0x7f0b0014;
-        public static final int decimal_value=0x7f0b002b;
+        public static final int decimal_value=0x7f0b002a;
         public static final int hello_box=0x7f0b001c;
-        public static final int hexa_value=0x7f0b002a;
+        public static final int hexa_value=0x7f0b0029;
         public static final int info_button=0x7f0b001e;
         public static final int list_note=0x7f0b0021;
         public static final int num_button_0=0x7f0b000e;
@@ -100,7 +99,7 @@ public final class R {
         public static final int temp_number_bar=0x7f0b0000;
         public static final int the_message=0x7f0b0026;
         public static final int the_title=0x7f0b0025;
-        public static final int title=0x7f0b002c;
+        public static final int title=0x7f0b002b;
         public static final int welcoming_box=0x7f0b001d;
     }
     public static final class integer {
@@ -114,12 +113,14 @@ public final class R {
         public static final int activity_number_converter=0x7f030004;
         public static final int activity_single_note=0x7f030005;
         public static final int converted_information=0x7f030006;
-        public static final int layout_imports_divider_header_content=0x7f030007;
-        public static final int layout_imports_horizontal_divider=0x7f030008;
-        public static final int layout_imports_orange_divider=0x7f030009;
-        public static final int layout_imports_teal_divider=0x7f03000a;
-        public static final int layout_imports_vertical_divider=0x7f03000b;
-        public static final int note_row_layout=0x7f03000c;
+        public static final int layout_grey_divider=0x7f030007;
+        public static final int layout_imports_divider_header_content=0x7f030008;
+        public static final int layout_imports_horizontal_divider=0x7f030009;
+        public static final int layout_imports_orange_divider=0x7f03000a;
+        public static final int layout_imports_teal_divider=0x7f03000b;
+        public static final int layout_imports_vertical_divider=0x7f03000c;
+        public static final int layout_imports_vertical_divider_big=0x7f03000d;
+        public static final int note_row_layout=0x7f03000e;
     }
     public static final class menu {
         public static final int calculator=0x7f0a0000;
@@ -157,28 +158,29 @@ public final class R {
         public static final int _multiply=0x7f080019;
         public static final int _plus=0x7f08001a;
         public static final int action_settings=0x7f080000;
-        public static final int answer_goes_here=0x7f080032;
+        public static final int answer_goes_here=0x7f080033;
         /**  Titles 
          */
-        public static final int app_name=0x7f08003d;
+        public static final int app_name=0x7f08003e;
         public static final int ascii=0x7f080026;
-        public static final int bad_interval=0x7f080034;
+        public static final int bad_interval=0x7f080035;
         /**  Calculator Modes 
          */
         public static final int binary=0x7f08001e;
         public static final int binary_value=0x7f080028;
-        public static final int cancel=0x7f080039;
-        public static final int chose_old_note=0x7f080037;
+        public static final int cancel=0x7f08003a;
+        public static final int char_to_convert=0x7f08002b;
+        public static final int chose_old_note=0x7f080038;
         /**  Decider Labels 
          */
-        public static final int decider_header=0x7f08002b;
-        public static final int decider_no=0x7f08002e;
-        public static final int decider_yes=0x7f08002d;
+        public static final int decider_header=0x7f08002c;
+        public static final int decider_no=0x7f08002f;
+        public static final int decider_yes=0x7f08002e;
         public static final int decimal=0x7f08001f;
         public static final int decimal_value=0x7f080029;
         public static final int delete=0x7f080005;
-        public static final int delete_all=0x7f080036;
-        public static final int delete_this_note=0x7f080038;
+        public static final int delete_all=0x7f080037;
+        public static final int delete_this_note=0x7f080039;
         /**  Calculator User Information 
          */
         public static final int divide_by_0=0x7f080020;
@@ -187,7 +189,7 @@ public final class R {
         public static final int do_conversion=0x7f080024;
         public static final int do_something_please=0x7f080023;
         public static final int does_not_exist=0x7f080022;
-        public static final int end_number=0x7f080030;
+        public static final int end_number=0x7f080031;
         public static final int hello=0x7f08000a;
         public static final int hello_world=0x7f080001;
         public static final int hex_value=0x7f08002a;
@@ -201,32 +203,32 @@ public final class R {
         public static final int long_number_input=0x7f080021;
         /**  Decider User Information 
          */
-        public static final int missing_number=0x7f080033;
+        public static final int missing_number=0x7f080034;
         /**  Note 
          */
-        public static final int new_note=0x7f080035;
+        public static final int new_note=0x7f080036;
         public static final int not_applicable=0x7f080002;
         public static final int press_button=0x7f080003;
-        public static final int shared_preferences_decider_num_no=0x7f08003c;
-        public static final int shared_preferences_decider_num_yes=0x7f08003b;
+        public static final int shared_preferences_decider_num_no=0x7f08003d;
+        public static final int shared_preferences_decider_num_yes=0x7f08003c;
         /**  Shared Preferences 
          */
-        public static final int shared_preferences_name=0x7f08003a;
-        public static final int should_i_do_it=0x7f08002c;
-        public static final int start_number=0x7f08002f;
-        public static final int start_randomization=0x7f080031;
+        public static final int shared_preferences_name=0x7f08003b;
+        public static final int should_i_do_it=0x7f08002d;
+        public static final int start_number=0x7f080030;
+        public static final int start_randomization=0x7f080032;
         /**  Converter Labels 
          */
         public static final int submitted_value=0x7f080025;
         public static final int testing=0x7f080004;
-        public static final int title_activity_calculator=0x7f080042;
-        public static final int title_activity_colour_picker=0x7f080043;
-        public static final int title_activity_decider=0x7f08003f;
-        public static final int title_activity_ip=0x7f080041;
-        public static final int title_activity_note_pad=0x7f080044;
-        public static final int title_activity_number_converter=0x7f080040;
-        public static final int title_activity_single_note=0x7f08003e;
-        public static final int title_activity_snake=0x7f080045;
+        public static final int title_activity_calculator=0x7f080043;
+        public static final int title_activity_colour_picker=0x7f080044;
+        public static final int title_activity_decider=0x7f080040;
+        public static final int title_activity_ip=0x7f080042;
+        public static final int title_activity_note_pad=0x7f080045;
+        public static final int title_activity_number_converter=0x7f080041;
+        public static final int title_activity_single_note=0x7f08003f;
+        public static final int title_activity_snake=0x7f080046;
         public static final int welcoming_message=0x7f08000b;
     }
     public static final class style {
