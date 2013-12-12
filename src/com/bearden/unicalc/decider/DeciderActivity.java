@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -175,6 +174,7 @@ public class DeciderActivity extends Activity {
 	protected void onStop() {
 		super.onStop();
 		SharedPreferences.Editor editor = sharedPreferences.edit();
+		
 		editor.putInt(
 				this.getResources().getString(
 						R.string.shared_preferences_decider_num_yes),

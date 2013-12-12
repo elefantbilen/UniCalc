@@ -82,7 +82,10 @@
             android:label="@string/title_activity_single_note"
             android:screenOrientation="portrait" >
         </activity>
-
+        <activity
+            android:name="com.bearden.unicalc.information.InformationActivity"
+            android:label="@string/title_activity_information" >
+        </activity>
     </application>
 
 </manifest>

@@ -79,19 +79,10 @@ public class NotePadActivity extends FragmentActivity //implements
 		startActivity(intent);
 	}
 
-	public void deleteAll(View view)
-	{
-		Log.d("1", "Del all");
-		bdAdapter.deleteAll();
-		Log.d("1", "Del all färdig");
-		fillListView();
-	}
-
 	@Override
 	public void onStop()
 	{
 		super.onStop();
-		// bdAdapter.closeConnection();
 	}
 
 	@Override

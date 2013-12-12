@@ -21,12 +21,6 @@
         android:text="@string/new_note"
         android:onClick="createNewNote"/>
     
-    <Button 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/delete_all"
-        android:onClick="deleteAll"/>
-    
     </LinearLayout>
     
 	<include 
