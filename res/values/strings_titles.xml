@@ -4,12 +4,14 @@
     <!-- Titles -->
     <string name="app_name">BeardenPowerTools</string>
     <string name="title_activity_single_note">Create/Edit a Note</string>
-	<string name="title_activity_decider">Help to Decide</string>
-    <string name="title_activity_number_converter">Character Converter</string>
+	<string name="title_activity_decider">Decider</string>
+    <string name="title_activity_number_converter">Character\nConverter</string>
     <string name="title_activity_ip">IP Translator</string>
-    <string name="title_activity_calculator">A Regular Calculator</string>
+    <string name="title_activity_calculator">Calculator</string>
     <string name="title_activity_colour_picker">Colour Picker</string>
-    <string name="title_activity_note_pad">Note Pad</string>
+    <string name="title_activity_note_pad">Note\nPad</string>
     <string name="title_activity_snake">Snake</string>
+    <string name="title_activity_information">Information</string>
+    <string name="title_activity_scrum">Scrum\nPoker</string>
 
 </resources>

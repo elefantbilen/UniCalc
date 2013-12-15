@@ -7,10 +7,12 @@
     <dimen name="tripled_activity_horizontal_margin">48dp</dimen>
     <dimen name="tripled_activity_vertical_margin">48dp</dimen>
     
-    <dimen name="small_text_size">12sp</dimen>
-    <dimen name="medium_text_size">18sp</dimen>
-    <dimen name="big_text_size">24sp</dimen>
-    <dimen name="mega_text_size">30sp</dimen>
+    <dimen name="text_size_small">12sp</dimen>
+    <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="text_size_big">24sp</dimen>
+    <dimen name="text_size_mega">30sp</dimen>
+    <dimen name="text_size_scrum_card_small">30sp</dimen>
+    <dimen name="text_size_scrum_card_big">60sp</dimen>
     
     <dimen name="view_big_horizontal_margin">10dp</dimen>
     <dimen name="view_big_vertical_margin">10dp</dimen>

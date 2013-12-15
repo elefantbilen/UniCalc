@@ -6,6 +6,8 @@ import com.bearden.unicalc.converter.NumberConverterActivity;
 import com.bearden.unicalc.decider.DeciderActivity;
 import com.bearden.unicalc.information.InformationActivity;
 import com.bearden.unicalc.notepad.NotePadActivity;
+import com.bearden.unicalc.scrum.ScrumActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -27,6 +29,7 @@ public class MainActivity extends Activity
 			NumberConverterActivity.class,
 			NotePadActivity.class,
 			DeciderActivity.class,
+			ScrumActivity.class,
 			InformationActivity.class
 		};
 	

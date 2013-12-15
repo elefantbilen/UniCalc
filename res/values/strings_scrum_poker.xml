@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Scrum Poker -->
+    <string name="scrum_0">0</string>
+	<string name="scrum_half">½</string>
+	<string name="scrum_1">1</string>
+	<string name="scrum_2">2</string>
+	<string name="scrum_3">3</string>
+	<string name="scrum_5">5</string>
+	<string name="scrum_8">8</string>
+	<string name="scrum_13">13</string>
+	<string name="scrum_20">20</string>
+	<string name="scrum_40">40</string>
+	<string name="scrum_100">100</string>
+	<string name="scrum_dont_know">\?</string>
+	<string name="scrum_coffee">Coffee</string>
+
+
+</resources>

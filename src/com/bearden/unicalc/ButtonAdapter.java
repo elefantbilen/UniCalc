@@ -2,6 +2,7 @@ package com.bearden.unicalc;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,14 +45,18 @@ public class ButtonAdapter extends BaseAdapter
 		Button button; 
 		if(convertView == null)
 		{
+			
 			button = new Button(mContext);
 			button.setLayoutParams(new GridView.LayoutParams(400,300));
 			button.setPadding(2, 2, 2, 2);		
 			button.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 			button.setFocusable(false);
 			button.setClickable(false);
-			button.setTextSize(12);
-			button.setBackground(button.getResources().getDrawable(R.drawable.button_back));
+			button.setTextSize(mContext.getResources().getDimension(R.dimen.text_size_medium) / mContext.getResources().getDisplayMetrics().density);
+			if(position == getCount() - 1)
+				button.setBackground(button.getResources().getDrawable(R.drawable.info_button_back));
+			else
+				button.setBackground(button.getResources().getDrawable(R.drawable.button_back));
 		}
 		else
 			button = (Button)convertView;

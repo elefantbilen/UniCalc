@@ -5,7 +5,25 @@
         <item>@string/title_activity_number_converter</item>
         <item>@string/title_activity_note_pad</item>
         <item>@string/title_activity_decider</item>
-        <item>@string/title_activity_decider</item>
+        <item>@string/title_activity_scrum</item>
+        <item>@string/title_activity_information</item>
+    </integer-array>
+    
+    <integer-array name="scrum_values">
+        <item>@string/scrum_0</item>
+        <item>@string/scrum_half</item>
+        <item>@string/scrum_1</item>
+        <item>@string/scrum_2</item>
+        <item>@string/scrum_3</item>
+        <item>@string/scrum_5</item>
+        <item>@string/scrum_8</item>
+        <item>@string/scrum_13</item>
+        <item>@string/scrum_20</item>
+        <item>@string/scrum_40</item>
+        <item>@string/scrum_100</item>
+        <item>@string/scrum_coffee</item>
+        <item>@string/scrum_dont_know</item>
+
     </integer-array>
     
     <integer-array name="note_array">

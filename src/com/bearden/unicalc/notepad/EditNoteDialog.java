@@ -24,7 +24,6 @@ public class EditNoteDialog extends DialogFragment
     public Dialog onCreateDialog(Bundle savedInstanceState) {
     	
     	TextView t = new TextView(getActivity());
-    	t.setText("asdsa");
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.chose_old_note);
         builder.setView(t);
