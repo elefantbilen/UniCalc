@@ -3,9 +3,12 @@ package com.bearden.unicalc.calculator;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
-import com.bearden.unicalc.R;
+
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.bearden.unicalc.R;
 
 /**
  * Class responsible for the real calculation
@@ -60,6 +63,7 @@ public class Calculator {
 					makeDoubleInt = Double.parseDouble(tempNumber);
 					preparedInt = (int) makeDoubleInt;
 					tempNumber = Integer.toBinaryString(preparedInt);
+					Log.d("1", "temp: " + tempNumber);
 					appendedOP = true;
 				}
 			}

@@ -18,7 +18,6 @@ import com.bearden.unicalc.R;
 public class ScrumActivity extends Activity
 {
 
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -32,7 +31,6 @@ public class ScrumActivity extends Activity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.scrum, menu);
 		return true;
 	}
@@ -62,13 +60,9 @@ public class ScrumActivity extends Activity
 	
 	private void chosenValue(TextView v)
 	{
-		Log.d("1", "View: " + v);
 		TextView t = (TextView)findViewById(R.id.scrum_focused_item);
 		if(v.getText().equals(getResources().getString(R.string.scrum_coffee)) )
-		{
-			Log.d("1", "coffe");
 			t.setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.text_size_scrum_card_small));
-		}
 		else
 			t.setTextSize(TypedValue.COMPLEX_UNIT_SP, getResources().getDimension(R.dimen.text_size_scrum_card_big));
 		
@@ -80,6 +74,16 @@ public class ScrumActivity extends Activity
 	private void dohaptic(View v)
 	{
 		v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+	}
+	
+	@Override
+	public void onBackPressed()
+	{
+		TextView t = (TextView)findViewById(R.id.scrum_focused_item);
+		if(t.getVisibility() != View.GONE)
+			t.setVisibility(View.GONE);
+		else
+			finish();
 	}
 
 }

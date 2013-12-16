@@ -8,14 +8,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class SingleNoteActivity extends Activity
 {
 
 	private BDAdapter bdAdapter;
 	private long id;
+	private String startTitle;
+	private String startMessage;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -28,10 +32,12 @@ public class SingleNoteActivity extends Activity
 		if(id != 0) //In this case we will edit an existing note
 		{
 			Note note = bdAdapter.getSingleNote(id);
+			startTitle = note.title;
+			startMessage = note.message;
 			EditText t = (EditText)findViewById(R.id.the_title);
-			t.setText(note.title);
+			t.setText(startTitle);
 			t = (EditText)findViewById(R.id.the_message);
-			t.setText(note.message);
+			t.setText(startMessage);
 		}
 	}
 	
@@ -57,13 +63,40 @@ public class SingleNoteActivity extends Activity
 		finish();
 	}
 	
+	/**
+	 * Check if user made any changes to the title or message, if so show save dialog
+	 * if not just go back
+	 * @return
+	 */
+	private boolean checkForDifferences()
+	{
+
+		if(id == 0)
+		{
+			TextView title = (TextView)findViewById(R.id.the_title);
+			TextView message = (TextView)findViewById(R.id.the_message);
+			if(title.getText().toString().equals("") && message.getText().toString().equals(""))
+				return false;
+		}
+		else
+		{
+			TextView title = (TextView)findViewById(R.id.the_title);
+			TextView message = (TextView)findViewById(R.id.the_message);
+
+			if(title.getText().toString().equals(startTitle) && message.getText().toString().equals(startMessage))
+				return false;
+		}
+
+		return true;
+	}
+	
 	private AlertDialog dialog;
 	@Override
 	public void onBackPressed()
 	{	
-		if(dialog == null)
+		if(dialog == null && checkForDifferences())
 		{
-		AlertDialog.Builder builder = 
+			AlertDialog.Builder builder = 
 				new AlertDialog.Builder(this)
 					.setTitle("Save this note?")
 					.setPositiveButton("OK", new DialogInterface.OnClickListener(){
@@ -80,8 +113,7 @@ public class SingleNoteActivity extends Activity
 							finish();
 						}
 					});
-		
-		builder.show();
+			builder.show();
 		}
 		else
 		{
