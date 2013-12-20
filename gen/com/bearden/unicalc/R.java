@@ -36,22 +36,23 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f060000;
         public static final int activity_vertical_margin=0x7f060001;
-        public static final int button_bottom_padding=0x7f06000f;
-        public static final int button_top_padding=0x7f06000e;
-        public static final int char_limit_textviews=0x7f060011;
-        public static final int linear_items_height=0x7f060010;
-        public static final int text_size_big=0x7f060006;
-        public static final int text_size_medium=0x7f060005;
-        public static final int text_size_mega=0x7f060007;
-        public static final int text_size_scrum_card_big=0x7f060009;
-        public static final int text_size_scrum_card_small=0x7f060008;
+        public static final int button_bottom_padding=0x7f060010;
+        public static final int button_top_padding=0x7f06000f;
+        public static final int char_limit_textviews=0x7f060012;
+        public static final int linear_items_height=0x7f060011;
+        public static final int text_size_big=0x7f060007;
+        public static final int text_size_default=0x7f060005;
+        public static final int text_size_medium=0x7f060006;
+        public static final int text_size_mega=0x7f060008;
+        public static final int text_size_scrum_card_big=0x7f06000a;
+        public static final int text_size_scrum_card_small=0x7f060009;
         public static final int text_size_small=0x7f060004;
         public static final int tripled_activity_horizontal_margin=0x7f060002;
         public static final int tripled_activity_vertical_margin=0x7f060003;
-        public static final int view_big_horizontal_margin=0x7f06000a;
-        public static final int view_big_vertical_margin=0x7f06000b;
-        public static final int view_small_horizontal_margin=0x7f06000c;
-        public static final int view_small_vertical_margin=0x7f06000d;
+        public static final int view_big_horizontal_margin=0x7f06000b;
+        public static final int view_big_vertical_margin=0x7f06000c;
+        public static final int view_small_horizontal_margin=0x7f06000d;
+        public static final int view_small_vertical_margin=0x7f06000e;
     }
     public static final class drawable {
         public static final int back=0x7f020000;
@@ -63,7 +64,8 @@ public final class R {
         public static final int textview_back=0x7f020006;
     }
     public static final class id {
-        public static final int action_settings=0x7f0b0037;
+        public static final int aa=0x7f0b0037;
+        public static final int action_settings=0x7f0b003a;
         public static final int add_note_button=0x7f0b0024;
         public static final int ascii_value=0x7f0b002e;
         public static final int binary_mode=0x7f0b0013;
@@ -75,6 +77,7 @@ public final class R {
         public static final int command_button_minus=0x7f0b0010;
         public static final int command_button_multiply=0x7f0b0009;
         public static final int command_button_plus=0x7f0b000d;
+        public static final int created=0x7f0b0038;
         public static final int date_and_time=0x7f0b0036;
         public static final int decider_yes_no_answer=0x7f0b0016;
         public static final int decider_yes_no_button=0x7f0b0015;
@@ -82,6 +85,7 @@ public final class R {
         public static final int decimal_mode=0x7f0b0014;
         public static final int decimal_value=0x7f0b0030;
         public static final int divider=0x7f0b001e;
+        public static final int edited=0x7f0b0039;
         public static final int fragment_holder=0x7f0b001f;
         public static final int grid_scrum_items=0x7f0b0029;
         public static final int hello_box=0x7f0b0020;
@@ -149,6 +153,7 @@ public final class R {
         public static final int layout_main_items=0x7f030016;
         public static final int layout_scrum_item=0x7f030017;
         public static final int note_row_layout=0x7f030018;
+        public static final int test=0x7f030019;
     }
     public static final class menu {
         public static final int calculator=0x7f0a0000;
@@ -191,7 +196,7 @@ public final class R {
         public static final int answer_goes_here=0x7f080033;
         /**  Titles 
          */
-        public static final int app_name=0x7f080058;
+        public static final int app_name=0x7f08005b;
         public static final int ascii=0x7f080026;
         public static final int bad_interval=0x7f080035;
         /**  Calculator Modes 
@@ -241,25 +246,25 @@ public final class R {
         public static final int press_button=0x7f080003;
         /**  Scrum Poker 
          */
-        public static final int scrum_0=0x7f080047;
-        public static final int scrum_1=0x7f080049;
-        public static final int scrum_100=0x7f080051;
-        public static final int scrum_13=0x7f08004e;
-        public static final int scrum_2=0x7f08004a;
-        public static final int scrum_20=0x7f08004f;
-        public static final int scrum_3=0x7f08004b;
-        public static final int scrum_40=0x7f080050;
-        public static final int scrum_5=0x7f08004c;
-        public static final int scrum_8=0x7f08004d;
-        public static final int scrum_coffee=0x7f080053;
-        public static final int scrum_dont_know=0x7f080052;
-        public static final int scrum_half=0x7f080048;
-        public static final int scrum_infinity=0x7f080054;
-        public static final int shared_preferences_decider_num_no=0x7f080057;
-        public static final int shared_preferences_decider_num_yes=0x7f080056;
+        public static final int scrum_0=0x7f08004a;
+        public static final int scrum_1=0x7f08004c;
+        public static final int scrum_100=0x7f080054;
+        public static final int scrum_13=0x7f080051;
+        public static final int scrum_2=0x7f08004d;
+        public static final int scrum_20=0x7f080052;
+        public static final int scrum_3=0x7f08004e;
+        public static final int scrum_40=0x7f080053;
+        public static final int scrum_5=0x7f08004f;
+        public static final int scrum_8=0x7f080050;
+        public static final int scrum_coffee=0x7f080056;
+        public static final int scrum_dont_know=0x7f080055;
+        public static final int scrum_half=0x7f08004b;
+        public static final int scrum_infinity=0x7f080057;
+        public static final int shared_preferences_decider_num_no=0x7f08005a;
+        public static final int shared_preferences_decider_num_yes=0x7f080059;
         /**  Shared Preferences 
          */
-        public static final int shared_preferences_name=0x7f080055;
+        public static final int shared_preferences_name=0x7f080058;
         public static final int should_i_do_it=0x7f08002d;
         public static final int start_number=0x7f080030;
         public static final int start_randomization=0x7f080032;
@@ -267,16 +272,16 @@ public final class R {
          */
         public static final int submitted_value=0x7f080025;
         public static final int testing=0x7f080004;
-        public static final int title_activity_calculator=0x7f08005d;
-        public static final int title_activity_colour_picker=0x7f08005e;
-        public static final int title_activity_decider=0x7f08005a;
-        public static final int title_activity_information=0x7f080061;
-        public static final int title_activity_ip=0x7f08005c;
-        public static final int title_activity_note_pad=0x7f08005f;
-        public static final int title_activity_number_converter=0x7f08005b;
-        public static final int title_activity_scrum=0x7f080062;
-        public static final int title_activity_single_note=0x7f080059;
-        public static final int title_activity_snake=0x7f080060;
+        public static final int title_activity_calculator=0x7f080060;
+        public static final int title_activity_colour_picker=0x7f080061;
+        public static final int title_activity_decider=0x7f08005d;
+        public static final int title_activity_information=0x7f080064;
+        public static final int title_activity_ip=0x7f08005f;
+        public static final int title_activity_note_pad=0x7f080062;
+        public static final int title_activity_number_converter=0x7f08005e;
+        public static final int title_activity_scrum=0x7f080065;
+        public static final int title_activity_single_note=0x7f08005c;
+        public static final int title_activity_snake=0x7f080063;
         /**  Calculator 
          */
         public static final int txt_calculator_header=0x7f080037;
@@ -285,10 +290,12 @@ public final class R {
          */
         public static final int txt_char_conv_header=0x7f080039;
         public static final int txt_char_conv_paragraph1=0x7f08003a;
+        public static final int txt_created=0x7f080047;
         /**  Decider 
          */
         public static final int txt_decider_header=0x7f08003d;
         public static final int txt_decider_paragraph1=0x7f08003e;
+        public static final int txt_edited=0x7f080048;
         /**  Default 
          */
         public static final int txt_header_default=0x7f080036;
@@ -303,6 +310,7 @@ public final class R {
          */
         public static final int txt_scrum_poker_header=0x7f08003f;
         public static final int txt_scrum_poker_paragraph1=0x7f080040;
+        public static final int txt_title=0x7f080049;
         public static final int welcoming_message=0x7f08000b;
     }
     public static final class style {

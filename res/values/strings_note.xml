@@ -7,5 +7,8 @@
     <string name="chose_old_note">Choose operation</string>
     <string name="delete_this_note">Delete this note</string>
     <string name="cancel">Cancel</string>
+    <string name="txt_created">Created:</string>
+    <string name="txt_edited">Edited:</string>
+    <string name="txt_title">Title:</string>
 
 </resources>

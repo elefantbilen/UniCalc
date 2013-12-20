@@ -12,8 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bearden.unicalc.R;
 import com.bearden.unicalc.database.BDAdapter;
@@ -127,12 +130,33 @@ public class NotePadActivity extends FragmentActivity //implements
 		});
 	}
 	
-	private void bringUpDialog( )
-	{	
+	private View readyInformationview()
+	{
+		View v = View.inflate(this, R.layout.test, null);
+		
 
+		Note note = bdAdapter.getSingleNote(currentDBID);
+		TextView t = (TextView) v.findViewById(R.id.title);
+		t.append(" " + note.title);
+		t = (TextView) v.findViewById(R.id.created);
+		t.append(" " + note.creationDate);
+		t = (TextView) v.findViewById(R.id.edited);
+		t.append(" " + note.editDate);
+		
+		return v;
+	}
+	
+	private void bringUpDialog()
+	{	
+		View v = readyInformationview();
+
+		
+		
+		
 		AlertDialog.Builder builder = 
 				new AlertDialog.Builder(this)
 					.setTitle("Delete Note?")
+					.setView(v)
 					.setPositiveButton("OK", new DialogInterface.OnClickListener(){
 						@Override
 						public void onClick(DialogInterface dialog, int which) {

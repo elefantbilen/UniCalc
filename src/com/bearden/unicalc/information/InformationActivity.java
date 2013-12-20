@@ -31,7 +31,7 @@ public class InformationActivity extends Activity implements
 	public static final int NOTE_PAD_INFO = 2;
 	public static final int DECIDER_INFO = 3;
 	public static final int SCRUM_POKER_INFO = 4;
-	
+
 	public static final String DEFAULT_FRAGMENT_TAG = "GEN_FRAG";
 
 	@Override
@@ -68,14 +68,15 @@ public class InformationActivity extends Activity implements
 			long id)
 	{
 		FragmentManager fragmentManager = getFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		
+		FragmentTransaction fragmentTransaction = fragmentManager
+				.beginTransaction();
+
 		Fragment fragment = null;
 		Log.d("1", "pos in: " + position);
 		switch (position)
 		{
 		case CALCULATOR_INFO:
-			 fragment = new InfoFragmentCalculator();
+			fragment = new InfoFragmentCalculator();
 			break;
 		case CHARACTER_CONVERTER_INFO:
 			fragment = new InfoFragmentCharacterConverter();
@@ -93,16 +94,18 @@ public class InformationActivity extends Activity implements
 			fragment = null;
 		}
 
-		Fragment oldFragment = getFragmentManager().findFragmentByTag(DEFAULT_FRAGMENT_TAG);
-		if(oldFragment != null)
+		Fragment oldFragment = getFragmentManager().findFragmentByTag(
+				DEFAULT_FRAGMENT_TAG);
+		if (oldFragment != null)
 			fragmentTransaction.remove(oldFragment);
-		
-		if(fragment != null)
+
+		if (fragment != null)
 		{
-			fragmentTransaction.add(R.id.fragment_holder, fragment, DEFAULT_FRAGMENT_TAG);
+			fragmentTransaction.add(R.id.fragment_holder, fragment,
+					DEFAULT_FRAGMENT_TAG);
 			fragmentTransaction.commit();
 		}
-			
+
 	}
 
 	@Override
