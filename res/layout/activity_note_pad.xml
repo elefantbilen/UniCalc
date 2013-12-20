@@ -12,23 +12,24 @@
 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="horizontal">
+	    android:orientation="horizontal"
+	    android:layout_marginBottom="2dp">
 	    
     <Button 
         android:id="@+id/add_note_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
         android:text="@string/new_note"
+        android:background="@drawable/button_back"
+        android:padding="3dp"
         android:onClick="createNewNote"/>
     
     </LinearLayout>
     
 	<include 
-        layout="@layout/layout_imports_teal_divider" />
-    
-	<include 
-        layout="@layout/layout_imports_orange_divider" />
-    
+        layout="@layout/layout_imports_divider_header_content" />
+
     <ListView android:id="@+id/list_note"
           android:layout_width="match_parent"
         	android:layout_height="wrap_content"/>

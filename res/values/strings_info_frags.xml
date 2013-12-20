@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Default -->
+	<string name="txt_header_default">Information</string>
+
+    <!-- Calculator -->
+    <string name="txt_calculator_header">Calculator</string>
+    <string name="txt_calculator_paragraph1">A standard calculator that allows you to chain commans with the last used.
+        Can also represent the numbers in binary representation\n\n\n <i>Please note that using a minus sign (-) is not the correct
+        way of representing negative values in binary. It is just used here for easier usage of the calculator</i></string>
+
+    <!-- Character Converter -->
+    <string name="txt_char_conv_header">Character Converter</string>
+    <string name="txt_char_conv_paragraph1">Write any number of characters or numbers and these will be converted to their respective
+        ASCII representation in decimal and hexadecimal. If a number is entered it will instead get processed to show what character that number represents.
+        \n\nUsing a non numeric character the converter will process these one at a time, however in the case of integers 
+        these will all be processed as a unit in order to be able to represent the full ASCII range.\n\n
+        I.e. Entering e38yu will be split into e, 38, y, u</string>
+
+    <!-- Note Pad -->
+    <string name="txt_note_pad_header">Note Pad</string>
+    <string name="txt_note_pad_paragraph1">A standard note pad that saves individual notes on the phone. Will save upon pressing back but
+        only if something was changed in the note.\n\nTo delete a note do a long press on the note you want to delete from the list</string>
+
+    <!-- Decider -->
+    <string name="txt_decider_header">Decider</string>
+    <string name="txt_decider_paragraph1">The tool for those with decision agony. Will tell you whether to do or don\'t (Please don\'t base 
+        serious decisions on this). Will also save the numbers of positive and negative responses for posterity. \n\nThe other half of the activity 
+        gives a random number from an interval passed in by you.</string>
+
+    <!-- Scrum Poker -->
+    <string name="txt_scrum_poker_header">Scrum Poker</string>
+    <string name="txt_scrum_poker_paragraph1">A list of all the cards in standard scrum poker. Simply press on the value you want to bring it
+        up to full screen. Press the focused card or back to minimise it.</string>
+
+</resources>

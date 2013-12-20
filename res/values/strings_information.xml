@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Information Labels -->
+    <string name="txt_information_welcome">Please choose area in list below</string>
+</resources>

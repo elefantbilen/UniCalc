@@ -35,13 +35,15 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/round_button"
         android:text="@string/info_i" 
+        android:visibility="gone"
         android:textColor="@android:color/white"
-        android:textStyle="bold"/>
+        android:textStyle="bold"/> 
     
 	<GridView 
 	    android:id="@+id/button_gridview"
 	    android:layout_width="fill_parent" 
 	    android:layout_height="wrap_content"
+	    android:listSelector="@android:color/transparent"
 	    android:paddingTop="5dp"
 	    android:layout_marginTop="10dp"
 	    android:paddingBottom="5dp"

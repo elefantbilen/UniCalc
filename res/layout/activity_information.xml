@@ -9,61 +9,34 @@
     tools:context=".InformationActivity" >
 
     <TextView
-        android:id="@+id/ett"
+        android:id="@+id/txt_info_about_information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-    
-    <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:onClick="go"
-        android:layout_toRightOf="@id/ett"/>
-    
-            <TextView
-        android:layout_marginTop="50dp"
-        android:layout_below="@id/ett"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/color_yellow_grey"
-        android:text="sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsaadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsdadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada" />
-    
-    
-    <TextView
-        android:id="@+id/visa"
-        android:layout_marginTop="50dp"
-        android:layout_below="@id/ett"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/color_orange"
-        android:visibility="gone"
-        android:text="sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada
-        sadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadadasadsadsadada" />
-    
+        android:textSize="@dimen/text_size_medium"
+        android:text="@string/txt_information_welcome" />
 
-    
- 
+    <Spinner
+        android:id="@+id/information_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_info_about_information"
+        android:layout_marginTop="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/information_spinner"
+        android:layout_marginTop="5dp" >
+
+        <include layout="@layout/layout_imports_divider_header_content" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/information_spinner"
+        android:layout_marginTop="25dp" />
+
 </RelativeLayout>

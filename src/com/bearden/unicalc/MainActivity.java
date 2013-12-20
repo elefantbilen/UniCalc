@@ -36,7 +36,7 @@ public class MainActivity extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		buttonStrings = this.getResources().obtainTypedArray(R.array.button_strings); //TODO Find a place to recycle this
+		buttonStrings = this.getResources().obtainTypedArray(R.array.activity_titles); //TODO Find a place to recycle this
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setUpButtons();	
@@ -68,16 +68,5 @@ public class MainActivity extends Activity
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-	/*
-	public void startCalculator(View view)
-	{
-		Intent intent = new Intent(this, CalculatorActivity.class);
-		startActivity(intent);
-	}
-	
-	public void startNumberConverter(View view)
-	{
-		Intent intent = new Intent(this, NumberConverterActivity.class);
-		startActivity(intent);
-	}*/
+
 }

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <integer-array name="button_strings">
+    <integer-array name="activity_titles">
         <item>@string/title_activity_calculator</item>
         <item>@string/title_activity_number_converter</item>
         <item>@string/title_activity_note_pad</item>
         <item>@string/title_activity_decider</item>
         <item>@string/title_activity_scrum</item>
         <item>@string/title_activity_information</item>
+    </integer-array>
+    
+    <!-- Ugly with same info in two places -->
+    <integer-array name="information_array">
+        <item>@string/title_activity_calculator</item>
+        <item>@string/title_activity_number_converter</item>
+        <item>@string/title_activity_note_pad</item>
+        <item>@string/title_activity_decider</item>
+        <item>@string/title_activity_scrum</item>
     </integer-array>
     
     <integer-array name="scrum_values">
@@ -23,6 +32,7 @@
         <item>@string/scrum_100</item>
         <item>@string/scrum_coffee</item>
         <item>@string/scrum_dont_know</item>
+        <item>@string/scrum_infinity</item>
 
     </integer-array>
     
