@@ -47,9 +47,9 @@ public class SingleNoteActivity extends Activity
 		note.title = ((EditText)findViewById(R.id.the_title)).getText().toString();
 		note.message = ((EditText)findViewById(R.id.the_message)).getText().toString();
 		if(note.title.length() == 0)
-			note.title = "<Temp> Title";
+			note.title = "(Untitled)";
 		if(note.message.length() == 0)
-			note.message = "<Temp> Message";
+			note.message = "";
 		
 		if(id != 0) //Update database
 		{

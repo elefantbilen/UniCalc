@@ -39,7 +39,7 @@
         android:textColor="@android:color/white"
         android:textStyle="bold"/> 
     
-	<GridView 
+	 <GridView 
 	    android:id="@+id/button_gridview"
 	    android:layout_width="fill_parent" 
 	    android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
 	    android:stretchMode="columnWidth"
 	    android:layout_below="@id/welcoming_box"
 	    android:layout_above="@id/info_button"
-	    android:gravity="center"/>
+	    android:gravity="center"/> 
 
 
 </RelativeLayout>

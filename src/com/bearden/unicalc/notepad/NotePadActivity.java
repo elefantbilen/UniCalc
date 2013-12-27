@@ -22,8 +22,8 @@ import com.bearden.unicalc.R;
 import com.bearden.unicalc.database.BDAdapter;
 import com.bearden.unicalc.database.BeardenDBContract.NoteEntry;
 
-public class NotePadActivity extends FragmentActivity //implements
-		//EditNoteDialog.EditNoteDialogListener
+public class NotePadActivity extends FragmentActivity // implements
+// EditNoteDialog.EditNoteDialogListener
 {
 	private BDAdapter bdAdapter;
 	private SimpleCursorAdapter myCursorAdapter;
@@ -51,12 +51,12 @@ public class NotePadActivity extends FragmentActivity //implements
 		startManagingCursor(c);
 		c.moveToFirst();
 
-		//String[] fromFieldNames = new String[]
-		//{ NoteEntry.NOTE_TITLE, NoteEntry.NOTE_MESSAGE };
-		
+		// String[] fromFieldNames = new String[]
+		// { NoteEntry.NOTE_TITLE, NoteEntry.NOTE_MESSAGE };
+
 		String[] fromFieldNames = new String[]
 		{ NoteEntry.NOTE_TITLE, NoteEntry.NOTE_LAST_EDITED };
-		
+
 		Log.d("1", "1111");
 		int[] toViewIDs = new int[]
 		{ R.id.title, R.id.date_and_time };
@@ -129,69 +129,67 @@ public class NotePadActivity extends FragmentActivity //implements
 			}
 		});
 	}
-	
+
 	private View readyInformationview()
 	{
 		View v = View.inflate(this, R.layout.test, null);
-		
 
 		Note note = bdAdapter.getSingleNote(currentDBID);
+
 		TextView t = (TextView) v.findViewById(R.id.title);
 		t.append(" " + note.title);
+
 		t = (TextView) v.findViewById(R.id.created);
 		t.append(" " + note.creationDate);
+
 		t = (TextView) v.findViewById(R.id.edited);
 		t.append(" " + note.editDate);
-		
+
 		return v;
 	}
-	
+
 	private void bringUpDialog()
-	{	
+	{
 		View v = readyInformationview();
 
-		
-		
-		
-		AlertDialog.Builder builder = 
-				new AlertDialog.Builder(this)
-					.setTitle("Delete Note?")
-					.setView(v)
-					.setPositiveButton("OK", new DialogInterface.OnClickListener(){
-						@Override
-						public void onClick(DialogInterface dialog, int which) {
-							Log.d("1", " number" + currentDBID);
-							bdAdapter.deleteNote(currentDBID);
-							fillListView();
-							Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
-						}
-					})
-		
-					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-						@Override
-						public void onClick(DialogInterface dialog, int which)
-						{}
-					});
-		
+		AlertDialog.Builder builder = new AlertDialog.Builder(this)
+				.setTitle("Delete Note?")
+				.setView(v)
+				.setPositiveButton("OK", new DialogInterface.OnClickListener()
+				{
+					@Override
+					public void onClick(DialogInterface dialog, int which)
+					{
+						Log.d("1", " number" + currentDBID);
+						bdAdapter.deleteNote(currentDBID);
+						fillListView();
+						Toast.makeText(getApplicationContext(), "Deleted",
+								Toast.LENGTH_SHORT).show();
+					}
+				})
+
+				.setNegativeButton("Cancel",
+						new DialogInterface.OnClickListener()
+						{
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which)
+							{
+							}
+						});
+
 		builder.show();
 	}
-/*
-	public void bringUpDialog()
-	{
-		DialogFragment noteDialogFragment = new EditNoteDialog();
-		noteDialogFragment.show(getSupportFragmentManager(), "sko");
-		Log.d("1", "IGEN");
-	}
 
-	@Override
-	public void userChoice(DialogFragment dialog, int choice)
-	{
-		if (choice == EditNoteDialog.CHOICE_DELETE)
-		{
-			bdAdapter.deleteNote(currentDBID);
-			fillListView();
-		}
-	}*/
+	/*
+	 * public void bringUpDialog() { DialogFragment noteDialogFragment = new
+	 * EditNoteDialog(); noteDialogFragment.show(getSupportFragmentManager(),
+	 * "sko"); Log.d("1", "IGEN"); }
+	 * 
+	 * @Override public void userChoice(DialogFragment dialog, int choice) { if
+	 * (choice == EditNoteDialog.CHOICE_DELETE) {
+	 * bdAdapter.deleteNote(currentDBID); fillListView(); } }
+	 */
 
 	/**
 	 * Set up the {@link android.app.ActionBar}.
