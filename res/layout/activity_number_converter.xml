@@ -30,7 +30,7 @@
 			android:paddingLeft="2dp"
 			android:paddingRight="2dp"
 			android:textSize="@dimen/text_size_medium"
-	        android:background="@drawable/textview_back"/>
+	        android:background="@drawable/textview_standard_white"/>
 	
 	    <include 
 	        layout="@layout/layout_imports_horizontal_divider"/>

@@ -212,7 +212,7 @@ public class DeciderActivity extends Activity {
 				@Override
 				public void run() {
 					yesNoTextView.setBackground(getResources().getDrawable(
-							R.drawable.textview_back));
+							R.drawable.textview_standard_white));
 				}
 			});
 			return null;
@@ -244,7 +244,7 @@ public class DeciderActivity extends Activity {
 				@Override
 				public void run() {
 					randomizedNumber.setBackground(getResources().getDrawable(
-							R.drawable.textview_back));
+							R.drawable.textview_standard_white));
 				}
 			});
 			return null;

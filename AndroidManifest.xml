@@ -84,9 +84,9 @@
         </activity>
         <activity
             android:name="com.bearden.unicalc.information.InformationActivity"
-            android:label="@string/title_activity_information"            
+            android:label="@string/title_activity_information"
             android:parentActivityName="com.bearden.unicalc.MainActivity"
-            android:screenOrientation="portrait"  >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.bearden.unicalc.scrum.ScrumActivity"

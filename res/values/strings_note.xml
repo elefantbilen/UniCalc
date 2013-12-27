@@ -10,5 +10,7 @@
     <string name="txt_created">Created:</string>
     <string name="txt_edited">Edited:</string>
     <string name="txt_title">Title:</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_message">Message</string>
 
 </resources>
