@@ -1,29 +1,34 @@
 package com.bearden.unicalc.calculator;
 
-import com.bearden.unicalc.R;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.NavUtils;
+
+import com.bearden.unicalc.R;
 
 /***
- * The Activity for the calculator.
- * Behaves as one would expect a calculator to with the exception of "chaining" calculations
- * i.e. Pressing an operation will do it over and over again
- * Holds the Calculator class which does all the calculations and returns them here to show for user
+ * The Activity for the calculator. Behaves as one would expect a calculator to
+ * with the exception of "chaining" calculations i.e. Pressing an operation will
+ * do it over and over again Holds the Calculator class which does all the
+ * calculations and returns them here to show for user
  */
 public class CalculatorActivity extends Activity
 {
 	private TextView numberBar;
 	private TextView tempNumberBar;
 	private Calculator calculator;
+	private String mainNumberString = "";
+	private String tempNumberString = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -32,9 +37,10 @@ public class CalculatorActivity extends Activity
 		setContentView(R.layout.activity_calculator);
 		setupActionBar();
 		calculator = new Calculator();
-		
+
 		numberBar = (TextView) findViewById(R.id.number_bar);
-		tempNumberBar = (TextView) findViewById(R.id.temp_number_bar);		
+		tempNumberBar = (TextView) findViewById(R.id.temp_number_bar);
+		setNumberBar();
 	}
 
 	private void configureButtons(int mode)
@@ -69,9 +75,8 @@ public class CalculatorActivity extends Activity
 
 	public void changeMode(View view)
 	{
-		boolean appendedOP = false;
 		doHaptic(view);
-		
+
 		switch (view.getId())
 		{
 		case R.id.binary_mode:
@@ -83,12 +88,7 @@ public class CalculatorActivity extends Activity
 			configureButtons(Calculator.DECIMAL_MODE);
 			break;
 		}
-		
-		
-		setNumberBar();
 
-		if (appendedOP)
-			setTempNumberBar();
 	}
 
 	private void doHaptic(View view)
@@ -98,41 +98,42 @@ public class CalculatorActivity extends Activity
 
 	private void setNumberBar()
 	{
-		numberBar.setText(calculator.getMainNumber());
+		if (mainNumberString.equals(""))
+			numberBar.setText("0");
+		else
+			numberBar.setText(mainNumberString);
 	}
 
 	private void setTempNumberBar()
 	{
-		tempNumberBar.setText(calculator.getTempNumber());
+		tempNumberBar.setText(tempNumberString);
 	}
 
+	/**
+	 * Formats user input directly. The point is to have a finished string when sending for calculating
+	 * @param view
+	 */
 	public void numButton(View view)
 	{
+		Log.d("1", "num: " + mainNumberString);
+		String addNumber = (String) ((Button) view).getText();
+		if(addNumber.equals("(-)"))
+				addNumber = "-";
+		
 		doHaptic(view);
-		if(calculator.numButton(view))
-			new Blinker().execute();
-		setNumberBar();
-	}
-
-	public void equalsCommand(View view)
-	{
-		doHaptic(view);
-		if(calculator.equals())
-				giveUserToast(R.string.divide_by_0);
+		if (addNumber.equals(".") && mainNumberString.contains(".") || addNumber.equals("-") && !mainNumberString.equals("") || addNumber.equals("0") && mainNumberString.equals(""))
+			new Blinker().execute();		
+		else
+			mainNumberString = mainNumberString.concat(addNumber);
 		
 		setNumberBar();
-		setTempNumberBar();
-	}
-
-	private void giveUserToast(int message)
-	{
-		Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
 	}
 
 	public void commandButton(View view)
 	{
 		doHaptic(view);
-		calculator.commandButton(view);
+		if (calculator.commandButton(view.getId()))
+			giveUserToast(R.string.divide_by_0);
 
 		setNumberBar();
 		setTempNumberBar();
@@ -141,10 +142,17 @@ public class CalculatorActivity extends Activity
 	public void clear(View view)
 	{
 		doHaptic(view);
-		calculator.clear(view);
-		
+		calculator.clear();
+		mainNumberString = "";
+		tempNumberString = "";
 		setNumberBar();
 		setTempNumberBar();
+	}
+
+	private void giveUserToast(int message)
+	{
+		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
+				.show();
 	}
 
 	/**
