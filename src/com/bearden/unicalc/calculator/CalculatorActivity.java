@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bearden.unicalc.R;
-
 
 /***
  * The Activity for the calculator. Behaves as one would expect a calculator to
@@ -26,7 +26,6 @@ public class CalculatorActivity extends Activity
 	private TextView numberBar;
 	private TextView tempNumberBar;
 	private Calculator calculator;
-	private String numberString = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +37,31 @@ public class CalculatorActivity extends Activity
 
 		numberBar = (TextView) findViewById(R.id.number_bar);
 		tempNumberBar = (TextView) findViewById(R.id.temp_number_bar);
+		tempNumberBar.setMovementMethod(new ScrollingMovementMethod());
+		numberBar.setMovementMethod(new ScrollingMovementMethod());
 		setNumberBar();
+	}
+
+	public void changeMode(View view)
+	{
+		doHaptic(view);
+
+		switch (view.getId())
+		{
+		case R.id.binary_mode:
+			calculator.changeMode(Calculator.BINARY_MODE);
+			configureButtons(Calculator.BINARY_MODE);
+			break;
+		case R.id.decimal_mode:
+			calculator.changeMode(Calculator.DECIMAL_MODE);
+			configureButtons(Calculator.DECIMAL_MODE);
+			break;
+		}
+		
+		
+		setNumberBar();
+		setTempNumberBar();
+
 	}
 
 	private void configureButtons(int mode)
@@ -55,6 +78,8 @@ public class CalculatorActivity extends Activity
 			findViewById(R.id.num_button_8).setVisibility(View.INVISIBLE);
 			findViewById(R.id.num_button_9).setVisibility(View.INVISIBLE);
 			findViewById(R.id.num_button_comma).setVisibility(View.INVISIBLE);
+			findViewById(R.id.decimal_mode).setVisibility(View.VISIBLE);
+			findViewById(R.id.binary_mode).setVisibility(View.INVISIBLE);
 			break;
 
 		case Calculator.DECIMAL_MODE:
@@ -67,21 +92,12 @@ public class CalculatorActivity extends Activity
 			findViewById(R.id.num_button_8).setVisibility(View.VISIBLE);
 			findViewById(R.id.num_button_9).setVisibility(View.VISIBLE);
 			findViewById(R.id.num_button_comma).setVisibility(View.VISIBLE);
+			findViewById(R.id.decimal_mode).setVisibility(View.INVISIBLE);
+			findViewById(R.id.binary_mode).setVisibility(View.VISIBLE);
 			break;
 		}
 	}
 
-	/*
-	 * public void changeMode(View view) { doHaptic(view);
-	 * 
-	 * switch (view.getId()) { case R.id.binary_mode:
-	 * calculator.changeMode(Calculator.BINARY_MODE);
-	 * configureButtons(Calculator.BINARY_MODE); break; case R.id.decimal_mode:
-	 * calculator.changeMode(Calculator.DECIMAL_MODE);
-	 * configureButtons(Calculator.DECIMAL_MODE); break; }
-	 * 
-	 * }
-	 */
 
 	private void doHaptic(View view)
 	{
@@ -119,11 +135,6 @@ public class CalculatorActivity extends Activity
 	{
 		tempNumberBar.setText(calculator.getTempNumber());
 	}
-	
-	public void changeMode(View view)
-	{
-		
-	}
 
 	public void commandButton(View view)
 	{
@@ -143,6 +154,8 @@ public class CalculatorActivity extends Activity
 		calculator.clear();
 		setNumberBar();
 		setTempNumberBar();
+		numberBar.scrollTo(0, 0);
+		tempNumberBar.scrollTo(0, 0);
 	}
 
 	private void giveUserToast(int message)
@@ -166,25 +179,18 @@ public class CalculatorActivity extends Activity
 		getMenuInflater().inflate(R.menu.calculator, menu);
 		return true;
 	}
-/*
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			// NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}*/
+
+	/*
+	 * @Override public boolean onOptionsItemSelected(MenuItem item) { switch
+	 * (item.getItemId()) { case android.R.id.home: // This ID represents the
+	 * Home or Up button. In the case of this // activity, the Up button is
+	 * shown. Use NavUtils to allow users // to navigate up one level in the
+	 * application structure. For // more details, see the Navigation pattern on
+	 * Android Design: // //
+	 * http://developer.android.com/design/patterns/navigation.html#up-vs-back
+	 * // // NavUtils.navigateUpFromSameTask(this); return true; } return
+	 * super.onOptionsItemSelected(item); }
+	 */
 
 	private class Blinker extends AsyncTask<Void, Void, Void>
 	{
@@ -215,10 +221,10 @@ public class CalculatorActivity extends Activity
 				@Override
 				public void run()
 				{
-					//numberBar.getBackground().setColorFilter(R.color.ivory,
-						//	PorterDuff.Mode.DARKEN);
-					 numberBar.setBackground(getResources().getDrawable(
-					 R.drawable.textview_standard_white));
+					// numberBar.getBackground().setColorFilter(R.color.ivory,
+					// PorterDuff.Mode.DARKEN);
+					numberBar.setBackground(getResources().getDrawable(
+							R.drawable.textview_standard_white));
 				}
 			});
 			return null;
