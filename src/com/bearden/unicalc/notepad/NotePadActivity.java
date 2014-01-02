@@ -1,12 +1,12 @@
 package com.bearden.unicalc.notepad;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +22,7 @@ import com.bearden.unicalc.R;
 import com.bearden.unicalc.database.BDAdapter;
 import com.bearden.unicalc.database.BeardenDBContract.NoteEntry;
 
-public class NotePadActivity extends FragmentActivity // implements
+public class NotePadActivity extends Activity // implements
 // EditNoteDialog.EditNoteDialogListener
 {
 	private BDAdapter bdAdapter;
@@ -222,7 +222,7 @@ public class NotePadActivity extends FragmentActivity // implements
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			//NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

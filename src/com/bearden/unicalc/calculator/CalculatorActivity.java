@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
@@ -27,8 +26,7 @@ public class CalculatorActivity extends Activity
 	private TextView numberBar;
 	private TextView tempNumberBar;
 	private Calculator calculator;
-	private String mainNumberString = "";
-	private String tempNumberString = "";
+	private String numberString = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -73,78 +71,77 @@ public class CalculatorActivity extends Activity
 		}
 	}
 
-	public void changeMode(View view)
-	{
-		doHaptic(view);
-
-		switch (view.getId())
-		{
-		case R.id.binary_mode:
-			calculator.changeMode(Calculator.BINARY_MODE);
-			configureButtons(Calculator.BINARY_MODE);
-			break;
-		case R.id.decimal_mode:
-			calculator.changeMode(Calculator.DECIMAL_MODE);
-			configureButtons(Calculator.DECIMAL_MODE);
-			break;
-		}
-
-	}
+	/*
+	 * public void changeMode(View view) { doHaptic(view);
+	 * 
+	 * switch (view.getId()) { case R.id.binary_mode:
+	 * calculator.changeMode(Calculator.BINARY_MODE);
+	 * configureButtons(Calculator.BINARY_MODE); break; case R.id.decimal_mode:
+	 * calculator.changeMode(Calculator.DECIMAL_MODE);
+	 * configureButtons(Calculator.DECIMAL_MODE); break; }
+	 * 
+	 * }
+	 */
 
 	private void doHaptic(View view)
 	{
 		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 	}
 
-	private void setNumberBar()
-	{
-		if (mainNumberString.equals(""))
-			numberBar.setText("0");
-		else
-			numberBar.setText(mainNumberString);
-	}
-
-	private void setTempNumberBar()
-	{
-		tempNumberBar.setText(tempNumberString);
-	}
-
 	/**
-	 * Formats user input directly. The point is to have a finished string when sending for calculating
+	 * Formats user input directly. The point is to have a finished string when
+	 * sending for calculating
+	 * 
 	 * @param view
 	 */
 	public void numButton(View view)
 	{
-		Log.d("1", "num: " + mainNumberString);
 		String addNumber = (String) ((Button) view).getText();
-		if(addNumber.equals("(-)"))
-				addNumber = "-";
-		
+		if (addNumber.equals("(-)"))
+			addNumber = "-";
+
 		doHaptic(view);
-		if (addNumber.equals(".") && mainNumberString.contains(".") || addNumber.equals("-") && !mainNumberString.equals("") || addNumber.equals("0") && mainNumberString.equals(""))
-			new Blinker().execute();		
-		else
-			mainNumberString = mainNumberString.concat(addNumber);
-		
+		if (!calculator.numberOperation(addNumber))
+			new Blinker().execute();
+
 		setNumberBar();
+	}
+
+	private void setNumberBar()
+	{
+		if (calculator.getMainNumber().equals(""))
+			numberBar.setText("0");
+		else
+			numberBar.setText(calculator.getMainNumber());
+	}
+
+	private void setTempNumberBar()
+	{
+		tempNumberBar.setText(calculator.getTempNumber());
+	}
+	
+	public void changeMode(View view)
+	{
+		
 	}
 
 	public void commandButton(View view)
 	{
+		String com = (String) ((Button) view).getText();
+		Log.d("1", "com: " + com );
 		doHaptic(view);
-		if (calculator.commandButton(view.getId()))
-			giveUserToast(R.string.divide_by_0);
+		if (!calculator.commandOperation(com))
+			new Blinker().execute();
 
 		setNumberBar();
 		setTempNumberBar();
+
 	}
 
 	public void clear(View view)
 	{
 		doHaptic(view);
 		calculator.clear();
-		mainNumberString = "";
-		tempNumberString = "";
 		setNumberBar();
 		setTempNumberBar();
 	}
@@ -184,7 +181,7 @@ public class CalculatorActivity extends Activity
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			// NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -219,8 +216,10 @@ public class CalculatorActivity extends Activity
 				@Override
 				public void run()
 				{
-					numberBar.setBackground(getResources().getDrawable(
-							R.drawable.textview_standard_white));
+					//numberBar.getBackground().setColorFilter(R.color.ivory,
+						//	PorterDuff.Mode.DARKEN);
+					 numberBar.setBackground(getResources().getDrawable(
+					 R.drawable.textview_standard_white));
 				}
 			});
 			return null;
