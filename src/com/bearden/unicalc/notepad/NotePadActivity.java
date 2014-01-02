@@ -1,28 +1,28 @@
 package com.bearden.unicalc.notepad;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bearden.unicalc.R;
 import com.bearden.unicalc.database.BDAdapter;
 import com.bearden.unicalc.database.BeardenDBContract.NoteEntry;
+//import android.support.v4.app.FragmentActivity;
+//import android.support.v4.app.NavUtils;
 
-public class NotePadActivity extends FragmentActivity // implements
+public class NotePadActivity extends Activity // implements
 // EditNoteDialog.EditNoteDialogListener
 {
 	private BDAdapter bdAdapter;
@@ -208,7 +208,7 @@ public class NotePadActivity extends FragmentActivity // implements
 		getMenuInflater().inflate(R.menu.note_pad, menu);
 		return true;
 	}
-
+/*
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -226,6 +226,6 @@ public class NotePadActivity extends FragmentActivity // implements
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
+	}*/
 
 }

@@ -64,7 +64,8 @@ public final class R {
         public static final int info_button_back=0x7f020003;
         public static final int round_button=0x7f020004;
         public static final int scrum_card_drawable=0x7f020005;
-        public static final int textview_standard_white=0x7f020006;
+        public static final int textview_back=0x7f020006;
+        public static final int textview_standard_white=0x7f020007;
     }
     public static final class id {
         public static final int aa=0x7f0b0037;

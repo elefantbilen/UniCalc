@@ -1,17 +1,18 @@
 package com.bearden.unicalc.calculator;
 
-import com.bearden.unicalc.R;
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.support.v4.app.NavUtils;
+
+import com.bearden.unicalc.R;
+//import android.support.v4.app.NavUtils;
 
 /***
  * The Activity for the calculator.
@@ -162,7 +163,7 @@ public class CalculatorActivity extends Activity
 		getMenuInflater().inflate(R.menu.calculator, menu);
 		return true;
 	}
-
+/*
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
@@ -180,7 +181,7 @@ public class CalculatorActivity extends Activity
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
+	}*/
 
 	private class Blinker extends AsyncTask<Void, Void, Void>
 	{
