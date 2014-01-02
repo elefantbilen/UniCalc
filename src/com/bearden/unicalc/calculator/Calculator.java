@@ -1,31 +1,32 @@
 package com.bearden.unicalc.calculator;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
-import com.bearden.unicalc.R;
 
 /**
  * Class responsible for the real calculation
  * 
- * Please note the binary mode is not true binary i.e. no signed values etc, negatives
- * are instead represented by a minus sign. This is just to get a quick glimpse of the values
+ * Please note the binary mode is not true binary i.e. no signed values etc,
+ * negatives are instead represented by a minus sign. This is just to get a
+ * quick glimpse of the values
  */
-public class Calculator {
+public class Calculator
+{
 
-	public static final int PLUS = 1;
-	public static final int MINUS = 2;
-	public static final int MULTIPLY = 3;
-	public static final int DIVIDE = 4;
+	public static final int PLUS = 43;
+	public static final int MINUS = 45;
+	public static final int MULTIPLY = 42;
+	public static final int DIVIDE = 47;
 	public static final int NOTHING = 0;
+	public static final int EQUALS = 61;
+
 	public static final int BINARY_MODE = 1;
 	public static final int DECIMAL_MODE = 2;
 	public static final int HEXA_MODE = 3;
+
+	private boolean overWrite = false;
 	public int userCommand;
 	public int currentMode;
 	public String appendOP = "";
@@ -36,248 +37,136 @@ public class Calculator {
 	private String tempNumber = "";
 	private boolean clearNumberBar;
 
-	public Calculator() {
+	private int operationNumber = 0; // 0 if first number, 2 if second number
+
+	private String[] calculations =
+	{ "", "", "" };
+
+	public Calculator()
+	{
 		clearNumberBar = true;
 		currentMode = DECIMAL_MODE;
 	}
 
+	public boolean numberOperation(String num)
+	{
+		if (num.equals(".") && getMainNumber().contains(".") && !overWrite
+				|| num.equals("-")
+				&& (!getMainNumber().equals("") && !overWrite)
+				|| num.equals("0")
+				&& (getMainNumber().equals("") || getMainNumber().equals("-0")))
+			return false;
+		else if (overWrite || getMainNumber().equals("0")
+				|| (getMainNumber().equals("-0") && !num.equals(".")))
+		{
+			if (num.equals("."))
+				num = "0.";
+			else if (getMainNumber().equals("-0"))
+				num = "-" + num;
 
-	/**
-	 * Called to change the mode of the calculator, as of now only decimal and binary representation exists
-	 * @param mode
-	 * @return
-	 */
-	public boolean changeMode(int mode) {
-		boolean appendedOP = false;
+			calculations[operationNumber] = num;
+			overWrite = false;
+		} else
+		{
+			// if(num.equals(".") && !getMainNumber().equals("0") &&
+			// !getMainNumber().equals("-0"))
+			if (num.equals(".")
+					&& (getMainNumber().equals("") || getMainNumber().equals(
+							"-")))
+				num = "0.";
 
-		switch (mode) {
-		case BINARY_MODE:
-			if (currentMode != BINARY_MODE) {
-
-				currentMode = BINARY_MODE;
-				double makeDoubleInt = Double.parseDouble(mainNumber);
-				int preparedInt = (int) makeDoubleInt;
-				mainNumber = Integer.toBinaryString(preparedInt);
-
-				if (!tempNumber.equals("")) {
-					makeDoubleInt = Double.parseDouble(tempNumber);
-					preparedInt = (int) makeDoubleInt;
-					tempNumber = Integer.toBinaryString(preparedInt);
-					Log.d("1", "temp: " + tempNumber);
-					appendedOP = true;
-				}
-			}
-			break;
-
-		case DECIMAL_MODE:
-			if (currentMode != DECIMAL_MODE) {
-				currentMode = DECIMAL_MODE;
-				int binaryToInt = Integer.parseInt(mainNumber, 2);
-				mainNumber = Integer.toString(binaryToInt);
-
-				if (!tempNumber.equals("")) {
-					binaryToInt = Integer.parseInt(tempNumber, 2);
-					tempNumber = Integer.toString(binaryToInt);
-					appendedOP = true;
-				}
-			}
+			calculations[operationNumber] = calculations[operationNumber]
+					.concat(num);
 		}
 
-		setTempNumberBar();
-		setNumberBar();
-		return appendedOP;
+		return true;
 	}
 
-	public void clearTempNumberBar() {
-		tempNumber = "";
-		clearNumberBar = true;
-	}
+	public boolean commandOperation(String operation)
+	{
+		if (getMainNumber().equals("") || getMainNumber().equals(".")
+				|| getMainNumber().equals("-.") || getMainNumber().equals("-")
+				|| getTempNumber().equals("") && operation.equals("="))
+			return false;
 
-	private void setNumberBar() {
-		numberBar = mainNumber;
-	}
-
-	private void setTempNumberBar() {
-		tempNumberBar = tempNumber;
-	}
-
-	private void setTempNumberBar(String append) {
-
-		tempNumberBar = tempNumber + appendOP;
-	}
-
-	public boolean numButton(View view) {
-		boolean tooManyCommas = false;
-
-		if (clearNumberBar || mainNumber.equals("0")) {
-			mainNumber = ((String) ((Button) view).getText());
-			clearNumberBar = false;
-		} else {
-
-			if (mainNumber.contains(".")
-					&& view.getId() == R.id.num_button_comma) {	//Don't let the user use more than one comma (.)
-				tooManyCommas = true;
-			} else {
-				mainNumber = mainNumber.concat((String) ((Button) view)
-						.getText());
-			}
-		}
-
-		setNumberBar();
-		return tooManyCommas;
-	}
-
-	public boolean equals() {
-
-		if (tempNumber.length() > 0 && mainNumber.length() > 0) {
-
-			switch (currentMode) {
-			case BINARY_MODE:
-				return equalsBinMode();
-
-			case DECIMAL_MODE:
-				return equalsDecMode();
-
-			default:
-				return false;
-			}
-		}
-		return false;
-	}
-
-	public String getAppendOP() {
-		return appendOP;
-	}
-
-	public boolean equalsBinMode() {
-		BigInteger a = new BigInteger(tempNumber, 2);
-		BigInteger b = new BigInteger(mainNumber, 2);
-		boolean divideByZero = false;
-
-		switch (userCommand) {
-		case PLUS:
-			a = a.add(b);
-			break;
-		case MINUS:
-			a = a.subtract(b);
-			break;
-		case DIVIDE:
-			if (b.equals(BigInteger.valueOf(0))) {
-				a = a.divide(BigInteger.valueOf(1));
-				divideByZero = true;
+		if (calculations[1].equals(""))
+		{
+			calculations[2] = calculations[0];
+			calculations[1] = operation;
+			overWrite = true;
+		} else if (operation.equals("="))
+		{
+			if (calculate())
+			{
+				calculations[1] = "";
+				calculations[2] = "";
+				overWrite = true;
 			} else
-				a = a.divide(b);
-			break;
-		case MULTIPLY:
-			a = a.multiply(b);
-			break;
+				return false;
+		} else
+		// chain
+		{
+			if (calculate())
+			{
+				calculations[2] = calculations[0];
+				calculations[1] = operation;
+				overWrite = true;
+			} else
+				return false;
 		}
 
-		mainNumber = a.toString(2); //Use radix 2 two convert a decimal number (base 10) into binary (base 2)
-		tempNumber = "";
-		userCommand = NOTHING;
-
-		setNumberBar();
-		setTempNumberBar();
-		clearNumberBar = true;
-
-		return divideByZero;
+		return true;
 	}
 
-	public String getMainNumber() {
-		return numberBar;
-	}
+	private boolean calculate()
+	{
+		int operation = (int) calculations[1].charAt(0);
+		BigDecimal a = new BigDecimal(calculations[2]);
+		BigDecimal b = new BigDecimal(calculations[0]);
 
-	public String getTempNumber() {
-		return tempNumberBar;
-	}
-
-	public boolean equalsDecMode() {
-		BigDecimal a = new BigDecimal(tempNumber);
-		BigDecimal b = new BigDecimal(mainNumber);
-		boolean divideByZero = false;
-		switch (userCommand) {
+		switch (operation)
+		{
 		case PLUS:
 			a = a.add(b);
 			break;
 		case MINUS:
 			a = a.subtract(b);
 			break;
-		case DIVIDE:
-			if (b.equals(BigDecimal.valueOf(0))) {
-				a = a.divide(BigDecimal.valueOf(1));
-				divideByZero = true;
-			} else {
-				try {
-					a = a.divide(b);
-				} catch (ArithmeticException e) // If we get an irrational number, we have
-										// to take care of this
-				{
-					a = a.divide(b, 10, RoundingMode.CEILING);
-				}
-			}
-			break;
 		case MULTIPLY:
 			a = a.multiply(b);
 			break;
-		}
-		a = a.stripTrailingZeros();
-		mainNumber = a.toPlainString();
-		tempNumber = "";
-		userCommand = NOTHING;
-
-		setNumberBar();
-		setTempNumberBar();
-		clearNumberBar = true;
-
-		return divideByZero;
-	}
-
-	public void commandButton(View view) {
-		appendOP = "";
-		boolean chained = false;
-		if (userCommand != NOTHING)
-			chained = true;
-
-		if (chained)
-			equals();
-
-		tempNumber = mainNumber;
-
-		switch (view.getId()) {
-		case R.id.command_button_plus:
-			userCommand = PLUS;
-			appendOP = "+";
-			break;
-		case R.id.command_button_minus:
-			userCommand = MINUS;
-			appendOP = "-";
-			break;
-		case R.id.command_button_divide:
-			userCommand = DIVIDE;
-			appendOP = "/";
-			break;
-		case R.id.command_button_multiply:
-			userCommand = MULTIPLY;
-			appendOP = "*";
+		case DIVIDE:
+			if (BigDecimal.ZERO.compareTo(BigDecimal.valueOf(b.doubleValue())) == 0) // Cannot divide by zero
+				return false;
+			try
+			{
+				a = a.divide(b);
+			} catch (ArithmeticException e)
+			{
+				a = a.divide(b, 10, RoundingMode.CEILING);
+			}
+		default:
 			break;
 		}
 
-		clearNumberBar = true;
-		setNumberBar();
-
-		setTempNumberBar(appendOP);
-
+		calculations[0] = a.toPlainString();
+		return true;
 	}
 
-	public void clear(View view) {
-		mainNumber = "0";
-		clearNumberBar = true;
-		tempNumber = "";
-		userCommand = NOTHING;
-		setNumberBar();
-		setTempNumberBar();
+	public void clear()
+	{
+		for (int i = 0; i < calculations.length; i++)
+			calculations[i] = "";
 	}
 
+	public String getMainNumber()
+	{
+		return calculations[0];
+	}
+
+	public String getTempNumber()
+	{
+		return calculations[2] + calculations[1];
+	}
 
 }

@@ -8,23 +8,25 @@ import android.view.HapticFeedbackConstants;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bearden.unicalc.R;
-//import android.support.v4.app.NavUtils;
+
 
 /***
- * The Activity for the calculator.
- * Behaves as one would expect a calculator to with the exception of "chaining" calculations
- * i.e. Pressing an operation will do it over and over again
- * Holds the Calculator class which does all the calculations and returns them here to show for user
+ * The Activity for the calculator. Behaves as one would expect a calculator to
+ * with the exception of "chaining" calculations i.e. Pressing an operation will
+ * do it over and over again Holds the Calculator class which does all the
+ * calculations and returns them here to show for user
  */
 public class CalculatorActivity extends Activity
 {
 	private TextView numberBar;
 	private TextView tempNumberBar;
 	private Calculator calculator;
+	private String numberString = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -33,9 +35,10 @@ public class CalculatorActivity extends Activity
 		setContentView(R.layout.activity_calculator);
 		setupActionBar();
 		calculator = new Calculator();
-		
+
 		numberBar = (TextView) findViewById(R.id.number_bar);
-		tempNumberBar = (TextView) findViewById(R.id.temp_number_bar);		
+		tempNumberBar = (TextView) findViewById(R.id.temp_number_bar);
+		setNumberBar();
 	}
 
 	private void configureButtons(int mode)
@@ -68,84 +71,84 @@ public class CalculatorActivity extends Activity
 		}
 	}
 
-	public void changeMode(View view)
-	{
-		boolean appendedOP = false;
-		doHaptic(view);
-		
-		switch (view.getId())
-		{
-		case R.id.binary_mode:
-			calculator.changeMode(Calculator.BINARY_MODE);
-			configureButtons(Calculator.BINARY_MODE);
-			break;
-		case R.id.decimal_mode:
-			calculator.changeMode(Calculator.DECIMAL_MODE);
-			configureButtons(Calculator.DECIMAL_MODE);
-			break;
-		}
-		
-		
-		setNumberBar();
-
-		if (appendedOP)
-			setTempNumberBar();
-	}
+	/*
+	 * public void changeMode(View view) { doHaptic(view);
+	 * 
+	 * switch (view.getId()) { case R.id.binary_mode:
+	 * calculator.changeMode(Calculator.BINARY_MODE);
+	 * configureButtons(Calculator.BINARY_MODE); break; case R.id.decimal_mode:
+	 * calculator.changeMode(Calculator.DECIMAL_MODE);
+	 * configureButtons(Calculator.DECIMAL_MODE); break; }
+	 * 
+	 * }
+	 */
 
 	private void doHaptic(View view)
 	{
 		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 	}
 
+	/**
+	 * Formats user input directly. The point is to have a finished string when
+	 * sending for calculating
+	 * 
+	 * @param view
+	 */
+	public void numButton(View view)
+	{
+		String addNumber = (String) ((Button) view).getText();
+		if (addNumber.equals("(-)"))
+			addNumber = "-";
+
+		doHaptic(view);
+		if (!calculator.numberOperation(addNumber))
+			new Blinker().execute();
+
+		setNumberBar();
+	}
+
 	private void setNumberBar()
 	{
-		numberBar.setText(calculator.getMainNumber());
+		if (calculator.getMainNumber().equals(""))
+			numberBar.setText("0");
+		else
+			numberBar.setText(calculator.getMainNumber());
 	}
 
 	private void setTempNumberBar()
 	{
 		tempNumberBar.setText(calculator.getTempNumber());
 	}
-
-	public void numButton(View view)
+	
+	public void changeMode(View view)
 	{
-		doHaptic(view);
-		if(calculator.numButton(view))
-			new Blinker().execute();
-		setNumberBar();
+		
 	}
 
-	public void equalsCommand(View view)
+	public void commandButton(View view)
+	{
+		String com = (String) ((Button) view).getText();
+		doHaptic(view);
+		if (!calculator.commandOperation(com))
+			new Blinker().execute();
+
+		setNumberBar();
+		setTempNumberBar();
+
+	}
+
+	public void clear(View view)
 	{
 		doHaptic(view);
-		if(calculator.equals())
-				giveUserToast(R.string.divide_by_0);
-		
+		calculator.clear();
 		setNumberBar();
 		setTempNumberBar();
 	}
 
 	private void giveUserToast(int message)
 	{
-		Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
-	}
-
-	public void commandButton(View view)
-	{
-		doHaptic(view);
-		calculator.commandButton(view);
-
-		setNumberBar();
-		setTempNumberBar();
-	}
-
-	public void clear(View view)
-	{
-		doHaptic(view);
-		calculator.clear(view);
-		
-		setNumberBar();
-		setTempNumberBar();
+		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
+				.show();
 	}
 
 	/**
@@ -177,7 +180,7 @@ public class CalculatorActivity extends Activity
 			//
 			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
 			//
-			NavUtils.navigateUpFromSameTask(this);
+			// NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -212,8 +215,10 @@ public class CalculatorActivity extends Activity
 				@Override
 				public void run()
 				{
-					numberBar.setBackground(getResources().getDrawable(
-							R.drawable.textview_standard_white));
+					//numberBar.getBackground().setColorFilter(R.color.ivory,
+						//	PorterDuff.Mode.DARKEN);
+					 numberBar.setBackground(getResources().getDrawable(
+					 R.drawable.textview_standard_white));
 				}
 			});
 			return null;

@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.bearden.unicalc.R;
-//import android.support.v4.app.DialogFragment;
+
 
 public class EditNoteDialog extends DialogFragment 
 {
