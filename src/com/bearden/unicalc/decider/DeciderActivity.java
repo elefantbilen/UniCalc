@@ -1,25 +1,26 @@
 package com.bearden.unicalc.decider;
 
-import com.bearden.unicalc.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 import android.view.View.OnTouchListener;
 import android.view.inputmethod.InputMethodManager;
-
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bearden.unicalc.R;
 
 public class DeciderActivity extends Activity {
 	private Decider decider;
@@ -91,6 +92,15 @@ public class DeciderActivity extends Activity {
 
 	private void getIntervalRandomNumber(View v) {
 		doHaptic(v);
+		
+		//Check that textviews are note empty
+		if(((EditText) findViewById(R.id.randomizer_first_number))
+		.getText().toString().equals("") || ((EditText) findViewById(R.id.randomizer_second_number))
+		.getText().toString().equals(""))
+		{
+			giveUserToast(R.string.missing_number);
+		}
+		else
 		try {
 			int first = Integer
 					.parseInt(((EditText) findViewById(R.id.randomizer_first_number))
@@ -108,7 +118,7 @@ public class DeciderActivity extends Activity {
 
 
 		} catch (NumberFormatException e) {
-			giveUserToast(R.string.missing_number);
+			giveUserToast(R.string.bad_interval);
 		}
 
 	}

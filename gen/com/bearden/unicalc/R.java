@@ -199,29 +199,29 @@ public final class R {
         public static final int _neg_num=0x7f080018;
         public static final int _plus=0x7f08001b;
         public static final int action_settings=0x7f080000;
-        public static final int answer_goes_here=0x7f080034;
+        public static final int answer_goes_here=0x7f080035;
         /**  Titles 
          */
-        public static final int app_name=0x7f08005e;
+        public static final int app_name=0x7f08005f;
         public static final int ascii=0x7f080027;
-        public static final int bad_interval=0x7f080036;
+        public static final int bad_interval=0x7f080037;
         /**  Calculator Modes 
          */
         public static final int binary=0x7f08001f;
         public static final int binary_value=0x7f080029;
-        public static final int cancel=0x7f080047;
+        public static final int cancel=0x7f080048;
         public static final int char_to_convert=0x7f08002c;
-        public static final int chose_old_note=0x7f080045;
+        public static final int chose_old_note=0x7f080046;
         /**  Decider Labels 
          */
         public static final int decider_header=0x7f08002d;
-        public static final int decider_no=0x7f080030;
-        public static final int decider_yes=0x7f08002f;
+        public static final int decider_no=0x7f080031;
+        public static final int decider_yes=0x7f080030;
         public static final int decimal=0x7f080020;
         public static final int decimal_value=0x7f08002a;
         public static final int delete=0x7f080005;
-        public static final int delete_all=0x7f080044;
-        public static final int delete_this_note=0x7f080046;
+        public static final int delete_all=0x7f080045;
+        public static final int delete_this_note=0x7f080047;
         /**  Calculator User Information 
          */
         public static final int divide_by_0=0x7f080021;
@@ -230,12 +230,12 @@ public final class R {
         public static final int do_conversion=0x7f080025;
         public static final int do_something_please=0x7f080024;
         public static final int does_not_exist=0x7f080023;
-        public static final int end_number=0x7f080032;
+        public static final int end_number=0x7f080033;
         public static final int hello=0x7f08000a;
         public static final int hello_world=0x7f080001;
         public static final int hex_value=0x7f08002b;
-        public static final int hint_message=0x7f08004c;
-        public static final int hint_title=0x7f08004b;
+        public static final int hint_message=0x7f08004d;
+        public static final int hint_title=0x7f08004c;
         public static final int info_i=0x7f08000c;
         public static final int label_no=0x7f080007;
         public static final int label_tally=0x7f080008;
@@ -246,79 +246,80 @@ public final class R {
         public static final int long_number_input=0x7f080022;
         /**  Decider User Information 
          */
-        public static final int missing_number=0x7f080035;
+        public static final int missing_number=0x7f080036;
         /**  Note 
          */
-        public static final int new_note=0x7f080043;
+        public static final int new_note=0x7f080044;
         public static final int not_applicable=0x7f080002;
         public static final int press_button=0x7f080003;
+        public static final int random_number_header=0x7f08002e;
         /**  Scrum Poker 
          */
-        public static final int scrum_0=0x7f08004d;
-        public static final int scrum_1=0x7f08004f;
-        public static final int scrum_100=0x7f080057;
-        public static final int scrum_13=0x7f080054;
-        public static final int scrum_2=0x7f080050;
-        public static final int scrum_20=0x7f080055;
-        public static final int scrum_3=0x7f080051;
-        public static final int scrum_40=0x7f080056;
-        public static final int scrum_5=0x7f080052;
-        public static final int scrum_8=0x7f080053;
-        public static final int scrum_coffee=0x7f080059;
-        public static final int scrum_dont_know=0x7f080058;
-        public static final int scrum_half=0x7f08004e;
-        public static final int scrum_infinity=0x7f08005a;
-        public static final int shared_preferences_decider_num_no=0x7f08005d;
-        public static final int shared_preferences_decider_num_yes=0x7f08005c;
+        public static final int scrum_0=0x7f08004e;
+        public static final int scrum_1=0x7f080050;
+        public static final int scrum_100=0x7f080058;
+        public static final int scrum_13=0x7f080055;
+        public static final int scrum_2=0x7f080051;
+        public static final int scrum_20=0x7f080056;
+        public static final int scrum_3=0x7f080052;
+        public static final int scrum_40=0x7f080057;
+        public static final int scrum_5=0x7f080053;
+        public static final int scrum_8=0x7f080054;
+        public static final int scrum_coffee=0x7f08005a;
+        public static final int scrum_dont_know=0x7f080059;
+        public static final int scrum_half=0x7f08004f;
+        public static final int scrum_infinity=0x7f08005b;
+        public static final int shared_preferences_decider_num_no=0x7f08005e;
+        public static final int shared_preferences_decider_num_yes=0x7f08005d;
         /**  Shared Preferences 
          */
-        public static final int shared_preferences_name=0x7f08005b;
-        public static final int should_i_do_it=0x7f08002e;
-        public static final int start_number=0x7f080031;
-        public static final int start_randomization=0x7f080033;
+        public static final int shared_preferences_name=0x7f08005c;
+        public static final int should_i_do_it=0x7f08002f;
+        public static final int start_number=0x7f080032;
+        public static final int start_randomization=0x7f080034;
         /**  Converter Labels 
          */
         public static final int submitted_value=0x7f080026;
         public static final int testing=0x7f080004;
-        public static final int title_activity_calculator=0x7f080063;
-        public static final int title_activity_colour_picker=0x7f080064;
-        public static final int title_activity_decider=0x7f080060;
-        public static final int title_activity_information=0x7f080067;
-        public static final int title_activity_ip=0x7f080062;
-        public static final int title_activity_note_pad=0x7f080065;
-        public static final int title_activity_number_converter=0x7f080061;
-        public static final int title_activity_scrum=0x7f080068;
-        public static final int title_activity_single_note=0x7f08005f;
-        public static final int title_activity_snake=0x7f080066;
+        public static final int title_activity_calculator=0x7f080064;
+        public static final int title_activity_colour_picker=0x7f080065;
+        public static final int title_activity_decider=0x7f080061;
+        public static final int title_activity_information=0x7f080068;
+        public static final int title_activity_ip=0x7f080063;
+        public static final int title_activity_note_pad=0x7f080066;
+        public static final int title_activity_number_converter=0x7f080062;
+        public static final int title_activity_scrum=0x7f080069;
+        public static final int title_activity_single_note=0x7f080060;
+        public static final int title_activity_snake=0x7f080067;
         /**  Calculator 
          */
-        public static final int txt_calculator_header=0x7f080038;
-        public static final int txt_calculator_paragraph1=0x7f080039;
+        public static final int txt_calculator_header=0x7f080039;
+        public static final int txt_calculator_paragraph1=0x7f08003a;
         /**  Character Converter 
          */
-        public static final int txt_char_conv_header=0x7f08003a;
-        public static final int txt_char_conv_paragraph1=0x7f08003b;
-        public static final int txt_created=0x7f080048;
+        public static final int txt_char_conv_header=0x7f08003b;
+        public static final int txt_char_conv_paragraph1=0x7f08003c;
+        public static final int txt_created=0x7f080049;
         /**  Decider 
          */
-        public static final int txt_decider_header=0x7f08003e;
-        public static final int txt_decider_paragraph1=0x7f08003f;
-        public static final int txt_edited=0x7f080049;
+        public static final int txt_decider_header=0x7f08003f;
+        public static final int txt_decider_paragraph1=0x7f080040;
+        public static final int txt_edited=0x7f08004a;
         /**  Default 
          */
-        public static final int txt_header_default=0x7f080037;
+        public static final int txt_header_default=0x7f080038;
         /**  Information Labels 
          */
-        public static final int txt_information_welcome=0x7f080042;
+        public static final int txt_information_welcome=0x7f080043;
         /**  Note Pad 
          */
-        public static final int txt_note_pad_header=0x7f08003c;
-        public static final int txt_note_pad_paragraph1=0x7f08003d;
+        public static final int txt_note_pad_header=0x7f08003d;
+        public static final int txt_note_pad_paragraph1=0x7f08003e;
         /**  Scrum Poker 
          */
-        public static final int txt_scrum_poker_header=0x7f080040;
-        public static final int txt_scrum_poker_paragraph1=0x7f080041;
-        public static final int txt_title=0x7f08004a;
+        public static final int txt_scrum_poker_header=0x7f080041;
+        public static final int txt_scrum_poker_paragraph1=0x7f080042;
+        public static final int txt_title=0x7f08004b;
         public static final int welcoming_message=0x7f08000b;
     }
     public static final class style {

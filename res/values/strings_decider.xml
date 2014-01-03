@@ -3,18 +3,18 @@
 
 
     <!-- Decider Labels -->
-    <string name="decider_header"><b>Bearden Decider For the Most Modern of Men</b></string>
-    
-    <string name="should_i_do_it">Should I do it?</string>
-    <string name="decider_yes">Oui</string>
-    <string name="decider_no">Non</string>
+    <string name="decider_header"><b>Should I?</b></string>
+    <string name="random_number_header"><b>Give a random number from an interval</b></string>
+    <string name="should_i_do_it">Yes/No</string>
+    <string name="decider_yes">Yes</string>
+    <string name="decider_no">No</string>
     <string name="start_number">Start Number</string>
     <string name="end_number">End Number</string>
     <string name="start_randomization">Randomize!</string>
     <string name="answer_goes_here">Answer Goes Here!</string>
 
     <!-- Decider User Information -->
-    <string name="missing_number">Please enter two numbers (Reasonably smaller than 2,147,483,647 as well, thank you very much)</string>
-    <string name="bad_interval">First number should be lower than the second</string>    
+    <string name="missing_number">Please enter two numbers</string>
+    <string name="bad_interval">Please enter a smaller number</string>    
    
 </resources>

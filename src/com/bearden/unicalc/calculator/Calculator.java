@@ -46,22 +46,26 @@ public class Calculator
 		case BINARY_MODE:
 			String[] temp = calculations[0].split("\\.");
 			Log.d("1", "forsta: " + temp[0]);
-			if (!(temp[0].equals("") || temp[0].equals("0")))
+			if (!(temp[0].equals("") || temp[0].equals("0") || temp[0]
+					.equals("-")))
 				calculations[0] = new BigInteger(temp[0]).toString(2);
 			else
-				calculations[0] = "0";
+				calculations[0] = temp[0];
 
 			temp = calculations[2].split("\\.");
-			if (!(temp[0].equals("") || temp[0].equals("0")))
+			if (!(temp[0].equals("") || temp[0].equals("0") || temp[0]
+					.equals("-")))
 				calculations[2] = new BigInteger(temp[0]).toString(2);
 			else
 				calculations[2] = "";
 			break;
 
 		case DECIMAL_MODE:
-			if (!(calculations[0].equals("0") || calculations[0].equals("")))
+			if (!(calculations[0].equals("0") || calculations[0].equals("") || calculations[0]
+					.equals("-")))
 				calculations[0] = new BigInteger(calculations[0], 2).toString();
-			if (!(calculations[2].equals("0") || calculations[2].equals("")))
+			if (!(calculations[2].equals("0") || calculations[2].equals("") || calculations[0]
+					.equals("-")))
 				calculations[2] = new BigInteger(calculations[2], 2).toString();
 			break;
 		}
@@ -69,6 +73,7 @@ public class Calculator
 
 	public boolean numberOperation(String num)
 	{
+		Log.d("1", "main: " + getMainNumber());
 		switch (currentMode)
 		{
 		case DECIMAL_MODE:
@@ -84,8 +89,8 @@ public class Calculator
 	{
 		if ((getMainNumber().contains("-") && num.equals("-") && !overWrite)
 				|| (getMainNumber().equals("-") && num.equals("0"))
-				|| (num.equals("-") && !overWrite && !(getMainNumber().equals("") || getMainNumber()
-						.equals("0"))))
+				|| (num.equals("-") && !overWrite && !(getMainNumber().equals(
+						"") || getMainNumber().equals("0"))))
 			return false;
 		else if (overWrite || getMainNumber().equals("0"))
 		{
@@ -102,10 +107,11 @@ public class Calculator
 
 	private boolean decimalNumberOperation(String num)
 	{
-		if (num.equals(".") && getMainNumber().contains(".") && !overWrite
-				|| num.equals("-")
-				&& (!getMainNumber().equals("") && !overWrite)
-				|| num.equals("0")
+		if (num.equals(".")
+				&& getMainNumber().contains(".")
+				&& !overWrite
+				|| (num.equals("-") && (!(getMainNumber().equals("") || getMainNumber()
+						.equals("0")) && !overWrite)) || num.equals("0")
 				&& (getMainNumber().equals("") || getMainNumber().equals("-0")))
 			return false;
 		else if (overWrite || getMainNumber().equals("0")
@@ -254,8 +260,9 @@ public class Calculator
 
 	public void clear()
 	{
-		for (int i = 0; i < calculations.length; i++)
-			calculations[i] = "";
+		calculations[0] = "0";
+		calculations[1] = "";
+		calculations[2] = "";
 	}
 
 	public String getMainNumber()
