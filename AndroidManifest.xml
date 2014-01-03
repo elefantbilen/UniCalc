@@ -51,24 +51,6 @@
                 android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
-            android:name="com.bearden.unicalc.networkhelper.IPActivity"
-            android:label="@string/title_activity_ip"
-            android:parentActivityName="com.bearden.unicalc.MainActivity"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.bearden.unicalc.colourpicker.ColourPickerActivity"
-            android:label="@string/title_activity_colour_picker"
-            android:parentActivityName="com.bearden.unicalc.MainActivity"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
-        </activity>
-        <activity
             android:name="com.bearden.unicalc.notepad.NotePadActivity"
             android:label="@string/title_activity_note_pad"
             android:parentActivityName="com.bearden.unicalc.MainActivity"

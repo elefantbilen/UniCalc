@@ -4,8 +4,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 
-import android.util.Log;
-
 /**
  * Class responsible for the real calculation
  * 
@@ -15,66 +13,95 @@ import android.util.Log;
  */
 public class Calculator
 {
+
+	// These variables uses the ASCII values of the operations, this means we
+	// can use the standard string both for showing operation and to calculate
 	public static final int PLUS = 43;
 	public static final int MINUS = 45;
 	public static final int MULTIPLY = 42;
 	public static final int DIVIDE = 47;
 
+	// For keeping track of the calculator mode
 	public static final int BINARY_MODE = 1;
 	public static final int DECIMAL_MODE = 2;
 
-	private boolean overWrite = false;
-	public int currentMode;
-	private String[] calculations =
+	private boolean mOverWrite = false; // After a calculation has been carried
+										// out, any new number should overwrite
+										// the last
+	public int mCurrentMode;
+
+	// To keep the numbers and operations, need two numbers plus one operation,
+	// in the middle
+	private String[] mCalculations =
 	{ "", "", "" };
 
 	public Calculator()
 	{
-		currentMode = DECIMAL_MODE;
+		mCurrentMode = DECIMAL_MODE;
 	}
 
 	public void changeMode(int mode)
 	{
-		currentMode = mode;
+		mCurrentMode = mode;
 		convertExistingNumbers(mode);
 	}
 
+	/**
+	 * Called when user switches modes between binary and decimal, this will
+	 * change the strings keeping the numbers
+	 * 
+	 * @param mode
+	 */
 	private void convertExistingNumbers(int mode)
 	{
 		switch (mode)
 		{
 		case BINARY_MODE:
-			String[] temp = calculations[0].split("\\.");
-			Log.d("1", "forsta: " + temp[0]);
-			if (!(temp[0].equals("") || temp[0].equals("0") || temp[0]
-					.equals("-")))
-				calculations[0] = new BigInteger(temp[0]).toString(2);
-			else
-				calculations[0] = temp[0];
 
-			temp = calculations[2].split("\\.");
+			// split on . we wont use decimals in binary
+			String[] temp = mCalculations[0].split("\\.");
+
+			// before converting string to BigInt, check that
+			// values are ok
 			if (!(temp[0].equals("") || temp[0].equals("0") || temp[0]
 					.equals("-")))
-				calculations[2] = new BigInteger(temp[0]).toString(2);
+				mCalculations[0] = new BigInteger(temp[0]).toString(2);
 			else
-				calculations[2] = "";
+				mCalculations[0] = temp[0]; // If bad values, just use the
+											// string
+											// instead
+
+			temp = mCalculations[2].split("\\."); // same for this
+			if (!(temp[0].equals("") || temp[0].equals("0") || temp[0]
+					.equals("-")))
+				mCalculations[2] = new BigInteger(temp[0]).toString(2);
+			else
+				mCalculations[2] = "";
 			break;
 
 		case DECIMAL_MODE:
-			if (!(calculations[0].equals("0") || calculations[0].equals("") || calculations[0]
+			if (!(mCalculations[0].equals("0") || mCalculations[0].equals("") || mCalculations[0]
 					.equals("-")))
-				calculations[0] = new BigInteger(calculations[0], 2).toString();
-			if (!(calculations[2].equals("0") || calculations[2].equals("") || calculations[0]
+				mCalculations[0] = new BigInteger(mCalculations[0], 2)
+						.toString();
+			if (!(mCalculations[2].equals("0") || mCalculations[2].equals("") || mCalculations[0]
 					.equals("-")))
-				calculations[2] = new BigInteger(calculations[2], 2).toString();
+				mCalculations[2] = new BigInteger(mCalculations[2], 2)
+						.toString();
 			break;
 		}
 	}
 
+	/**
+	 * Method that will handle all the number inputs from the user and passes it
+	 * to a specialized method depending on current mode
+	 * 
+	 * @param num
+	 * @return
+	 */
 	public boolean numberOperation(String num)
 	{
-		Log.d("1", "main: " + getMainNumber());
-		switch (currentMode)
+		switch (mCurrentMode)
 		{
 		case DECIMAL_MODE:
 			return decimalNumberOperation(num);
@@ -85,36 +112,52 @@ public class Calculator
 		}
 	}
 
+	/**
+	 * Specialized method for number input in binary mode
+	 * 
+	 * @param num
+	 * @return
+	 */
 	private boolean binaryNumberOperation(String num)
 	{
-		if ((getMainNumber().contains("-") && num.equals("-") && !overWrite)
+		// Check if user operation is ok, e.g. no number should start with 00
+		// etc
+		if ((getMainNumber().contains("-") && num.equals("-") && !mOverWrite)
 				|| (getMainNumber().equals("-") && num.equals("0"))
-				|| (num.equals("-") && !overWrite && !(getMainNumber().equals(
+				|| (num.equals("-") && !mOverWrite && !(getMainNumber().equals(
 						"") || getMainNumber().equals("0"))))
 			return false;
-		else if (overWrite || getMainNumber().equals("0"))
+		else if (mOverWrite || getMainNumber().equals("0"))
 		{
-			calculations[0] = num;
-			overWrite = false;
+			// if first number in a series, overwrite the 0
+			mCalculations[0] = num;
+			mOverWrite = false;
 		} else
 		{
-
-			calculations[0] = calculations[0].concat(num);
+			// if not the first number we should append it
+			mCalculations[0] = mCalculations[0].concat(num);
 		}
 
 		return true;
 	}
 
+	/**
+	 * Specialized method for number input in decimal mode, same rules as for
+	 * binary
+	 * 
+	 * @param num
+	 * @return
+	 */
 	private boolean decimalNumberOperation(String num)
 	{
 		if (num.equals(".")
 				&& getMainNumber().contains(".")
-				&& !overWrite
+				&& !mOverWrite
 				|| (num.equals("-") && (!(getMainNumber().equals("") || getMainNumber()
-						.equals("0")) && !overWrite)) || num.equals("0")
+						.equals("0")) && !mOverWrite)) || num.equals("0")
 				&& (getMainNumber().equals("") || getMainNumber().equals("-0")))
 			return false;
-		else if (overWrite || getMainNumber().equals("0")
+		else if (mOverWrite || getMainNumber().equals("0")
 				|| (getMainNumber().equals("-0") && !num.equals(".")))
 		{
 			if (num.equals("."))
@@ -122,8 +165,8 @@ public class Calculator
 			else if (getMainNumber().equals("-0"))
 				num = "-" + num;
 
-			calculations[0] = num;
-			overWrite = false;
+			mCalculations[0] = num;
+			mOverWrite = false;
 		} else
 		{
 			if (num.equals(".")
@@ -131,12 +174,18 @@ public class Calculator
 							"-")))
 				num = "0.";
 
-			calculations[0] = calculations[0].concat(num);
+			mCalculations[0] = mCalculations[0].concat(num);
 		}
 
 		return true;
 	}
 
+	/**
+	 * Takes care of any command button i.e. +,-,/,*,=
+	 * 
+	 * @param operation
+	 * @return
+	 */
 	public boolean commandOperation(String operation)
 	{
 		if (getMainNumber().equals("") || getMainNumber().equals(".")
@@ -144,28 +193,36 @@ public class Calculator
 				|| getTempNumber().equals("") && operation.equals("="))
 			return false;
 
-		if (calculations[1].equals(""))
+		// If [1] is empty this means we have no operation yet and and next
+		// operation will be placed there,
+		// also copy value of [0] to [2], this is now the second part of the
+		// equation
+		if (mCalculations[1].equals(""))
 		{
-			calculations[2] = calculations[0];
-			calculations[1] = operation;
-			overWrite = true;
+			mCalculations[2] = mCalculations[0];
+			mCalculations[1] = operation;
+			mOverWrite = true;
 		} else if (operation.equals("="))
 		{
+			// if = pressed, do the calculation and place it in [0]
 			if (calculate())
 			{
-				calculations[1] = "";
-				calculations[2] = "";
-				overWrite = true;
+				mCalculations[1] = "";
+				mCalculations[2] = "";
+				mOverWrite = true;
 			} else
 				return false;
 		} else
-		// chain
 		{
+			// if the user pressed a command like + instead of = and they
+			// already had a command in the queue
+			// then do the first queued calculation and place this new one in
+			// its stead
 			if (calculate())
 			{
-				calculations[2] = calculations[0];
-				calculations[1] = operation;
-				overWrite = true;
+				mCalculations[2] = mCalculations[0];
+				mCalculations[1] = operation;
+				mOverWrite = true;
 			} else
 				return false;
 		}
@@ -175,9 +232,9 @@ public class Calculator
 
 	private boolean binaryCalculate()
 	{
-		int operation = (int) calculations[1].charAt(0);
-		BigInteger a = new BigInteger(calculations[2], 2);
-		BigInteger b = new BigInteger(calculations[0], 2);
+		int operation = (int) mCalculations[1].charAt(0);
+		BigInteger a = new BigInteger(mCalculations[2], 2);
+		BigInteger b = new BigInteger(mCalculations[0], 2);
 
 		switch (operation)
 		{
@@ -204,15 +261,15 @@ public class Calculator
 			break;
 		}
 
-		calculations[0] = a.toString(2);
+		mCalculations[0] = a.toString(2);
 		return true;
 	}
 
 	private boolean decimalCalculate()
 	{
-		int operation = (int) calculations[1].charAt(0);
-		BigDecimal a = new BigDecimal(calculations[2]);
-		BigDecimal b = new BigDecimal(calculations[0]);
+		int operation = (int) mCalculations[1].charAt(0);
+		BigDecimal a = new BigDecimal(mCalculations[2]);
+		BigDecimal b = new BigDecimal(mCalculations[0]);
 
 		switch (operation)
 		{
@@ -239,14 +296,19 @@ public class Calculator
 			break;
 		}
 
-		calculations[0] = a.toPlainString();
+		mCalculations[0] = a.toPlainString();
 		return true;
 	}
 
+	/**
+	 * Help method for delegating the calculation to the two above methods depending on the selected mode
+	 * they work by converting the strings to numbers using BigDecimal and BigInt
+	 * @return
+	 */
 	private boolean calculate()
 	{
 
-		switch (currentMode)
+		switch (mCurrentMode)
 		{
 		case DECIMAL_MODE:
 			return decimalCalculate();
@@ -258,21 +320,24 @@ public class Calculator
 
 	}
 
+	/**
+	 * When pressing the C button, empty everything
+	 */
 	public void clear()
 	{
-		calculations[0] = "0";
-		calculations[1] = "";
-		calculations[2] = "";
+		mCalculations[0] = "0";
+		mCalculations[1] = "";
+		mCalculations[2] = "";
 	}
 
 	public String getMainNumber()
 	{
-		return calculations[0];
+		return mCalculations[0];
 	}
 
 	public String getTempNumber()
 	{
-		return calculations[2] + calculations[1];
+		return mCalculations[2] + mCalculations[1];
 	}
 
 }

@@ -15,26 +15,26 @@ public class ConverterAdapter extends BaseAdapter
 {
 
 	private Context mContext;
-	private LayoutInflater inflater;
-	private static ArrayList<ValuesToConvert> valueInfo;
-	
+	private LayoutInflater mInflater;
+	private static ArrayList<ValuesToConvert> mValueInfo;
+
 	public ConverterAdapter(Context c, ArrayList<ValuesToConvert> valueInfo2)
 	{
 		mContext = c;
-		valueInfo = valueInfo2;
-		inflater = LayoutInflater.from(c);
+		mValueInfo = valueInfo2;
+		mInflater = LayoutInflater.from(c);
 	}
-	
+
 	@Override
 	public int getCount()
 	{
-		return valueInfo.size();
+		return mValueInfo.size();
 	}
 
 	@Override
 	public Object getItem(int position)
 	{
-		return valueInfo.get(position);
+		return mValueInfo.get(position);
 	}
 
 	@Override
@@ -47,44 +47,54 @@ public class ConverterAdapter extends BaseAdapter
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		ViewHolder holder;
-		if(convertView == null)
+		if (convertView == null)
 		{
-			convertView = inflater.inflate(R.layout.converted_information, null);
+			convertView = mInflater
+					.inflate(R.layout.converted_information, null);
 			holder = new ViewHolder();
-			holder.txtOriginal = (TextView)convertView.findViewById(R.id.original_value);
-			holder.txtAscii = (TextView)convertView.findViewById(R.id.ascii_value);
-			holder.txtHexa = (TextView)convertView.findViewById(R.id.hexa_value);
-			holder.txtDeca = (TextView)convertView.findViewById(R.id.decimal_value);
+			holder.txtOriginal = (TextView) convertView
+					.findViewById(R.id.original_value);
+			holder.txtAscii = (TextView) convertView
+					.findViewById(R.id.ascii_value);
+			holder.txtHexa = (TextView) convertView
+					.findViewById(R.id.hexa_value);
+			holder.txtDeca = (TextView) convertView
+					.findViewById(R.id.decimal_value);
 			convertView.setTag(holder);
-		}
-		else
-			holder = (ViewHolder)convertView.getTag();
-		
-		
-		SpannableString spannableString = new SpannableString(mContext.getResources().getString(R.string.submitted_value) + 
-				  " " + valueInfo.get(position).getOriginalValue());
-		spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
-		
+		} else
+			holder = (ViewHolder) convertView.getTag();
+
+		SpannableString spannableString = new SpannableString(mContext
+				.getResources().getString(R.string.submitted_value)
+				+ " "
+				+ mValueInfo.get(position).getOriginalValue());
+		spannableString.setSpan(new UnderlineSpan(), 0,
+				spannableString.length(), 0);
+
 		holder.txtOriginal.setText(spannableString);
-		
-		
-		holder.txtAscii.setText(mContext.getResources().getString(R.string.ascii) +
-				"\t" + valueInfo.get(position).getAsciiValue());
-		holder.txtHexa.setText(mContext.getResources().getString(R.string.hex_value) + 
-				"\t" + valueInfo.get(position).getHexValue());
-		holder.txtDeca.setText(mContext.getResources().getString(R.string.decimal_value) + 
-				"\t" + valueInfo.get(position).getDecValue());
-		
+
+		holder.txtAscii.setText(mContext.getResources().getString(
+				R.string.ascii)
+				+ "\t" + mValueInfo.get(position).getAsciiValue());
+		holder.txtHexa.setText(mContext.getResources().getString(
+				R.string.hex_value)
+				+ "\t" + mValueInfo.get(position).getHexValue());
+		holder.txtDeca.setText(mContext.getResources().getString(
+				R.string.decimal_value)
+				+ "\t" + mValueInfo.get(position).getDecValue());
+
 		return convertView;
 	}
-	
+
+	/**
+	 * Temporary holder for each view object needed
+	 */
 	private static class ViewHolder
 	{
 		TextView txtOriginal;
 		TextView txtAscii;
 		TextView txtHexa;
 		TextView txtDeca;
-		TextView txtUTF8;
 	}
 
 }

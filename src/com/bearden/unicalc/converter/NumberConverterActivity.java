@@ -1,9 +1,8 @@
 package com.bearden.unicalc.converter;
 
-import com.bearden.unicalc.R;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -12,6 +11,8 @@ import android.view.View.OnKeyListener;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.bearden.unicalc.R;
 
 /**
  * The activity for converting numbers Holds an object of NumberConverter class. 
@@ -74,6 +75,7 @@ public class NumberConverterActivity extends Activity
 	 */
 	public void getDecodedChars(View view)
 	{
+		
 		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 		EditText e = (EditText)findViewById(R.id.number_converter_user_input);
 		if(e.getText().length() > 0 ) 

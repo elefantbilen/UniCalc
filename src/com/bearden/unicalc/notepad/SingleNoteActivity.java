@@ -8,7 +8,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,7 +28,7 @@ public class SingleNoteActivity extends Activity
 		Intent intent = getIntent();
 		id = intent.getLongExtra("databaseId", 0);
 		bdAdapter = BDAdapter.getInstance(this);
-		if(id != 0) //In this case we will edit an existing note
+		if(id != 0) //In this case we will edit an existing note and we can fetch it from the database
 		{
 			Note note = bdAdapter.getSingleNote(id);
 			startTitle = note.title;
@@ -41,6 +40,10 @@ public class SingleNoteActivity extends Activity
 		}
 	}
 	
+	/**
+	 * Takes all the information from the note object and puts the values in
+	 * the corresponding places in the database
+	 */
 	private void saveNote()
 	{
 		Note note = new Note();
@@ -89,7 +92,9 @@ public class SingleNoteActivity extends Activity
 
 		return true;
 	}
-	
+	/**
+	 * Brings up a dialog when user presses back while on a note
+	 */
 	private AlertDialog dialog;
 	@Override
 	public void onBackPressed()

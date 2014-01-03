@@ -1,7 +1,6 @@
 package com.bearden.unicalc.decider;
 
 import java.util.Random;
-import android.util.Log;
 
 public class Decider
 {
@@ -55,7 +54,6 @@ public class Decider
 			end = temp;
 		}
 		int a = rand.nextInt((end - start) + 1) + start;
-		Log.d("1", "rand is: " + a);
 		return a;
 	}
 

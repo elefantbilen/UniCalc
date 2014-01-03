@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -22,43 +21,46 @@ import android.widget.Toast;
 
 import com.bearden.unicalc.R;
 
-public class DeciderActivity extends Activity {
-	private Decider decider;
-	private TextView yesNoTextView;
-	private TextView yesNoTally;
-	private TextView randomizedNumber;
-	private Button yesNoButton;
-	private Button randomizeNumberButton;
-	private SharedPreferences sharedPreferences;
-	private int oldYes;
-	private int oldNo;
+public class DeciderActivity extends Activity
+{
+	private Decider mDecider;
+	private TextView mYesNoTextView;
+	private TextView mYesNoTally;
+	private TextView mRandomizedNumber;
+	private Button mYesNoButton;
+	private Button mRandomizeNumberButton;
+	private SharedPreferences mSharedPreferences;
+	private int mOldYes;
+	private int mOldNo;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_decider);
 
-		yesNoTextView = (TextView) findViewById(R.id.decider_yes_no_answer);
-		yesNoTally = (TextView) findViewById(R.id.decider_yes_no_tally);
+		mYesNoTextView = (TextView) findViewById(R.id.decider_yes_no_answer);
+		mYesNoTally = (TextView) findViewById(R.id.decider_yes_no_tally);
 
-		randomizedNumber = (TextView) findViewById(R.id.randomized_number);
+		mRandomizedNumber = (TextView) findViewById(R.id.randomized_number);
 
-		yesNoButton = (Button) findViewById(R.id.decider_yes_no_button);
-		yesNoButton.setOnTouchListener(new RandOnTouchListener());
+		mYesNoButton = (Button) findViewById(R.id.decider_yes_no_button);
+		mYesNoButton.setOnTouchListener(new RandOnTouchListener());
 
-		randomizeNumberButton = (Button) findViewById(R.id.randomizer_start);
-		randomizeNumberButton.setOnTouchListener(new RandOnTouchListener());
+		mRandomizeNumberButton = (Button) findViewById(R.id.randomizer_start);
+		mRandomizeNumberButton.setOnTouchListener(new RandOnTouchListener());
 
 		EditText e = (EditText) findViewById(R.id.randomizer_second_number);
-		e.setOnKeyListener(new OnKeyListener() {
+		e.setOnKeyListener(new OnKeyListener()
+		{
 			@Override
-			public boolean onKey(View v, int keyCode, KeyEvent event) {
+			public boolean onKey(View v, int keyCode, KeyEvent event)
+			{
 				if (keyCode == KeyEvent.KEYCODE_ENTER
 						&& event.getAction() == KeyEvent.ACTION_UP)
 					getIntervalRandomNumber(v);
 
-				return false; // This way, numbers will be accepted. Might not
-								// be best practice exactly...
+				return false; // This way, numbers will be accepted. 
 			}
 		});
 
@@ -67,20 +69,25 @@ public class DeciderActivity extends Activity {
 		setTallyText();
 	}
 
-	public class RandOnTouchListener implements OnTouchListener {
+	public class RandOnTouchListener implements OnTouchListener
+	{
 		@Override
-		public boolean onTouch(View v, MotionEvent event) {
+		public boolean onTouch(View v, MotionEvent event)
+		{
 
-			switch (v.getId()) {
+			switch (v.getId())
+			{
 			case R.id.decider_yes_no_button:
-				if (event.getAction() == MotionEvent.ACTION_UP) {
+				if (event.getAction() == MotionEvent.ACTION_UP)
+				{
 					shouldIDoIt(v);
 					new Blinker().execute();
 				}
 				return true;
 
 			case R.id.randomizer_start:
-				if (event.getAction() == MotionEvent.ACTION_UP) {
+				if (event.getAction() == MotionEvent.ACTION_UP)
+				{
 					getIntervalRandomNumber(v);
 					hideKeyboard();
 				}
@@ -90,77 +97,84 @@ public class DeciderActivity extends Activity {
 		}
 	}
 
-	private void getIntervalRandomNumber(View v) {
+	private void getIntervalRandomNumber(View v)
+	{
 		doHaptic(v);
-		
-		//Check that textviews are note empty
-		if(((EditText) findViewById(R.id.randomizer_first_number))
-		.getText().toString().equals("") || ((EditText) findViewById(R.id.randomizer_second_number))
-		.getText().toString().equals(""))
+
+		// Check that textviews are not empty
+		if (((EditText) findViewById(R.id.randomizer_first_number)).getText()
+				.toString().equals("")
+				|| ((EditText) findViewById(R.id.randomizer_second_number))
+						.getText().toString().equals(""))
 		{
 			giveUserToast(R.string.missing_number);
-		}
-		else
-		try {
-			int first = Integer
-					.parseInt(((EditText) findViewById(R.id.randomizer_first_number))
-							.getText().toString());
+		} else
+			try
+			{
+				int first = Integer
+						.parseInt(((EditText) findViewById(R.id.randomizer_first_number))
+								.getText().toString());
 
-			int second = Integer
-					.parseInt(((EditText) findViewById(R.id.randomizer_second_number))
-							.getText().toString());
+				int second = Integer
+						.parseInt(((EditText) findViewById(R.id.randomizer_second_number))
+								.getText().toString());
 
-
-				randomizedNumber.setText(Integer.toString(decider
+				mRandomizedNumber.setText(Integer.toString(mDecider
 						.getRandomFromInterval(first, second)));
 
 				new Blinker2().execute();
 
-
-		} catch (NumberFormatException e) {
-			giveUserToast(R.string.bad_interval);
-		}
+			} catch (NumberFormatException e)
+			{
+				giveUserToast(R.string.bad_interval);
+			}
 
 	}
 
-	private void giveUserToast(int message) {
+	private void giveUserToast(int message)
+	{
 		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
 				.show();
 	}
 
-	private void startDeciderAndFetchSharedprefs() {
-		sharedPreferences = getPreferences(MODE_PRIVATE);
-		oldYes = sharedPreferences.getInt(
+	private void startDeciderAndFetchSharedprefs()
+	{
+		mSharedPreferences = getPreferences(MODE_PRIVATE);
+		mOldYes = mSharedPreferences.getInt(
 				this.getResources().getString(
 						R.string.shared_preferences_decider_num_yes), 0);
 
-		oldNo = sharedPreferences.getInt(
+		mOldNo = mSharedPreferences.getInt(
 				this.getResources().getString(
 						R.string.shared_preferences_decider_num_no), 0);
 
-		decider = new Decider();
+		mDecider = new Decider();
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
 		getMenuInflater().inflate(R.menu.decider, menu);
 		return true;
 	}
 
-	private void setTallyText() {
-		yesNoTally.setText(getString(R.string.label_tally) + " "
-				+ getString(R.string.label_yes) + ": " + decider.getNumYes()
+	private void setTallyText()
+	{
+		mYesNoTally.setText(getString(R.string.label_tally) + " "
+				+ getString(R.string.label_yes) + ": " + mDecider.getNumYes()
 				+ " " + getString(R.string.label_no) + ": "
-				+ decider.getNumNo() + "\n" + getString(R.string.label_totals)
-				+ " " + getString(R.string.label_yes) + ": " + oldYes + " "
-				+ getString(R.string.label_no) + ": " + oldNo);
+				+ mDecider.getNumNo() + "\n" + getString(R.string.label_totals)
+				+ " " + getString(R.string.label_yes) + ": " + mOldYes + " "
+				+ getString(R.string.label_no) + ": " + mOldNo);
 	}
 
-	private void doHaptic(View view) {
+	private void doHaptic(View view)
+	{
 		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 	}
 
-	private void hideKeyboard() {
+	private void hideKeyboard()
+	{
 		InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 
 		inputManager.hideSoftInputFromWindow(
@@ -168,31 +182,36 @@ public class DeciderActivity extends Activity {
 				InputMethodManager.HIDE_NOT_ALWAYS);
 	}
 
-	public void shouldIDoIt(View v) {
+	public void shouldIDoIt(View v)
+	{
 		doHaptic(v);
 
-		if (decider.getYesNoRandom())
-			yesNoTextView.setText(R.string.decider_yes);
+		if (mDecider.getYesNoRandom())
+			mYesNoTextView.setText(R.string.decider_yes);
 		else
-			yesNoTextView.setText(R.string.decider_no);
+			mYesNoTextView.setText(R.string.decider_no);
 
 		setTallyText();
 
 	}
 
+	/**
+	 * Saves new data to shared preferences when user is done
+	 */
 	@Override
-	protected void onStop() {
+	protected void onStop()
+	{
 		super.onStop();
-		SharedPreferences.Editor editor = sharedPreferences.edit();
-		
+		SharedPreferences.Editor editor = mSharedPreferences.edit();
+
 		editor.putInt(
 				this.getResources().getString(
 						R.string.shared_preferences_decider_num_yes),
-				decider.getNumYes() + oldYes);
+				mDecider.getNumYes() + mOldYes);
 		editor.putInt(
 				this.getResources().getString(
 						R.string.shared_preferences_decider_num_no),
-				decider.getNumNo() + oldNo);
+				mDecider.getNumNo() + mOldNo);
 
 		editor.commit();
 
@@ -201,65 +220,79 @@ public class DeciderActivity extends Activity {
 	/**
 	 * private class for making the text view blink on submit
 	 */
-	private class Blinker extends AsyncTask<Void, Void, Void> {
+	private class Blinker extends AsyncTask<Void, Void, Void>
+	{
 		@Override
-		protected Void doInBackground(Void... params) {
-			try {
-				runOnUiThread(new Runnable() {
+		protected Void doInBackground(Void... params)
+		{
+			try
+			{
+				runOnUiThread(new Runnable()
+				{
 					@Override
-					public void run() {
-						yesNoTextView.getBackground().setColorFilter(
+					public void run()
+					{
+						mYesNoTextView.getBackground().setColorFilter(
 								getResources().getColor(R.color.color_teal),
 								PorterDuff.Mode.MULTIPLY);
 					}
 				});
 
 				Thread.sleep(100);
-			} catch (InterruptedException e) {
+			} catch (InterruptedException e)
+			{
 				e.printStackTrace();
 			}
-			runOnUiThread(new Runnable() {
+			runOnUiThread(new Runnable()
+			{
 				@Override
-				public void run() {
-					yesNoTextView.setBackground(getResources().getDrawable(
+				public void run()
+				{
+					mYesNoTextView.setBackground(getResources().getDrawable(
 							R.drawable.textview_standard_white));
 				}
 			});
 			return null;
 		}
 	}
-	
 
 	/**
 	 * private class for making the text view blink on submit
 	 */
-	private class Blinker2 extends AsyncTask<Void, Void, Void> {
+	private class Blinker2 extends AsyncTask<Void, Void, Void>
+	{
 		@Override
-		protected Void doInBackground(Void... params) {
-			try {
-				runOnUiThread(new Runnable() {
+		protected Void doInBackground(Void... params)
+		{
+			try
+			{
+				runOnUiThread(new Runnable()
+				{
 					@Override
-					public void run() {
-						randomizedNumber.getBackground().setColorFilter(
+					public void run()
+					{
+						mRandomizedNumber.getBackground().setColorFilter(
 								getResources().getColor(R.color.color_teal),
 								PorterDuff.Mode.MULTIPLY);
 					}
 				});
 
 				Thread.sleep(100);
-			} catch (InterruptedException e) {
+			} catch (InterruptedException e)
+			{
 				e.printStackTrace();
 			}
-			runOnUiThread(new Runnable() {
+			runOnUiThread(new Runnable()
+			{
 				@Override
-				public void run() {
-					randomizedNumber.setBackground(getResources().getDrawable(
+				public void run()
+				{
+					mRandomizedNumber.setBackground(getResources().getDrawable(
 							R.drawable.textview_standard_white));
 				}
 			});
 			return null;
 		}
 	}
-	
 
 }

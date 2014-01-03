@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bearden.unicalc.R;
 
@@ -23,9 +21,11 @@ import com.bearden.unicalc.R;
  */
 public class CalculatorActivity extends Activity
 {
-	private TextView numberBar;
-	private TextView tempNumberBar;
-	private Calculator calculator;
+	// The main part, that user can manipulate
+	private TextView mNumberBar;
+	// After operation this will show the user the last operation
+	private TextView mTempNumberBar;
+	private Calculator mCalculator;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -33,12 +33,12 @@ public class CalculatorActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calculator);
 		setupActionBar();
-		calculator = new Calculator();
+		mCalculator = new Calculator();
 
-		numberBar = (TextView) findViewById(R.id.number_bar);
-		tempNumberBar = (TextView) findViewById(R.id.temp_number_bar);
-		tempNumberBar.setMovementMethod(new ScrollingMovementMethod());
-		numberBar.setMovementMethod(new ScrollingMovementMethod());
+		mNumberBar = (TextView) findViewById(R.id.number_bar);
+		mTempNumberBar = (TextView) findViewById(R.id.temp_number_bar);
+		mTempNumberBar.setMovementMethod(new ScrollingMovementMethod());
+		mNumberBar.setMovementMethod(new ScrollingMovementMethod());
 		setNumberBar();
 	}
 
@@ -49,21 +49,25 @@ public class CalculatorActivity extends Activity
 		switch (view.getId())
 		{
 		case R.id.binary_mode:
-			calculator.changeMode(Calculator.BINARY_MODE);
+			mCalculator.changeMode(Calculator.BINARY_MODE);
 			configureButtons(Calculator.BINARY_MODE);
 			break;
 		case R.id.decimal_mode:
-			calculator.changeMode(Calculator.DECIMAL_MODE);
+			mCalculator.changeMode(Calculator.DECIMAL_MODE);
 			configureButtons(Calculator.DECIMAL_MODE);
 			break;
 		}
-		
-		
+
 		setNumberBar();
 		setTempNumberBar();
 
 	}
 
+	/**
+	 * Will hide and show buttons depending on selected mode
+	 * 
+	 * @param mode
+	 */
 	private void configureButtons(int mode)
 	{
 		switch (mode)
@@ -98,7 +102,6 @@ public class CalculatorActivity extends Activity
 		}
 	}
 
-
 	private void doHaptic(View view)
 	{
 		view.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
@@ -117,30 +120,36 @@ public class CalculatorActivity extends Activity
 			addNumber = "-";
 
 		doHaptic(view);
-		if (!calculator.numberOperation(addNumber))
+		if (!mCalculator.numberOperation(addNumber))
 			new Blinker().execute();
 
 		setNumberBar();
 	}
 
+	/**
+	 * Updates the view with the values in the calculator class
+	 */
 	private void setNumberBar()
 	{
-		if (calculator.getMainNumber().equals(""))
-			numberBar.setText("0");
+		if (mCalculator.getMainNumber().equals(""))
+			mNumberBar.setText("0");
 		else
-			numberBar.setText(calculator.getMainNumber());
+			mNumberBar.setText(mCalculator.getMainNumber());
 	}
 
+	/**
+	 * Updates the view with the values in the calculator class
+	 */
 	private void setTempNumberBar()
 	{
-		tempNumberBar.setText(calculator.getTempNumber());
+		mTempNumberBar.setText(mCalculator.getTempNumber());
 	}
 
 	public void commandButton(View view)
 	{
 		String com = (String) ((Button) view).getText();
 		doHaptic(view);
-		if (!calculator.commandOperation(com))
+		if (!mCalculator.commandOperation(com))
 			new Blinker().execute();
 
 		setNumberBar();
@@ -148,14 +157,19 @@ public class CalculatorActivity extends Activity
 
 	}
 
+	/**
+	 * Clears the view and also calls the calculator class to clear it too
+	 * @param view
+	 */
 	public void clear(View view)
 	{
 		doHaptic(view);
-		calculator.clear();
+		mCalculator.clear();
 		setNumberBar();
 		setTempNumberBar();
-		numberBar.scrollTo(0, 0);
-		tempNumberBar.scrollTo(0, 0);
+		//Since the textviews can grow we want to go back to their start if the get shrunk
+		mNumberBar.scrollTo(0, 0);
+		mTempNumberBar.scrollTo(0, 0);
 	}
 
 	/**
@@ -174,18 +188,9 @@ public class CalculatorActivity extends Activity
 		return true;
 	}
 
-	/*
-	 * @Override public boolean onOptionsItemSelected(MenuItem item) { switch
-	 * (item.getItemId()) { case android.R.id.home: // This ID represents the
-	 * Home or Up button. In the case of this // activity, the Up button is
-	 * shown. Use NavUtils to allow users // to navigate up one level in the
-	 * application structure. For // more details, see the Navigation pattern on
-	 * Android Design: // //
-	 * http://developer.android.com/design/patterns/navigation.html#up-vs-back
-	 * // // NavUtils.navigateUpFromSameTask(this); return true; } return
-	 * super.onOptionsItemSelected(item); }
+	/**
+	 * Will give a visual effect when the user attempts an illegal operation
 	 */
-
 	private class Blinker extends AsyncTask<Void, Void, Void>
 	{
 		@Override
@@ -198,7 +203,7 @@ public class CalculatorActivity extends Activity
 					@Override
 					public void run()
 					{
-						numberBar.getBackground().setColorFilter(
+						mNumberBar.getBackground().setColorFilter(
 								getResources().getColor(
 										R.color.color_red_orange),
 								PorterDuff.Mode.MULTIPLY);
@@ -217,7 +222,7 @@ public class CalculatorActivity extends Activity
 				{
 					// numberBar.getBackground().setColorFilter(R.color.ivory,
 					// PorterDuff.Mode.DARKEN);
-					numberBar.setBackground(getResources().getDrawable(
+					mNumberBar.setBackground(getResources().getDrawable(
 							R.drawable.textview_standard_white));
 				}
 			});

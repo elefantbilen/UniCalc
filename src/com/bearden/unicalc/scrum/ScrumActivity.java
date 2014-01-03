@@ -3,7 +3,6 @@ package com.bearden.unicalc.scrum;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
 import android.view.Menu;
@@ -35,11 +34,14 @@ public class ScrumActivity extends Activity
 		return true;
 	}
 	
+	/**
+	 * Puts all the card in a gridview
+	 * @param scrumItems
+	 */
 	private void setUpButtons(TypedArray scrumItems)
 	{
 		GridView gridView = (GridView)findViewById(R.id.grid_scrum_items);
 		gridView.setAdapter(new ScrumItemsAdapter(this, scrumItems));
-		Log.d("1", "setupButtons");
 		gridView.setOnItemClickListener(new OnItemClickListener() 
 		{
 			@Override
@@ -52,12 +54,19 @@ public class ScrumActivity extends Activity
 		
 	}
 	
+	/**
+	 * If a card is focused, then minimise when the user clicks it
+	 * @param view
+	 */
 	public void hideFocusedCard(View view)
 	{
 		findViewById(R.id.scrum_focused_item).setVisibility(View.GONE);
 	}
 	
-	
+	/**
+	 * Gets the value of the card that the user clicks and uses it on the focused card
+	 * @param v
+	 */
 	private void chosenValue(TextView v)
 	{
 		TextView t = (TextView)findViewById(R.id.scrum_focused_item);
@@ -76,6 +85,10 @@ public class ScrumActivity extends Activity
 		v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
 	}
 	
+	/**
+	 * If user presses back and a card is focused, then make it invisible,
+	 * otherwise go back to main menu
+	 */
 	@Override
 	public void onBackPressed()
 	{

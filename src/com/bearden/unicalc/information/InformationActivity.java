@@ -5,20 +5,17 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.bearden.unicalc.R;
 import com.bearden.unicalc.information.fragments.InfoFragmentCalculator;
 import com.bearden.unicalc.information.fragments.InfoFragmentCharacterConverter;
 import com.bearden.unicalc.information.fragments.InfoFragmentDecider;
-import com.bearden.unicalc.information.fragments.InfoFragmentDefault;
 import com.bearden.unicalc.information.fragments.InfoFragmentNotePad;
 import com.bearden.unicalc.information.fragments.InfoFragmentScrumPoker;
 
@@ -58,11 +55,9 @@ public class InformationActivity extends Activity implements
 		return true;
 	}
 
-	public void go(View view)
-	{
-
-	}
-
+	/**
+	 * Load a fragment when user clicks on in the spinner, creates a new fragment and removes the old one
+	 */
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View view, int position,
 			long id)
@@ -72,7 +67,6 @@ public class InformationActivity extends Activity implements
 				.beginTransaction();
 
 		Fragment fragment = null;
-		Log.d("1", "pos in: " + position);
 		switch (position)
 		{
 		case CALCULATOR_INFO:

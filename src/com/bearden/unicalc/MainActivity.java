@@ -22,45 +22,51 @@ import android.widget.GridView;
 public class MainActivity extends Activity
 {
 
-	TypedArray buttonStrings;
-	Class<?>[] listOfClassesForActivites = //Not sure if this is the best way but it its easy to find
-		{ 	
-			CalculatorActivity.class, 
-			NumberConverterActivity.class,
-			NotePadActivity.class,
-			DeciderActivity.class,
-			ScrumActivity.class,
-			InformationActivity.class
-		};
-	
+	TypedArray mButtonStrings;
+
+	/*
+	 * An array containing one of every class used in the application. This is
+	 * for linking the buttons to each activity
+	 */
+	Class<?>[] mListOfClassesForActivites =
+	{ CalculatorActivity.class, NumberConverterActivity.class,
+			NotePadActivity.class, DeciderActivity.class, ScrumActivity.class,
+			InformationActivity.class };
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		buttonStrings = this.getResources().obtainTypedArray(R.array.activity_titles); //TODO Find a place to recycle this
+		mButtonStrings = this.getResources().obtainTypedArray(
+				R.array.activity_titles);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setUpButtons();	
-		buttonStrings.recycle();		
+		setUpButtons();
+		mButtonStrings.recycle();
 	}
-	
+
+	/**
+	 * Responsible for setting up the buttons on the start screen, will also add
+	 * listeners that lead to each activity
+	 */
 	private void setUpButtons()
 	{
-		GridView gridView = (GridView)findViewById(R.id.button_gridview);
-		gridView.setAdapter(new ButtonAdapter(this, buttonStrings));
+		GridView gridView = (GridView) findViewById(R.id.button_gridview);
+		gridView.setAdapter(new ButtonAdapter(this, mButtonStrings));
 
-		gridView.setOnItemClickListener(new OnItemClickListener() 
-		{ 
+		gridView.setOnItemClickListener(new OnItemClickListener()
+		{
 			@Override
-	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) 
-	        {
-	            v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
-	            Intent intent = new Intent(getApplicationContext(), listOfClassesForActivites[position]);
-	    		startActivity(intent);	    		
-	        }
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id)
+			{
+				v.performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP);
+				Intent intent = new Intent(getApplicationContext(),
+						mListOfClassesForActivites[position]);
+				startActivity(intent);
+			}
 		});
-		
+
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)

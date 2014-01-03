@@ -2,12 +2,10 @@ package com.bearden.unicalc.scrum;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bearden.unicalc.R;
@@ -15,20 +13,20 @@ import com.bearden.unicalc.R;
 public class ScrumItemsAdapter extends BaseAdapter
 {
 	private Context mContext;
-	private LayoutInflater inflater;
-	private TypedArray scrumItems;
+	private LayoutInflater mInflater;
+	private TypedArray mScrumItems;
 	
 	public ScrumItemsAdapter(Context context, TypedArray scrumItems)
 	{
 		mContext = context;
-		this.scrumItems = scrumItems;
-		inflater = LayoutInflater.from(mContext);
+		this.mScrumItems = scrumItems;
+		mInflater = LayoutInflater.from(mContext);
 	}
 
 	@Override
 	public int getCount()
 	{
-		return scrumItems.length();
+		return mScrumItems.length();
 	}
 
 	@Override
@@ -49,7 +47,7 @@ public class ScrumItemsAdapter extends BaseAdapter
 		ViewHolder holder;
 		if(convertView == null)
 		{
-			convertView = inflater.inflate(R.layout.layout_scrum_item, null);
+			convertView = mInflater.inflate(R.layout.layout_scrum_item, null);
 			holder = new ViewHolder();
 			holder.scrumItem = (TextView)convertView.findViewById(R.id.scrum_value);
 			convertView.setTag(holder);
@@ -57,7 +55,7 @@ public class ScrumItemsAdapter extends BaseAdapter
 		else
 			holder = (ViewHolder)convertView.getTag();
 		
-		holder.scrumItem.setText(scrumItems.getText(position));
+		holder.scrumItem.setText(mScrumItems.getText(position));
 		
 		return convertView;
 	}

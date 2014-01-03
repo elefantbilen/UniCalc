@@ -9,7 +9,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.bearden.unicalc.database.BeardenDBContract.NoteEntry;
 import com.bearden.unicalc.notepad.Note;
@@ -49,7 +48,7 @@ public class BDAdapter
 	
 	
 	/**
-	 * Singleton patterna for the database adapter
+	 * Singleton pattern for the database adapter
 	 */
 	   private static BDAdapter instance = null;
 	   protected BDAdapter(){}
@@ -109,27 +108,6 @@ public class BDAdapter
 				    );
 		return c;
 	}
-	
-	
-	/*public Cursor getAllNoteTitles()
-	{
-		String[] projection = {
-				NoteEntry._ID,
-				NoteEntry.NOTE_TITLE,
-				NoteEntry.NOTE_MESSAGE
-			};
-			
-			Cursor c = db.query(
-				    NoteEntry.TABLE_NOTES,  // The table to query
-				    projection,             // The columns to return
-				    null,
-				    null,
-				    null,
-				    null,
-				    null// The sort order
-				    );
-		return c;
-	}*/
 	
 	/**
 	 * Fetches a single note from the database based on the passed id
@@ -221,7 +199,6 @@ public class BDAdapter
 		values.put(NoteEntry.NOTE_MESSAGE, note.message);
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		Date date = new Date();
-		Log.d("1", dateFormat.format(date));
 		values.put(NoteEntry.NOTE_LAST_EDITED, dateFormat.format(date));
 		values.put(NoteEntry.NOTE_FIRST_CREATED, dateFormat.format(date));
 		long id = db.insert(
@@ -250,15 +227,8 @@ public class BDAdapter
 	    
 	    return 0;
 	}
+
 	
-	
-	
-	
-	/**
-	 * The database
-	 * @author Markus
-	 *
-	 */
 	private class DatabaseHelper extends SQLiteOpenHelper
 	{
 		public DatabaseHelper(Context context)
@@ -274,7 +244,7 @@ public class BDAdapter
 	
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
-		{Log.d("1", "onUpgrade");
+		{
 			db.execSQL(SQL_DELETE_ENTRIES); //One statement for each table. Just one atm
 			//db.execSQL("ALTER TABLE " + NoteEntry.TABLE_NOTES + " ADD COLUMN " + NoteEntry.NOTE_FIRST_CREATED);
 			

@@ -6,9 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -19,17 +17,14 @@ import android.widget.Toast;
 import com.bearden.unicalc.R;
 import com.bearden.unicalc.database.BDAdapter;
 import com.bearden.unicalc.database.BeardenDBContract.NoteEntry;
-//import android.support.v4.app.FragmentActivity;
-//import android.support.v4.app.NavUtils;
 
-public class NotePadActivity extends Activity // implements
-// EditNoteDialog.EditNoteDialogListener
+
+public class NotePadActivity extends Activity
 {
 	private BDAdapter bdAdapter;
 	private SimpleCursorAdapter myCursorAdapter;
 	private long currentDBID;
 
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -37,12 +32,16 @@ public class NotePadActivity extends Activity // implements
 		setContentView(R.layout.activity_note_pad);
 		setupActionBar();
 
-		// bdAdapter = new BDAdapter(getApplicationContext());
 		bdAdapter = BDAdapter.getInstance(getApplicationContext());
 		fillListView();
 
 	}
 
+	/**
+	 * Fetches the saved notes from the database and presents them in the list view
+	 * Uses deprecated methods that loads information slower but since this information
+	 * is very small and needed for the list to function at all it is considered ok
+	 */
 	private void fillListView()
 	{
 		bdAdapter.openConnection();
@@ -51,27 +50,20 @@ public class NotePadActivity extends Activity // implements
 		startManagingCursor(c);
 		c.moveToFirst();
 
-		// String[] fromFieldNames = new String[]
-		// { NoteEntry.NOTE_TITLE, NoteEntry.NOTE_MESSAGE };
-
 		String[] fromFieldNames = new String[]
 		{ NoteEntry.NOTE_TITLE, NoteEntry.NOTE_LAST_EDITED };
 
-		Log.d("1", "1111");
 		int[] toViewIDs = new int[]
 		{ R.id.title, R.id.date_and_time };
-		Log.d("1", "2222");
 		myCursorAdapter = new SimpleCursorAdapter(this, // Context
 				R.layout.note_row_layout, // Row layout template
 				c, // cursor (set of DB records to map)
 				fromFieldNames, // DB Column names
 				toViewIDs // View IDs to put information in
 		);
-		Log.d("1", "3333");
 		// Set the adapter for the list view
 		ListView myList = (ListView) findViewById(R.id.list_note);
 		myList.setAdapter(myCursorAdapter);
-		Log.d("1", "4444");
 		registerListClickCallback();
 	}
 
@@ -92,12 +84,14 @@ public class NotePadActivity extends Activity // implements
 	public void onDestroy()
 	{
 		super.onDestroy();
-		Log.d("1", "Destroy");
 	}
 
+	/**
+	 * Listener for the list when clicking an item, will start the SingleNoteActivity class
+	 * with information about which note was clicked
+	 */
 	private void registerListClickCallback()
 	{
-		Log.d("1", "registrerar");
 		ListView myList = (ListView) findViewById(R.id.list_note);
 		myList.setLongClickable(true);
 		myList.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -106,7 +100,6 @@ public class NotePadActivity extends Activity // implements
 			public void onItemClick(AdapterView<?> parent, View viewClicked,
 					int position, long idInDB)
 			{
-				Log.d("1", "Vanligt klick med id: " + idInDB);
 				Intent intent = new Intent(getApplicationContext(),
 						SingleNoteActivity.class);
 				intent.putExtra("databaseId", idInDB);
@@ -130,6 +123,11 @@ public class NotePadActivity extends Activity // implements
 		});
 	}
 
+	/**
+	 * Helper class for creating the view with information about a note when a user long clicks
+	 * the notes in the list view
+	 * @return
+	 */
 	private View readyInformationview()
 	{
 		View v = View.inflate(this, R.layout.test, null);
@@ -148,6 +146,9 @@ public class NotePadActivity extends Activity // implements
 		return v;
 	}
 
+	/**
+	 * Creates and brings up a dialog when user long clicks a note
+	 */
 	private void bringUpDialog()
 	{
 		View v = readyInformationview();
@@ -160,7 +161,6 @@ public class NotePadActivity extends Activity // implements
 					@Override
 					public void onClick(DialogInterface dialog, int which)
 					{
-						Log.d("1", " number" + currentDBID);
 						bdAdapter.deleteNote(currentDBID);
 						fillListView();
 						Toast.makeText(getApplicationContext(), "Deleted",
@@ -181,16 +181,6 @@ public class NotePadActivity extends Activity // implements
 		builder.show();
 	}
 
-	/*
-	 * public void bringUpDialog() { DialogFragment noteDialogFragment = new
-	 * EditNoteDialog(); noteDialogFragment.show(getSupportFragmentManager(),
-	 * "sko"); Log.d("1", "IGEN"); }
-	 * 
-	 * @Override public void userChoice(DialogFragment dialog, int choice) { if
-	 * (choice == EditNoteDialog.CHOICE_DELETE) {
-	 * bdAdapter.deleteNote(currentDBID); fillListView(); } }
-	 */
-
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
@@ -208,24 +198,5 @@ public class NotePadActivity extends Activity // implements
 		getMenuInflater().inflate(R.menu.note_pad, menu);
 		return true;
 	}
-/*
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			//NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}*/
 
 }
