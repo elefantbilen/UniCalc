@@ -158,12 +158,6 @@ public class CalculatorActivity extends Activity
 		tempNumberBar.scrollTo(0, 0);
 	}
 
-	private void giveUserToast(int message)
-	{
-		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
-				.show();
-	}
-
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
