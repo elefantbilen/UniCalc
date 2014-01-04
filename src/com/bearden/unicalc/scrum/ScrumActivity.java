@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -27,13 +26,6 @@ public class ScrumActivity extends Activity
 		scrumItems.recycle();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.scrum, menu);
-		return true;
-	}
-	
 	/**
 	 * Puts all the card in a gridview
 	 * @param scrumItems

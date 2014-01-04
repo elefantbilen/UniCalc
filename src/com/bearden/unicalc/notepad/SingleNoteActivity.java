@@ -8,7 +8,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -126,14 +125,6 @@ public class SingleNoteActivity extends Activity
 			super.onBackPressed();
 			dialog = null;
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.single_note, menu);
-
-		return true;
 	}
 
 }

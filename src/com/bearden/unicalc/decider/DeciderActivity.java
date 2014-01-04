@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -149,13 +148,6 @@ public class DeciderActivity extends Activity
 						R.string.shared_preferences_decider_num_no), 0);
 
 		mDecider = new Decider();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.decider, menu);
-		return true;
 	}
 
 	private void setTallyText()

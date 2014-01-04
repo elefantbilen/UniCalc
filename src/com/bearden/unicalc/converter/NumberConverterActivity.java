@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnKeyListener;
 import android.view.inputmethod.InputMethodManager;
@@ -46,14 +45,6 @@ public class NumberConverterActivity extends Activity
 				return false;
 			}
 		});		
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.number_converter, menu);
-		return true;
 	}
 	
 	/**

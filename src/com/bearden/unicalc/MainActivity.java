@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.HapticFeedbackConstants;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -66,13 +65,6 @@ public class MainActivity extends Activity
 			}
 		});
 
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
 	}
 
 }

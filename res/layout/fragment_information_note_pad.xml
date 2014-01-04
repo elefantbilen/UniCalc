@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_fragment_header"
+        android:layout_marginTop="5dp"
         android:text="@string/txt_note_pad_paragraph1"
         android:textSize="@dimen/text_size_small" />
 

@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.HapticFeedbackConstants;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -178,14 +177,6 @@ public class CalculatorActivity extends Activity
 	private void setupActionBar()
 	{
 		getActionBar().setDisplayHomeAsUpEnabled(true);
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.calculator, menu);
-		return true;
 	}
 
 	/**
