@@ -213,8 +213,8 @@ public class CalculatorActivity extends Activity
 				{
 					// numberBar.getBackground().setColorFilter(R.color.ivory,
 					// PorterDuff.Mode.DARKEN);
-					mNumberBar.setBackground(getResources().getDrawable(
-							R.drawable.textview_standard_white));
+					mNumberBar.setBackgroundDrawable((getResources().getDrawable(
+							R.drawable.textview_standard_white)));
 				}
 			});
 			return null;

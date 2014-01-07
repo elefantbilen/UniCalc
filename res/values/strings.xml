@@ -14,8 +14,8 @@
     <string name="label_tally">Tally: </string>
     <string name="label_totals">Totals: </string>
     <string name="hello">Hello</string>
-    <string name="welcoming_message">Welcome to the Bearden all purpose Multi Power Tool. 
-        Choose activity from the buttons here or press the information button for more information </string>
+    <string name="welcoming_message">Welcome to the Bearden all purpose Power Tool. 
+        Choose activity from the buttons below or the information button for further information </string>
     <string name="info_i"><i>i</i></string>
 
 
