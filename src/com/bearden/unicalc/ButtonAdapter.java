@@ -16,12 +16,14 @@ public class ButtonAdapter extends BaseAdapter
 	private Context mContext;
 	private TypedArray mButtonStrings;
 	private LayoutInflater mInflater;
+	private int usingSDKVersion;
 	
 	public ButtonAdapter(Context c, TypedArray ta)
 	{
 		mContext = c;
 		mButtonStrings = ta;
 		mInflater = LayoutInflater.from(mContext); // To get the layout from XML
+		usingSDKVersion = android.os.Build.VERSION.SDK_INT;
 	}
 	
 	@Override
@@ -54,9 +56,9 @@ public class ButtonAdapter extends BaseAdapter
 			convertView.setTag(holder);
 			
 			if(position == getCount() - 1) //We want the last one to have different properties to make it stand out (the information button is grey)
-				holder.activityButton.setBackground(mContext.getResources().getDrawable(R.drawable.info_button_back));
+				holder.activityButton.setBackgroundDrawable((mContext.getResources().getDrawable(R.drawable.info_button_back)));
 			else
-				holder.activityButton.setBackground(mContext.getResources().getDrawable(R.drawable.button_back));
+				holder.activityButton.setBackgroundDrawable((mContext.getResources().getDrawable(R.drawable.button_back)));
 		}
 		else
 			holder = (ViewHolder)convertView.getTag();

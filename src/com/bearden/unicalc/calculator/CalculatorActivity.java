@@ -211,10 +211,8 @@ public class CalculatorActivity extends Activity
 				@Override
 				public void run()
 				{
-					// numberBar.getBackground().setColorFilter(R.color.ivory,
-					// PorterDuff.Mode.DARKEN);
-					mNumberBar.setBackground(getResources().getDrawable(
-							R.drawable.textview_standard_white));
+					mNumberBar.setBackgroundDrawable((getResources().getDrawable(
+							R.drawable.textview_standard_white)));
 				}
 			});
 			return null;

@@ -240,8 +240,8 @@ public class DeciderActivity extends Activity
 				@Override
 				public void run()
 				{
-					mYesNoTextView.setBackground(getResources().getDrawable(
-							R.drawable.textview_standard_white));
+					mYesNoTextView.setBackgroundDrawable((getResources().getDrawable(
+							R.drawable.textview_standard_white)));
 				}
 			});
 			return null;
@@ -279,8 +279,8 @@ public class DeciderActivity extends Activity
 				@Override
 				public void run()
 				{
-					mRandomizedNumber.setBackground(getResources().getDrawable(
-							R.drawable.textview_standard_white));
+					mRandomizedNumber.setBackgroundDrawable((getResources().getDrawable(
+							R.drawable.textview_standard_white)));
 				}
 			});
 			return null;

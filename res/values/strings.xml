@@ -2,11 +2,8 @@
 <resources>
 
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Bearden\'s All Purpose Multi Power Tool</string>
     <string name="not_applicable">Not Applicable</string>
     <string name="press_button">Press<br />button</string>
-    <string name="testing">TEST TEST TEST TEST TEST</string>
-    <string name="delete">Delete</string>
 
     <!-- Overall titles -->
     <string name="label_yes">Yes</string>

@@ -72,7 +72,6 @@
             android:text="@string/_9" />
 
         <Button
-            android:id="@+id/command_button_divide"
             android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
