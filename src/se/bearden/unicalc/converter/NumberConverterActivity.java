@@ -13,7 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 /**
  * The activity for converting numbers Holds an object of NumberConverter class. 

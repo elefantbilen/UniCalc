@@ -1,6 +1,6 @@
 package se.bearden.unicalc.start;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 import android.content.Context;
 import android.content.res.TypedArray;

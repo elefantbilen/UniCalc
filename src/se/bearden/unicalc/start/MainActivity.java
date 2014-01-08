@@ -7,7 +7,7 @@ import se.bearden.unicalc.information.InformationActivity;
 import se.bearden.unicalc.notepad.NotePadActivity;
 import se.bearden.unicalc.scrum.ScrumActivity;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 import android.app.Activity;
 import android.content.Intent;

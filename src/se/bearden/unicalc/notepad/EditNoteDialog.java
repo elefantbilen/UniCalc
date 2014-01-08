@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 
 public class EditNoteDialog extends DialogFragment 

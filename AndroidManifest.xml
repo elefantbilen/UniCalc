@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bearden.unicalc"
-    android:versionCode="2"
-    android:versionName="1.01" >
+    package="se.bearden.unicalc"
+    android:versionCode="4"
+    android:versionName="1.00" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -30,7 +30,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
+                android:value="se.bearden.unicalc.start.MainActivity" />
         </activity>
         <activity
             android:name="se.bearden.unicalc.converter.NumberConverterActivity"
@@ -39,7 +39,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
+                android:value="se.bearden.unicalc.start.MainActivity" />
         </activity>
         <activity
             android:name="se.bearden.unicalc.decider.DeciderActivity"
@@ -48,7 +48,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
+                android:value="se.bearden.unicalc.start.MainActivity" />
         </activity>
         <activity
             android:name="se.bearden.unicalc.notepad.NotePadActivity"
@@ -57,7 +57,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
+                android:value="se.bearden.unicalc.start.MainActivity" />
         </activity>
         <activity
             android:name="se.bearden.unicalc.notepad.SingleNoteActivity"
@@ -71,7 +71,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
+                android:value="se.bearden.unicalc.start.MainActivity" />
         </activity>
         <activity
             android:name="se.bearden.unicalc.scrum.ScrumActivity"
@@ -80,7 +80,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bearden.unicalc.MainActivity" />
+                android:value="se.bearden.unicalc.start.MainActivity" />
         </activity>
     </application>
 

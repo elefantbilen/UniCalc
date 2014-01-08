@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 public class ScrumItemsAdapter extends BaseAdapter
 {

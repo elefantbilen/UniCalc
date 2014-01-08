@@ -1,6 +1,6 @@
 package se.bearden.unicalc.information.fragments;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 import android.app.Fragment;
 import android.os.Bundle;

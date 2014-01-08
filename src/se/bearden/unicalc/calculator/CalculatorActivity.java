@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 /***
  * The Activity for the calculator. Behaves as one would expect a calculator to

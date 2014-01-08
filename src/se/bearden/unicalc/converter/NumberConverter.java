@@ -1,7 +1,7 @@
 package se.bearden.unicalc.converter;
 
 import java.util.ArrayList;
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 import android.content.Context;
 
 /**

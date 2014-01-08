@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Titles -->
-    <string name="app_name">Bearden Power Tool</string>
+    <string name="app_name">Bearden PowerTool</string>
     <string name="title_activity_single_note">Create/Edit a Note</string>
 	<string name="title_activity_decider">Decider</string>
     <string name="title_activity_number_converter">Character\nConverter</string>

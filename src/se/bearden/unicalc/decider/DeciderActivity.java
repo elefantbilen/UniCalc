@@ -20,7 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 public class DeciderActivity extends Activity
 {

@@ -2,7 +2,7 @@ package se.bearden.unicalc.notepad;
 
 import se.bearden.unicalc.database.BDAdapter;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

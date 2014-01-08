@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 public class ScrumActivity extends Activity
 {

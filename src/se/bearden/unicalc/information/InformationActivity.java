@@ -18,7 +18,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 public class InformationActivity extends Activity implements
 		OnItemSelectedListener

@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.NavUtils;
 
-import com.bearden.unicalc.R;
+import se.bearden.unicalc.R;
 
 
 public class NotePadActivity extends Activity
