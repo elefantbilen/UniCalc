@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -35,6 +37,7 @@ public class InformationActivity extends Activity implements
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_information);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		Spinner spinner = (Spinner) findViewById(R.id.information_spinner);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -45,6 +48,18 @@ public class InformationActivity extends Activity implements
 		spinner.setOnItemSelectedListener(this);
 
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	}
+
 
 	/**
 	 * Load a fragment when user clicks on in the spinner, creates a new fragment and removes the old one

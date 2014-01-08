@@ -6,8 +6,10 @@ import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnKeyListener;
@@ -37,6 +39,7 @@ public class DeciderActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_decider);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		mYesNoTextView = (TextView) findViewById(R.id.decider_yes_no_answer);
 		mYesNoTally = (TextView) findViewById(R.id.decider_yes_no_tally);
@@ -67,6 +70,18 @@ public class DeciderActivity extends Activity
 
 		setTallyText();
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	}
+
 
 	public class RandOnTouchListener implements OnTouchListener
 	{

@@ -3,8 +3,10 @@ package com.bearden.unicalc.converter;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.HapticFeedbackConstants;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnKeyListener;
 import android.view.inputmethod.InputMethodManager;
@@ -32,7 +34,8 @@ public class NumberConverterActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_number_converter);
 		numConv = new NumberConverter(this);
-		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		ed = (EditText)findViewById(R.id.number_converter_user_input);
 		ed.setOnKeyListener(new OnKeyListener()
 		{		
@@ -46,6 +49,18 @@ public class NumberConverterActivity extends Activity
 			}
 		});		
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	}
+
 	
 	/**
 	 * Hides the keyboard when user presses the button to start the conversion.

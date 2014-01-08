@@ -30,7 +30,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.unicalc.MainActivity" />
+                android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
             android:name="com.bearden.unicalc.converter.NumberConverterActivity"
@@ -39,7 +39,7 @@
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.unicalc.MainActivity" />
+                android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
             android:name="com.bearden.unicalc.decider.DeciderActivity"
@@ -69,6 +69,9 @@
             android:label="@string/title_activity_information"
             android:parentActivityName="com.bearden.unicalc.MainActivity"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.bearden.unicalc.MainActivity" />
         </activity>
         <activity
             android:name="com.bearden.unicalc.scrum.ScrumActivity"

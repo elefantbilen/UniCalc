@@ -3,8 +3,10 @@ package com.bearden.unicalc.scrum;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -21,10 +23,23 @@ public class ScrumActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		TypedArray scrumItems = this.getResources().obtainTypedArray(R.array.scrum_values); 
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		setContentView(R.layout.activity_scrum);
 		setUpButtons(scrumItems);
 		scrumItems.recycle();
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	}
+
 
 	/**
 	 * Puts all the card in a gridview

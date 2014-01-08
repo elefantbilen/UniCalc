@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.HapticFeedbackConstants;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -31,7 +33,7 @@ public class CalculatorActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_calculator);
-		setupActionBar();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		mCalculator = new Calculator();
 
 		mNumberBar = (TextView) findViewById(R.id.number_bar);
@@ -40,6 +42,18 @@ public class CalculatorActivity extends Activity
 		mNumberBar.setMovementMethod(new ScrollingMovementMethod());
 		setNumberBar();
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	}
+
 
 	public void changeMode(View view)
 	{
@@ -169,14 +183,6 @@ public class CalculatorActivity extends Activity
 		//Since the textviews can grow we want to go back to their start if the get shrunk
 		mNumberBar.scrollTo(0, 0);
 		mTempNumberBar.scrollTo(0, 0);
-	}
-
-	/**
-	 * Set up the {@link android.app.ActionBar}.
-	 */
-	private void setupActionBar()
-	{
-		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	/**

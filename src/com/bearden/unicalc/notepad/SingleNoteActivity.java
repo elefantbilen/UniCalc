@@ -103,14 +103,14 @@ public class SingleNoteActivity extends Activity
 			AlertDialog.Builder builder = 
 				new AlertDialog.Builder(this)
 					.setTitle("Save this note?")
-					.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+					.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							saveNote();		
 						}
 					})
 		
-					.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+					.setNegativeButton("No", new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which)
 						{

@@ -6,12 +6,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.NavUtils;
 
 import com.bearden.unicalc.R;
 import com.bearden.unicalc.database.BDAdapter;
@@ -29,11 +31,23 @@ public class NotePadActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_note_pad);
-		setupActionBar();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 		bdAdapter = BDAdapter.getInstance(getApplicationContext());
 		fillListView();
 
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	        NavUtils.navigateUpFromSameTask(this);
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
 	}
 
 	/**
@@ -178,15 +192,5 @@ public class NotePadActivity extends Activity
 						});
 
 		builder.show();
-	}
-
-	/**
-	 * Set up the {@link android.app.ActionBar}.
-	 */
-	private void setupActionBar()
-	{
-
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-
 	}
 }
