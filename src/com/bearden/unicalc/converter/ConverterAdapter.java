@@ -69,7 +69,7 @@ public class ConverterAdapter extends BaseAdapter
 				+ " "
 				+ mValueInfo.get(position).getOriginalValue());
 		spannableString.setSpan(new UnderlineSpan(), 0,
-				spannableString.length(), 0);
+				mContext.getResources().getString(R.string.submitted_value).length(), 0);
 
 		holder.txtOriginal.setText(spannableString);
 

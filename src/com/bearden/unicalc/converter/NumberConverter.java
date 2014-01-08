@@ -20,8 +20,8 @@ public class NumberConverter
 	}
 
 	/**
-	 * Will instantiate a new list each time to clear out old results,
-	 * starts the conversion and returns result
+	 * Will instantiate a new list each time to clear out old results, starts
+	 * the conversion and returns result
 	 * 
 	 * @param rawString
 	 * @return
@@ -54,8 +54,9 @@ public class NumberConverter
 		{
 			if (isANumber(splitString[i]))
 			{
-				//This order is important. Length check first to avoid index out of	bounds
-				while (i < splitString.length && isANumber(splitString[i])) 
+				// This order is important. Length check first to avoid index
+				// out of bounds
+				while (i < splitString.length && isANumber(splitString[i]))
 				{
 					sBuild.append(splitString[i]);
 					i++;
@@ -97,25 +98,35 @@ public class NumberConverter
 	private void fromNumberToChar(String string)
 	{
 		ValuesToConvert val = new ValuesToConvert();
-		int number = Integer.parseInt(string);
 
-		if (number < 33)
-			val.setAsciiValue(SpecialCharsEnum.values()[number].name());
-		else if (number < 127)
-			val.setAsciiValue(Character.toString((char) Integer
-					.parseInt(string)));
-		else if (number == 127)
-			val.setAsciiValue("Delete");
-		else if (number <= 255)
-			val.setAsciiValue(Character.toString((char) Integer
-					.parseInt(string)) + " (Extended ASCII)");
-		else
-			val.setAsciiValue("Not a valid ASCII number");
+		try
+		{
+			int number = Integer.parseInt(string);
 
-		val.setOriginalValue(string);
+			if (number < 33)
+				val.setAsciiValue(SpecialCharsEnum.values()[number].name());
+			else if (number < 127)
+				val.setAsciiValue(Character.toString((char) Integer
+						.parseInt(string)));
+			else if (number == 127)
+				val.setAsciiValue("Delete");
+			else if (number <= 255)
+				val.setAsciiValue(Character.toString((char) Integer
+						.parseInt(string)) + " (Extended ASCII)");
+			else
+				val.setAsciiValue("Not a valid ASCII number");
 
-		val.setHexValue(Integer.toHexString(Integer.parseInt(string)));
-		val.setDecValue(string);
+			val.setOriginalValue(string);
+			val.setHexValue(Integer.toHexString(Integer.parseInt(string)));
+			val.setDecValue(string);
+			
+		} catch (Exception e)
+		{
+			val.setOriginalValue(string + " (Too big to process)");
+			val.setAsciiValue("-");
+			val.setHexValue("-");
+			val.setDecValue("-");
+		}
 
 		fin.add(val);
 	}
